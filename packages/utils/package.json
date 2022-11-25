@@ -1,0 +1,18 @@
+{
+  "name": "@dq-next/utils",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "glorydream.top <hanwenhui520@gmail.com>",
+  "homepage": "https://github.com/glorydreamtop/quota-admin-monorepo/tree/main/packages/utils#readme",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build":"vite build --config vite.config.lib.ts --mode utils",
+    "test": "node ./__tests__/@dq-next/dchart.test.js"
+  },
+  "dependencies": {
+    "@dq-next/http-apis": "workspace:^1.0.0"
+  }
+}

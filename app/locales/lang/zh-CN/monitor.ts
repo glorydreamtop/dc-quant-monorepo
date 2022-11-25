@@ -1,0 +1,33 @@
+export default {
+  futureRank: {
+    productName: '品种',
+    contract: '合约',
+    serachPlaceholder: '搜索品种、合约',
+    timePlaceholder: '请先选择品种或合约',
+    memberName: '会员',
+    rankIndex: '排名',
+    openBuy: '持买仓量',
+    openSale: '持卖仓量',
+    openDone: '成交量',
+    change: '增减量',
+    openInterestDetail: '持仓分布',
+    modal: {
+      buychartTtile: '多头占比',
+      salechartTtile: '空头占比',
+      donechartTtile: '综合占比',
+      linechartTtile: '建仓过程',
+      bull: '多头',
+      bear: '空头',
+      calc: '净多头',
+    },
+  },
+  futureAnalysis: {
+    futuresDealer: '期货',
+    exchange: '交易所',
+    exchangeDate: '交易日',
+    share: '持仓分析',
+    money: '资金分析',
+  },
+  getAvailableDateError: '日期查询失败，请刷新重试',
+  getAvailableDate: '正在检索可用日期...',
+};

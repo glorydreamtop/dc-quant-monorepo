@@ -1,0 +1,17 @@
+{
+  "name": "@dq-next/http-apis",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "glorydream.top <hanwenhui520@gmail.com>",
+  "homepage": "https://github.com/glorydreamtop/quota-admin-monorepo/tree/main/packages/http-apis#readme",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "test": "node ./__tests__/@dq-next/dchart.test.js"
+  },
+  "dependencies": {
+    "@dq-next/utils": "workspace:^1.0.0"
+  }
+}

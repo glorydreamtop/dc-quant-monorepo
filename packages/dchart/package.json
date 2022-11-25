@@ -1,0 +1,29 @@
+{
+  "name": "@dq-next/dchart",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "glorydream.top <hanwenhui520@gmail.com>",
+  "homepage": "https://github.com/glorydreamtop/quota-admin-monorepo/tree/main/packages/dchart#readme",
+  "license": "ISC",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist"
+  ],
+  "main": "./index.ts",
+  "module": "./index.ts",
+  "exports": {
+    ".": {
+      "import": "./index.ts"
+    }
+  },
+  "scripts": {
+    "build":"vite build --config vite.config.lib.ts --mode dchart",
+    "test": "node ./__tests__/@dq-next/dchart.test.js"
+  },
+  "dependencies": {
+    "@dq-next/http-apis": "workspace:^1.0.0",
+    "@dq-next/utils": "workspace:^1.0.0"
+  }
+}

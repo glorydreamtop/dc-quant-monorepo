@@ -1,0 +1,49 @@
+// input
+.ant-input {
+  &-number {
+    min-width: 110px;
+  }
+}
+
+.ant-input-affix-wrapper .ant-input-suffix {
+  right: 9px;
+}
+
+.ant-input-clear-icon {
+  margin-right: 5px;
+}
+
+.ant-input-affix-wrapper-textarea-with-clear-btn {
+  padding: 0 !important;
+
+  textarea.ant-input {
+    padding: 4px;
+  }
+}
+
+.search-on {
+  .ant-input {
+    border: none;
+  }
+
+  &::before {
+    content: '';
+    width: 100%;
+    margin: 0;
+    opacity: 0;
+    transform: scaleX(0.9) translateY(-4px);
+    height: 1px;
+    background: fade(@primary-color, 50%);
+    position: absolute;
+    z-index: 19;
+    bottom: 0;
+    transition: transform 0.3s ease;
+  }
+
+  &:focus-within {
+    &::before {
+      transform: scaleX(0.96) translateY(0);
+      opacity: 1;
+    }
+  }
+}

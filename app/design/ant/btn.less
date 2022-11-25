@@ -1,0 +1,38 @@
+// button reset
+.ant-btn {
+  > .anticon + span {
+    vertical-align: middle;
+  }
+
+  &-primary:not(&-background-ghost):not([disabled]) {
+    color: @white;
+  }
+
+  [data-theme='light'] &.ant-btn-link.is-disabled {
+    color: rgb(0 0 0 / 25%);
+    text-shadow: none;
+    cursor: not-allowed !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none;
+  }
+
+  [data-theme='dark'] &.ant-btn-link.is-disabled {
+    color: rgb(255 255 255 / 25%) !important;
+    text-shadow: none;
+    cursor: not-allowed !important;
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none;
+  }
+
+  &-success.ant-btn-link.ant-btn-loading,
+  &-warning.ant-btn-link.ant-btn-loading,
+  &-error.ant-btn-link.ant-btn-loading,
+  &-background-ghost.ant-btn-link.ant-btn-loading,
+  &.ant-btn-link.ant-btn-loading {
+    &::before {
+      background: transparent;
+    }
+  }
+}
