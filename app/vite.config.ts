@@ -1,28 +1,26 @@
 import type { UserConfig, ConfigEnv } from 'vite';
-import pkg from './package.json';
-import dayjs from 'dayjs';
 import { loadEnv } from 'vite';
 import autoprefixer from 'autoprefixer';
 import { resolve } from 'path';
-import { createProxy } from './build/vite/proxy';
-import { wrapperEnv } from './build/utils';
-import { createVitePlugins } from './build/vite/plugin';
-import { generateModifyVars } from './build/vite/theme';
+import { createProxy } from '../build/vite/proxy';
+import { wrapperEnv } from '../build/utils';
+import { createVitePlugins } from '../build/vite/plugin';
+import { generateModifyVars } from '../build/vite/theme';
 
 function pathResolve(dir: string) {
   return resolve(process.cwd(), '.', dir);
 }
 
-const { dependencies, devDependencies, name, version } = pkg;
-const __APP_INFO__ = {
-  pkg: { dependencies, devDependencies, name, version },
-  lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-};
+// const { dependencies, devDependencies, name, version } = pkg;
+// const __APP_INFO__ = {
+//   pkg: { dependencies, devDependencies, name, version },
+//   lastBuildTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
+// };
 
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   const root = process.cwd();
 
-  const env = loadEnv(mode, resolve(root, 'env'));
+  const env = loadEnv(mode, resolve(root, '../env'));
 
   // The boolean type read by loadEnv is a string. This function can be converted to boolean type
   const viteEnv = wrapperEnv(env);
@@ -40,7 +38,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
 
   return {
     base: VITE_PUBLIC_PATH,
-    root: resolve(root, 'app'),
+    root: root,
     resolve: {
       alias: [
         {
@@ -50,12 +48,12 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
         // /@/xxxx => src/xxxx
         {
           find: /\/@\//,
-          replacement: pathResolve('app') + '/',
+          replacement: pathResolve('') + '/',
         },
         // /#/xxxx => types/xxxx
         {
           find: /\/#\//,
-          replacement: pathResolve('types') + '/',
+          replacement: pathResolve('./types') + '/',
         },
       ],
     },
@@ -83,7 +81,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       // setting vue-i18-next
       // Suppress warning
       __INTLIFY_PROD_DEVTOOLS__: false,
-      __APP_INFO__: JSON.stringify(__APP_INFO__),
+      // __APP_INFO__: JSON.stringify(__APP_INFO__),
     },
 
     css: {

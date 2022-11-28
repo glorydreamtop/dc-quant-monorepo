@@ -36,8 +36,10 @@
           >
             <div
               v-if="setting.side"
-              class="relative w-24px h-24px"
-              :class="[(config.title ?? '').length === 0 ? 'disabled' : '']"
+              :class="[
+                (config.title ?? '').length === 0 ? 'disabled' : '',
+                'relative w-24px h-24px',
+              ]"
               @click="handleEvent(showTable ? 'showChart' : 'showTable')"
             >
               <Icon

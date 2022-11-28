@@ -2,7 +2,7 @@ import { useResizeObserver } from '@vueuse/core';
 import { floor } from 'lodash-es';
 import { Directive, DirectiveBinding, App, CSSProperties, nextTick } from 'vue';
 import { h, render } from 'vue';
-import { on, off } from '../utils/domUtils';
+import { on, off } from '@dq-next/utils/domUtils';
 import Icon from '/@/components/Icon';
 
 const resizeDirective: Directive = {

@@ -6,6 +6,8 @@
   "homepage": "https://github.com/glorydreamtop/quota-admin-monorepo/tree/main/app/#readme",
   "license": "ISC",
   "scripts": {
+    "serve": "npm run dev",
+    "dev": "vite --https",
     "build": "vite build --config ../vite.config.ts",
     "test": "node ./__tests__/@dq-next/dchart.test.js"
   },

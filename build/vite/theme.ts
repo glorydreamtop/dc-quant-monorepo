@@ -3,6 +3,7 @@ import { getThemeVariables } from 'ant-design-vue/dist/theme';
 import { resolve } from 'path';
 const primaryColor = '#2f54eb';
 
+const configLessPath = resolve('design/config.less');
 /**
  * less global variable
  */
@@ -21,7 +22,7 @@ export function generateModifyVars(dark = false) {
     ...modifyVars,
     // Used for global import to avoid the need to import each style file separately
     // reference:  Avoid repeated references
-    hack: `${modifyVars.hack} @import (reference) "${resolve('../../app/design/config.less')}";`,
+    hack: `${modifyVars.hack} @import (reference) "${configLessPath}";`,
     'primary-color': primary,
     ...primaryColorObj,
     'processing-color': primary,

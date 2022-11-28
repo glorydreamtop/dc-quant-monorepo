@@ -1,6 +1,6 @@
 import { Directive, App, h, render } from 'vue';
 import { Tooltip } from 'ant-design-vue';
-import { buildShortUUID } from '../utils/uuid';
+import { buildShortUUID } from '@dq-next/utils/uuid';
 
 function makeEventListener(parent: HTMLElement, child: HTMLElement) {
   const types = ['mouseenter', 'mouseleave', 'mousedown', 'mouseup', 'click'];
