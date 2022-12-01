@@ -8,7 +8,6 @@ import {
   seasonalChartConfigType,
   structuralChartConfigType,
 } from '/#/chart';
-import { quotaDataPastUnitTypeEnum } from '@dq-next/http-apis/quota';
 import {
   chartTypeEnum,
   structuralOffsetUnitEnum,
@@ -18,11 +17,16 @@ import {
 import { formatToDate } from '../dateUtil';
 import { SelectedQuotaItem } from '/@/views/quota/quotaView/components/hooks';
 import { TemplateItem } from '/#/template';
-import { TreeItem } from '/@/components/Tree';
 
 interface chartTemplateModel {
   config: chartConfigType;
   category_id: number;
+}
+
+enum quotaDataPastUnitTypeEnum {
+  day = '日',
+  last = '期',
+  month = '月',
 }
 
 export function pingChart() {

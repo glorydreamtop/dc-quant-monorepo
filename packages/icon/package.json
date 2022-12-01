@@ -15,7 +15,7 @@
   "module": "./index.ts",
   "exports": {
     ".": {
-      "import": "./index.ts"
+      "import": "./dist/icon.es.ts"
     },
     "./dist/style.css": {
       "import": "./dist/style.css",
@@ -27,7 +27,6 @@
     "test": "node ./__tests__/@dq-next/dchart.test.js"
   },
   "dependencies": {
-    "@dq-next/utils": "workspace:^1.0.0",
     "@purge-icons/generated": "^0.8.1"
   }
 }

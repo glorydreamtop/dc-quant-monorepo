@@ -1,4 +1,4 @@
-import { defHttp } from '@dq-next/utils/http';
+import { defHttp } from '../http';
 import type { TemplateItem } from '/#/template';
 import type { CategoryTreeModel } from '/#/quota';
 import { CategoryTreeType } from '/@/enums/quotaEnum';

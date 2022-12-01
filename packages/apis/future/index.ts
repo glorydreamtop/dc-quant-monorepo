@@ -1,4 +1,4 @@
-import { defHttp, monitorHttp } from '@dq-next/utils/http';
+import { defHttp, monitorHttp } from '../http';
 
 import { RankParams, RankResult, SearchProductOrContractParams, tableData } from './model';
 

@@ -1,4 +1,4 @@
-import { defHttp, nodeHttp } from '@dq-next/utils/http';
+import { defHttp, nodeHttp } from '../http';
 
 import { ContentTypeEnum, ResultEnum } from '/@/enums/httpEnum';
 import { TreeType } from '/@/enums/quotaEnum';

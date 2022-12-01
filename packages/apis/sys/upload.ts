@@ -1,5 +1,5 @@
 import { UploadApiResult } from './model/uploadModel';
-import { defHttp } from '@dq-next/utils/http';
+import { defHttp } from '../http';
 import { UploadFileParams } from '/#/axios';
 import { useGlobSetting } from '/@/hooks/setting';
 import { getToken } from '@dq-next/utils/auth';

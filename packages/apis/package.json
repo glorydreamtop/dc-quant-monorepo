@@ -12,8 +12,6 @@
     "test": "node ./__tests__/@dq-next/dchart.test.js"
   },
   "dependencies": {
-    "@dq-next/icon": "workspace:^1.0.0",
-    "@dq-next/utils": "workspace:^1.0.0",
-    "@purge-icons/generated": "^0.8.1"
+    "@dq-next/utils": "workspace:^1.0.0"
   }
 }

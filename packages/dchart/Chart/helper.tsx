@@ -12,7 +12,7 @@ import {
   GridComponentOption,
   EChartsType,
 } from 'echarts';
-import { encodeSvgForCss } from '/@/components/Icon';
+import { encodeSvgForCss } from '@dq-next/icon';
 import { last, maxBy, nth, remove, round, cloneDeep, has, isObject } from 'lodash-es';
 import { chartTypeEnum, echartLineTypeEnum, echartSeriesTypeEnum } from '/@/enums/chartEnum';
 import { dateUtil, daysAgo, formatToDate, getMonth, toTimeStamp } from '@dq-next/utils/dateUtil';

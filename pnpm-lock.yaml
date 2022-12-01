@@ -278,47 +278,28 @@ importers:
 
   packages/apis:
     specifiers:
-      '@dq-next/icon': workspace:^1.0.0
       '@dq-next/utils': workspace:^1.0.0
-      '@purge-icons/generated': ^0.8.1
     dependencies:
-      '@dq-next/icon': link:../icon
       '@dq-next/utils': link:../utils
-      '@purge-icons/generated': 0.8.1
 
   packages/dchart:
     specifiers:
       '@dq-next/http-apis': workspace:^1.0.0
       '@dq-next/icon': workspace:^1.0.0
       '@dq-next/utils': workspace:^1.0.0
-      '@purge-icons/generated': ^0.8.1
     dependencies:
       '@dq-next/http-apis': link:../apis
       '@dq-next/icon': link:../icon
       '@dq-next/utils': link:../utils
-      '@purge-icons/generated': 0.8.1
 
   packages/icon:
     specifiers:
-      '@dq-next/icon': workspace:^1.0.0
-      '@dq-next/utils': workspace:^1.0.0
       '@purge-icons/generated': ^0.8.1
     dependencies:
-      '@dq-next/icon': 'link:'
-      '@dq-next/utils': link:../utils
       '@purge-icons/generated': 0.8.1
 
   packages/utils:
-    specifiers:
-      '@dq-next/http-apis': workspace:^1.0.0
-      '@dq-next/icon': workspace:^1.0.0
-      '@dq-next/utils': workspace:^1.0.0
-      '@purge-icons/generated': ^0.8.1
-    dependencies:
-      '@dq-next/http-apis': link:../apis
-      '@dq-next/icon': link:../icon
-      '@dq-next/utils': 'link:'
-      '@purge-icons/generated': 0.8.1
+    specifiers: {}
 
 packages:
 

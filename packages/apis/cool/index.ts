@@ -1,4 +1,4 @@
-import { defHttp } from '@dq-next/utils/http';
+import { defHttp } from '../http';
 
 enum Api {
   GetOneSentence = 'https://v1.hitokoto.cn',

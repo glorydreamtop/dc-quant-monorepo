@@ -1,4 +1,4 @@
-import { defHttp } from '@dq-next/utils/http';
+import { defHttp } from '../http';
 import { LoginParams, LoginResultModel } from './model';
 import { ErrorMessageMode } from '/#/axios';
 import { BasicFetchResult, BasicPageParams, IdModel } from '../model/baseModel';

@@ -11,7 +11,7 @@
 
   import { computed, defineComponent, getCurrentInstance } from 'vue';
 
-  import Icon from '/@/components/Icon/index';
+  import { Icon } from '@dq-next/icon';
   import { propTypes } from '@dq-next/utils/propTypes';
 
   export default defineComponent({

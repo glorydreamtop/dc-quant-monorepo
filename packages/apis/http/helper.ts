@@ -1,4 +1,4 @@
-import { isObject, isString } from '../is';
+import { isObject, isString } from '@dq-next/utils/is';
 
 const DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm:ss';
 

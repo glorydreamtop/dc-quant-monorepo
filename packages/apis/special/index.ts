@@ -1,5 +1,5 @@
 import { BasicFetchResult } from '../model/baseModel';
-import { defHttp, jodiHttp, vesselHttp } from '@dq-next/utils/http';
+import { defHttp, jodiHttp, vesselHttp } from '../http';
 import { ContentTypeEnum } from '/@/enums/httpEnum';
 
 interface QuotaUpdateGroup {

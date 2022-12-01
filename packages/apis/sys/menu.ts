@@ -1,4 +1,4 @@
-import { defHttp } from '@dq-next/utils/http';
+import { defHttp } from '../http';
 import { MenuListResultModel } from './model/menuModel';
 
 enum Api {

@@ -1,4 +1,4 @@
-import { defHttp } from '@dq-next/utils/http';
+import { defHttp } from '../http';
 
 import { ColorsSchemeModel } from './model';
 import { ResultEnum } from '/@/enums/httpEnum';

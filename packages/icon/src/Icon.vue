@@ -27,8 +27,6 @@
   } from 'vue';
   import SvgIcon from './SvgIcon.vue';
   import Iconify from '@purge-icons/generated';
-  import { isString } from '@dq-next/utils/is';
-  import { propTypes } from '@dq-next/utils/propTypes';
 
   const SVG_END_WITH_FLAG = '|svg';
   export default defineComponent({
@@ -36,16 +34,22 @@
     components: { SvgIcon },
     props: {
       // icon name
-      icon: propTypes.string,
+      icon: String,
       // icon color
-      color: propTypes.string,
+      color: String,
       // icon size
       size: {
-        type: [String, Number] as PropType<string | number>,
+        type: [String, Number],
         default: 16,
       },
-      spin: propTypes.bool.def(false),
-      prefix: propTypes.string.def(''),
+      spin: {
+        type: Boolean,
+        default: false,
+      },
+      prefix: {
+        type: String,
+        default: '',
+      },
     },
     setup(props) {
       const elRef = ref<ElRef>(null);
@@ -80,7 +84,7 @@
       const getWrapStyle = computed((): CSSProperties => {
         const { size, color } = props;
         let fs = size;
-        if (isString(size)) {
+        if (typeof size === 'string') {
           fs = parseInt(size, 10);
         }
 
