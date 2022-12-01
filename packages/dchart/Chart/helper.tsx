@@ -2,7 +2,7 @@ import { getQuotaData } from '@dq-next/http-apis/quota';
 import { getQuotaDataParams, getQuotaDataResult } from '@dq-next/http-apis/quota/model';
 import { Popover, Input } from 'ant-design-vue';
 import { h, ref, render } from 'vue';
-import { chartConfigType, normalChartConfigType, seriesSettingType } from '/#/chart';
+import { chartConfigType, normalChartConfigType, seriesSettingType } from '../chart';
 import {
   EChartsOption,
   GraphicComponentOption,

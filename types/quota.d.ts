@@ -32,3 +32,7 @@ export interface QuotaItem {
   timeLastUpdate?: string;
   range?: [string, string];
 }
+
+export interface SelectedQuotaItem extends QuotaItem {
+  selected: boolean;
+}

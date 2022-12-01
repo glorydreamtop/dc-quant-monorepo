@@ -39,7 +39,7 @@ import {
   radarChartConfigType,
   seasonalChartConfigType,
   structuralChartConfigType,
-} from '/#/chart';
+} from '../chart';
 import {
   getQuotaData,
   quotaDataExportTypeEnum,
@@ -50,7 +50,7 @@ import { structuralOffsetUnitEnum } from '/@/enums/chartEnum';
 import { SourceTypeEnum } from '/@/enums/quotaEnum';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { dateUtil, daysAgo, formatToDate, getMonth, getYear } from '@dq-next/utils/dateUtil';
-import { SelectedQuotaItem } from '/@/views/quota/quotaView/components/hooks';
+import { SelectedQuotaItem } from '/#/quota';
 
 const { t } = useI18n();
 function titleConfig(chartConfig: chartConfigType): TitleComponentOption {
