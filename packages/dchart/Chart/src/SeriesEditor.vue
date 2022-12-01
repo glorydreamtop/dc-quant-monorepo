@@ -5,7 +5,7 @@
         class="flex flex-col gap-1 children:whitespace-nowrap children:flex children:items-center w-40"
       >
         <span :style="{ color: info.color }">{{ info.name }}</span>
-        <span>{{info.currentPoint}}</span>
+        <span>{{ info.currentPoint }}</span>
         <span>
           <span class="w-4em text-justify mr-2">{{ t('quotaView.seriesEdit.legendName') }}</span>
           <Input class="!w-6em" size="small" v-model:value="info.legendName" placeholder="默认" />
@@ -145,8 +145,8 @@
     color: void 0,
     symbol: void 0,
     legendName: void 0,
-    symbolPoints:[],
-    currentPoint:[]
+    symbolPoints: [],
+    currentPoint: [],
   });
   const yAxisList = computed(() => {
     const { chartConfig } = props;

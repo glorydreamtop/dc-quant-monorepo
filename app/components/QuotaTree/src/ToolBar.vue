@@ -19,7 +19,7 @@
 <script lang="ts" setup>
   import { toRefs } from 'vue';
   import { useModal } from '../../Modal';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { QuotaUpload } from '/@/components/QuotaEditor';
 
   const props = defineProps<{

@@ -38,7 +38,7 @@
   import { onMounted, reactive, ref } from 'vue';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { Button, Select, Input } from 'ant-design-vue';
-  import { Icon } from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { useModal } from '/@/components/Modal';
   import { getRoleListById } from '@dq-next/http-apis/sys/role';
   import { userListEventBus } from '../columns';

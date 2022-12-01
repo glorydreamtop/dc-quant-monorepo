@@ -59,7 +59,7 @@
   import { formatToDate, yearsAgo } from '@dq-next/utils/dateUtil';
   import { useSelectTemplateListContext, useTemplateListContext } from '../../hooks';
   import type { chartConfigType } from '/#/chart';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { BasicHelp } from '/@/components/Basic';
   import { remove } from 'lodash-es';
 

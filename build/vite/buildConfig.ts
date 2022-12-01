@@ -16,7 +16,13 @@ export function buildConfig({ name, entry }: BUildParams): BuildOptions {
       formats: ['es'],
     },
     rollupOptions: {
-      external: ['echarts/core', '@formkit/auto-animate'],
+      external: [
+        'echarts/core',
+        '@formkit/auto-animate',
+        'echarts/renderers',
+        'echarts/components',
+        'echarts/charts',
+      ],
       plugins: [
         autoExternal({
           builtins: false,

@@ -20,7 +20,7 @@
 <script lang="ts">
   import { defineComponent } from 'vue';
   import { Card } from 'ant-design-vue';
-  import { Icon } from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { groupItems } from './data';
 
   export default defineComponent({

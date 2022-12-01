@@ -55,7 +55,7 @@
 <script lang="ts" setup>
   import { ref } from 'vue';
   import { Drawer } from 'ant-design-vue';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { useDesign } from '/@/hooks/web/useDesign';
 
   const props = defineProps({
@@ -99,7 +99,7 @@
     }
 
     &.ant-drawer {
-      transition: width 0.3s;
+      transition: width 0.3s @ease-out-back;
 
       & .ant-drawer-content {
         overflow: hidden;
@@ -109,7 +109,7 @@
   }
 
   .@{prefix-cls}-shadow{
-      transition: width 0.3s;
+      transition: width 0.3s @ease-out-back;
       height: 100%;
   }
 </style>

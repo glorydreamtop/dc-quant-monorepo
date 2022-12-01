@@ -117,7 +117,7 @@
   import { useModal } from '/@/components/Modal';
   import CellSetting from './CellSetting.vue';
   import ToolBar from './ToolBar.vue';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { getSingleQuotaData } from '@dq-next/http-apis/quota';
   import { CellTypeEnum, HeaderCellTypeEnum } from '/@/enums/tableEnum';
   import { useMessage } from '/@/hooks/web/useMessage';

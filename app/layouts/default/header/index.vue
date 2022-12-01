@@ -4,15 +4,13 @@
     <div :class="`${prefixCls}-left`">
       <!-- logo -->
       <AppLogo
-        v-if="getShowHeaderLogo || getIsMobile"
+        v-if="getShowHeaderLogo"
         :class="`${prefixCls}-logo`"
         :theme="getHeaderTheme"
         :style="getLogoWidth"
       />
       <LayoutTrigger
-        v-if="
-          (getShowContent && getShowHeaderTrigger && !getSplit && !getIsMixSidebar) || getIsMobile
-        "
+        v-if="getShowContent && getShowHeaderTrigger && !getSplit && !getIsMixSidebar"
         :theme="getHeaderTheme"
         :sider="false"
       />
@@ -68,7 +66,6 @@
   import { AppLocalePicker } from '/@/components/Application';
 
   import { UserDropDown, LayoutBreadcrumb, FullScreen, Notify, ErrorAction } from './components';
-  import { useAppInject } from '/@/hooks/web/useAppInject';
   import { useDesign } from '/@/hooks/web/useDesign';
 
   import { createAsyncComponent } from '@dq-next/utils/factory/createAsyncComponent';
@@ -121,15 +118,12 @@
 
       const { getShowLocalePicker } = useLocale();
 
-      const { getIsMobile } = useAppInject();
-
       const getHeaderClass = computed(() => {
         const theme = unref(getHeaderTheme);
         return [
           prefixCls,
           {
             [`${prefixCls}--fixed`]: props.fixed,
-            [`${prefixCls}--mobile`]: unref(getIsMobile),
             [`${prefixCls}--${theme}`]: theme,
           },
         ];
@@ -148,7 +142,7 @@
       });
 
       const getLogoWidth = computed(() => {
-        if (!unref(getIsMixMode) || unref(getIsMobile)) {
+        if (!unref(getIsMixMode)) {
           return {};
         }
         const width = unref(getMenuWidth) < 180 ? 180 : unref(getMenuWidth);
@@ -171,7 +165,6 @@
         getShowHeaderLogo,
         getHeaderTheme,
         getShowHeaderTrigger,
-        getIsMobile,
         getShowBread,
         getShowContent,
         getSplitType,

@@ -67,7 +67,7 @@
   import { useSortable } from '/@/hooks/web/useSortable';
   import { isNullAndUnDef } from '@dq-next/utils/is';
   import { DoubleSideChart } from '@dq-next/dchart';
-  import { Icon } from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import BasicText from '../Text.vue';
   import BasicImg from '../Image.vue';
   import { useLayout } from './layout';

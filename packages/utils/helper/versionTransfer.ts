@@ -9,9 +9,16 @@ import {
   structuralChartConfigType,
 } from '/#/chart';
 import { quotaDataPastUnitTypeEnum } from '@dq-next/http-apis/quota';
-import { chartTypeEnum, structuralOffsetUnitEnum, timeConfigEnum } from '/@/enums/chartEnum';
+import {
+  chartTypeEnum,
+  structuralOffsetUnitEnum,
+  timeConfigEnum,
+  versionEnum,
+} from '/@/enums/chartEnum';
 import { formatToDate } from '../dateUtil';
 import { SelectedQuotaItem } from '/@/views/quota/quotaView/components/hooks';
+import { TemplateItem } from '/#/template';
+import { TreeItem } from '/@/components/Tree';
 
 interface chartTemplateModel {
   config: chartConfigType;
@@ -364,6 +371,24 @@ export function proChart() {
   return function transform(options) {
     return options.config;
   };
+}
+
+export function autoVersionTransfer(item: TemplateItem) {
+  const { pingChart, huiChart, proChart } = useVersionTransfer();
+  const json = JSON.parse(item.options);
+  if (Reflect.has(json, 'config') && json.config.version !== 2) {
+    item.version = versionEnum.HUIChart;
+    item.config = huiChart(json);
+    item.name = item.config.name;
+  } else if (Reflect.has(json, 'option_template_type')) {
+    item.version = versionEnum.PINGChart;
+    item.config = pingChart(json);
+  } else {
+    item.version = versionEnum.PROChart;
+    item.config = proChart(json);
+    item.name = item.config.title;
+  }
+  return item;
 }
 
 export function useVersionTransfer() {

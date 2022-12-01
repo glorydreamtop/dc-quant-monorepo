@@ -67,7 +67,7 @@
   import { reactive, computed } from 'vue';
   import type { CategoryTreeModel, QuotaItem } from '/#/quota';
   import { Button, Modal, Popover, TreeSelect } from 'ant-design-vue';
-  import { Icon } from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { emitter } from '/@/components/QuotaTree/hooks';
   import { useQuotaListContext, useSelectedQuotaContext } from '../hooks';

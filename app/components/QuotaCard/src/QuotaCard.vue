@@ -62,7 +62,7 @@
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useCopyToClipboard } from '/@/hooks/web/useCopyToClipboard';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import { Icon } from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { SelectedQuotaItem } from '/@/views/quota/quotaView/components/hooks';
 
   const props = defineProps<{

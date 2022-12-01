@@ -37,7 +37,7 @@
   import { reactive } from 'vue';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { Button, TreeSelect, Input } from 'ant-design-vue';
-  import { Icon } from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { useQuotaTreeStore } from '/@/store/modules/quotaTree';
 
   const emits = defineEmits<{

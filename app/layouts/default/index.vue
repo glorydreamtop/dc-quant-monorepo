@@ -3,7 +3,7 @@
     <LayoutFeatures />
     <LayoutHeader fixed v-if="getShowFullHeaderRef" />
     <Layout :class="[layoutClass]">
-      <LayoutSideBar v-if="getShowSidebar || getIsMobile" />
+      <LayoutSideBar v-if="getShowSidebar" />
       <Layout :class="`${prefixCls}-main`">
         <LayoutMultipleHeader />
         <LayoutContent />
@@ -28,8 +28,6 @@
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useLockPage } from '/@/hooks/web/useLockPage';
 
-  import { useAppInject } from '/@/hooks/web/useAppInject';
-
   export default defineComponent({
     name: 'DefaultLayout',
     components: {
@@ -43,7 +41,6 @@
     },
     setup() {
       const { prefixCls } = useDesign('default-layout');
-      const { getIsMobile } = useAppInject();
       const { getShowFullHeaderRef } = useHeaderSetting();
       const { getShowSidebar, getIsMixSidebar, getShowMenu } = useMenuSetting();
 
@@ -62,7 +59,6 @@
         getShowFullHeaderRef,
         getShowSidebar,
         prefixCls,
-        getIsMobile,
         getIsMixSidebar,
         layoutClass,
         lockEvents,

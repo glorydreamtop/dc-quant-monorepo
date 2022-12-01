@@ -157,7 +157,7 @@
   import { typeFomatter } from '@dq-next/utils/helper/commonHelper';
   import { remove, cloneDeep } from 'lodash-es';
   import { useLoading } from '/@/components/Loading';
-  import { Icon } from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { emitter } from '/@/components/QuotaTree/hooks';
   import { useCopyToClipboard } from '/@/hooks/web/useCopyToClipboard';

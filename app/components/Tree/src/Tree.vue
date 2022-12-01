@@ -15,7 +15,7 @@
   import { Tree, Empty } from 'ant-design-vue';
 
   import { omit } from 'lodash-es';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { isFunction } from '@dq-next/utils/is';
   import { extendSlots, getSlot } from '@dq-next/utils/helper/tsxHelper';
 

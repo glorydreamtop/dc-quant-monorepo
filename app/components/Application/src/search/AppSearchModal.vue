@@ -1,7 +1,7 @@
 <template>
   <Teleport to="body">
     <transition name="zoom-fade" mode="out-in">
-      <div :class="getClass" @click.stop v-if="visible">
+      <div :class="prefixCls" @click.stop v-if="visible">
         <div :class="`${prefixCls}-content`" v-click-outside="handleClose">
           <div :class="`${prefixCls}-input__wrapper`">
             <a-input
@@ -61,14 +61,13 @@
   import { computed, unref, ref, watch, nextTick } from 'vue';
   import { SearchOutlined } from '@ant-design/icons-vue';
   import AppSearchFooter from './AppSearchFooter.vue';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   // @ts-ignore
   import vClickOutside from '/@/directives/clickOutside';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useRefs } from '/@/hooks/core/useRefs';
   import { useMenuSearch } from './useMenuSearch';
   import { useI18n } from '/@/hooks/web/useI18n';
-  import { useAppInject } from '/@/hooks/web/useAppInject';
 
   const props = defineProps({
     visible: { type: Boolean },
@@ -82,21 +81,11 @@
   const { t } = useI18n();
   const { prefixCls } = useDesign('app-search-modal');
   const [refs, setRefs] = useRefs();
-  const { getIsMobile } = useAppInject();
 
   const { handleSearch, searchResult, keyword, activeIndex, handleEnter, handleMouseenter } =
     useMenuSearch(refs, scrollWrap, emit);
 
   const getIsNotData = computed(() => !keyword || unref(searchResult).length === 0);
-
-  const getClass = computed(() => {
-    return [
-      prefixCls,
-      {
-        [`${prefixCls}--mobile`]: unref(getIsMobile),
-      },
-    ];
-  });
 
   watch(
     () => props.visible,
@@ -127,43 +116,6 @@
     padding-top: 50px;
     background-color: rgb(0 0 0 / 25%);
     justify-content: center;
-
-    &--mobile {
-      padding: 0;
-
-      > div {
-        width: 100%;
-      }
-
-      .@{prefix-cls}-input {
-        width: calc(100% - 38px);
-      }
-
-      .@{prefix-cls}-cancel {
-        display: inline-block;
-      }
-
-      .@{prefix-cls}-content {
-        width: 100%;
-        height: 100%;
-        border-radius: 0;
-      }
-
-      .@{footer-prefix-cls} {
-        display: none;
-      }
-
-      .@{prefix-cls}-list {
-        height: calc(100% - 80px);
-        max-height: unset;
-
-        &__item {
-          &-enter {
-            opacity: 0% !important;
-          }
-        }
-      }
-    }
 
     &-content {
       position: relative;

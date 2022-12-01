@@ -47,7 +47,7 @@
   import { chartConfigType } from '/#/chart';
   import { useDownloadXLSX } from './helper';
   import { useI18n } from '/@/hooks/web/useI18n';
-  import { Icon } from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { Input, Modal, DatePicker } from 'ant-design-vue';
   import { importJson } from '@dq-next/http-apis/quota';
   import { useMessage } from '/@/hooks/web/useMessage';

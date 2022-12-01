@@ -8,6 +8,13 @@
         @update-config="updateConfig"
         @render-success="renderSuccess"
       />
+      <!-- <TempChart
+        class="w-full h-full"
+        :config="config"
+        :id="64221207"
+        @update-config="updateConfig"
+        @render-success="renderSuccess"
+      /> -->
     </div>
     <BarDrawer
       width="380px"
@@ -33,7 +40,7 @@
 <script lang="ts" setup>
   import ToolBar from './ToolBar.vue';
   import Advance from './Advance.vue';
-  import { DoubleSideChart } from '@dq-next/dchart';
+  import { DoubleSideChart, TempChart, setToken } from '@dq-next/dchart';
   import { echartMitter, useChartConfigContext } from './hooks';
   import { reactive, ref, toRaw, watch, nextTick } from 'vue';
   import { Button } from 'ant-design-vue';
@@ -41,16 +48,16 @@
   import { cloneDeep, mergeWith } from 'lodash-es';
   import { EChartsCoreOption } from 'echarts/core';
   import { mergeAndRemove } from '@dq-next/utils/helper/commonHelper';
-  import { useRoute } from 'vue-router';
+  import { getToken } from '@dq-next/utils/auth';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { BarDrawer, useDrawer } from '/@/components/Drawer';
   import { TempSave } from '/@/components/TempSave';
 
-  const route = useRoute();
   const { t } = useI18n();
   const chartConfig = useChartConfigContext();
   // 配置变化后要绘制一次才能允许保存
   const allowSave = ref(true);
+  setToken(getToken());
   watch(
     chartConfig,
     (v) => {

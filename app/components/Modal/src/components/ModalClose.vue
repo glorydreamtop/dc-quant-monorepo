@@ -19,7 +19,7 @@
   import { useDesign } from '/@/hooks/web/useDesign';
   import { Tooltip } from 'ant-design-vue';
   import { useI18n } from '/@/hooks/web/useI18n';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
 
   export default defineComponent({
     name: 'ModalClose',

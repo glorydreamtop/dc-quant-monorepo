@@ -11,11 +11,15 @@
   "files": [
     "dist"
   ],
-  "main": "./index.ts",
+  "main": "./dist/dchart.es.ts",
   "module": "./index.ts",
   "exports": {
     ".": {
       "import": "./index.ts"
+    },
+    "./dist/style.css": {
+      "import": "./dist/style.css",
+      "require": "./dist/style.css"
     }
   },
   "scripts": {
@@ -24,6 +28,8 @@
   },
   "dependencies": {
     "@dq-next/http-apis": "workspace:^1.0.0",
-    "@dq-next/utils": "workspace:^1.0.0"
+    "@dq-next/icon": "workspace:^1.0.0",
+    "@dq-next/utils": "workspace:^1.0.0",
+    "@purge-icons/generated": "^0.8.1"
   }
 }

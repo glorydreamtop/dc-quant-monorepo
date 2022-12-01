@@ -15,7 +15,6 @@
   import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
   import { useFullContent } from '/@/hooks/web/useFullContent';
   import { useMultipleTabSetting } from '/@/hooks/setting/useMultipleTabSetting';
-  import { useAppInject } from '/@/hooks/web/useAppInject';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useLayoutHeight } from '../content/useContentViewHeight';
 
@@ -30,7 +29,6 @@
       const { prefixCls } = useDesign('layout-multiple-header');
 
       const { getCalcContentWidth, getSplit } = useMenuSetting();
-      const { getIsMobile } = useAppInject();
       const {
         getFixed,
         getShowInsetHeaderRef,
@@ -54,7 +52,7 @@
       const getWrapStyle = computed((): CSSProperties => {
         const style: CSSProperties = {};
         if (unref(getFixed)) {
-          style.width = unref(getIsMobile) ? '100%' : unref(getCalcContentWidth);
+          style.width = unref(getCalcContentWidth);
         }
         if (unref(getShowFullHeaderRef)) {
           style.top = `${HEADER_HEIGHT}px`;

@@ -3,7 +3,14 @@ import { getThemeVariables } from 'ant-design-vue/dist/theme';
 import { resolve } from 'path';
 const primaryColor = '#2f54eb';
 
-const configLessPath = resolve('design/config.less');
+const root = process.cwd();
+console.log(root);
+
+const configLessPath = resolve(
+  root,
+  root.includes('packages') ? '../../app/design/config.less' : 'design/config.less',
+);
+
 /**
  * less global variable
  */

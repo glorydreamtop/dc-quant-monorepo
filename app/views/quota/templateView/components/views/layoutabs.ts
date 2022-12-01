@@ -5,7 +5,7 @@ import { pageSettingType, tempConfigs, TemplateDOM } from '/#/template';
 import { DoubleSideChart } from '@dq-next/dchart';
 import BasicText from '../Text.vue';
 import BasicImg from '../Image.vue';
-import Icon from '/@/components/Icon';
+import { Icon } from '@dq-next/icon';
 import { noop } from '@dq-next/utils';
 import { useWatchArray } from '@dq-next/utils/helper/commonHelper';
 

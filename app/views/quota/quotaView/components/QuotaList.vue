@@ -64,7 +64,7 @@
   import { QuotaCard } from '/@/components/QuotaCard';
   import { useWatchArray } from '@dq-next/utils/helper/commonHelper';
   import { cloneDeep, remove } from 'lodash-es';
-  import { Icon } from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   // import QuotaModal from '/@/views/dataManagement/quotaTree/components/QuotaModal.vue';
   // import Edit from './SeriesEdit.vue';
   import { useMessage } from '/@/hooks/web/useMessage';

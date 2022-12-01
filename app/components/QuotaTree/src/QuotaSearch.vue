@@ -19,7 +19,7 @@
   import { useDebounceFn } from '@vueuse/shared';
   import { ref } from 'vue';
   import { AutoComplete, Input } from 'ant-design-vue';
-  import { Icon } from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { searchQuota } from '@dq-next/http-apis/quota';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useMessage } from '/@/hooks/web/useMessage';

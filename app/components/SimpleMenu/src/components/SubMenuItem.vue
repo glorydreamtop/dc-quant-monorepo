@@ -74,7 +74,7 @@
   import { useMenuItem } from './useMenu';
   import { useSimpleRootMenuContext } from './useSimpleMenuContext';
   import { CollapseTransition } from '/@/components/Transition';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { Popover } from 'ant-design-vue';
   import { isBoolean, isObject } from '@dq-next/utils/is';
   import mitt from '@dq-next/utils/mitt';

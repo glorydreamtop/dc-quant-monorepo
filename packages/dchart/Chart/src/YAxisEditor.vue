@@ -143,7 +143,6 @@
   import { BasicHelp } from '/@/components/Basic';
   import { useI18n } from '/@/hooks/web/useI18n';
   import type { normalChartConfigType, YAxisOption } from '/#/chart';
-  import { isNull } from '@dq-next/utils/is';
   import { useColor } from '../helper';
   // import { tooltipDirective as vTooltip } from '/@/directives/tooltip';
   const { t } = useI18n();

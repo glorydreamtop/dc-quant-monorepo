@@ -21,21 +21,31 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean, lib = fals
     vueJsx(),
     vueSetupExtend(),
     vueI18n({
-      // if you want to use Vue I18n Legacy API, you need to set `compositionOnly: false`
-      // compositionOnly: false,
-      // you need to set i18n resource including paths !
-      include: path.resolve(__dirname, './src/locales/**'),
+      include: path.resolve(__dirname, './app/locales/**'),
     }),
     windiCSS(),
     !lib && configHtmlPlugin(viteEnv, isBuild),
-    configSvgIconsPlugin(isBuild),
-    purgeIcons(),
+    !lib && configSvgIconsPlugin(isBuild),
+    !lib && purgeIcons(),
     !lib && configCompressPlugin(viteEnv, isBuild),
-    configVisualizerPlugin(viteEnv, isBuild),
+    !lib && configVisualizerPlugin(viteEnv, isBuild),
     !lib && configPwaPlugin(viteEnv, isBuild),
   ];
   if (!isBuild) {
     vitePlugins.push(mkcert() as PluginOption);
   }
   return vitePlugins;
+}
+
+export function createVitePluginsLib(plugins: PluginOption[] = []) {
+  return [
+    vue(),
+    vueJsx(),
+    vueSetupExtend(),
+    vueI18n({
+      include: path.resolve(__dirname, './app/locales/**'),
+    }),
+    windiCSS(),
+    ...plugins,
+  ];
 }

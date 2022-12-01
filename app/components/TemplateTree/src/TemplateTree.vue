@@ -47,7 +47,7 @@
   import type { CategoryTreeModel } from '/#/quota';
   import { CategoryTreeType } from '/@/enums/quotaEnum';
   import { useI18n } from '/@/hooks/web/useI18n';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { findNode, findPath, forEach } from '@dq-next/utils/helper/treeHelper';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { uniq, pick } from 'lodash-es';

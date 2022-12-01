@@ -26,7 +26,7 @@
   import { Upload } from 'ant-design-vue';
   import { ref, reactive } from 'vue';
   import { BasicModal, useModalInner } from '/@/components/Modal';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { useI18n } from '/@/hooks/web/useI18n';
   const { t } = useI18n();
   const [registerModal] = useModalInner(() => {});

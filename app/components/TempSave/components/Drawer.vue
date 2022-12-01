@@ -58,7 +58,7 @@
   import { chartConfigType } from '/#/chart';
   import { updateTemplate } from '@dq-next/http-apis/template';
   import { BasicDrawer, useDrawerInner } from '/@/components/Drawer';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { TemplateTree } from '/@/components/TemplateTree';
   import { BasicHelp } from '/@/components/Basic';
   import { CategoryTreeModel } from '/#/quota';

@@ -1,15 +1,9 @@
 <template>
-  <div class="h-full overflow-hidden relative" v-loading="state.loading">
+  <div class="h-full" v-loading="state.loading">
     <div ref="chartElRef" class="w-full h-full" @contextmenu="originContextmenu"></div>
-    <div v-if="state.noChart" class="no-chart flex flex-col items-center select-none">
-      <img src="../../../../app/assets/svg/no-chart.svg" />
-      <span
-        v-if="config.title"
-        class="whitespace-nowrap mt-2 text-gray-400 flex flex-col items-center"
-        ><span>{{ config.title }}</span
-        ><span v-if="state.renderError">{{ t('common.renderError') }}</span>
-      </span>
-    </div>
+    <NoChart
+      v-bind="{ title: config.title, noChart: state.noChart, renderError: state.renderError }"
+    />
   </div>
 </template>
 
@@ -17,8 +11,8 @@
   import { nextTick, ref, toRefs, unref, watch, reactive } from 'vue';
   import type { Ref } from 'vue';
   import { useECharts } from '/@/hooks/web/useECharts';
-  import { useI18n } from '/@/hooks/web/useI18n';
   import { chartTypeEnum } from '/@/enums/chartEnum';
+  import NoChart from './NoChart.vue';
   import {
     useSeasonalChart,
     useNormalChart,
@@ -28,7 +22,7 @@
     usePieChart,
     useQuantileRadarChart,
   } from '../tranfer';
-  import type { chartConfigType, normalChartConfigType } from '/#/chart';
+  import type { chartConfigType, normalChartConfigType } from '../../chart';
   import {
     onMountedOrActivated,
     onUnmountedOrDeactivated,
@@ -42,24 +36,25 @@
     useYAxisIndexEdit,
   } from '../helper';
   import { cloneDeep } from 'lodash-es';
-  import { useMessage } from '/@/hooks/web/useMessage';
   import { EChartsCoreOption } from 'echarts/core';
   import vLoading from '/@/directives/loading';
 
   const props = defineProps<{
+    // 图表配置对象
     config: chartConfigType;
+    // 开启墨迹模式
     paintMode: boolean;
   }>();
   const emit = defineEmits<{
+    // 从图表上操作修改图表配置信息
     (event: 'updateConfig', config: chartConfigType): void;
+    // echart渲染结束
     (event: 'renderSuccess', options: EChartsCoreOption): void;
   }>();
 
   const { config } = toRefs(props);
   const chartElRef = ref<HTMLDivElement>();
   const { setOptions, resize, getInstance } = useECharts(chartElRef as Ref<HTMLDivElement>);
-  const { createMessage } = useMessage();
-  const { t } = useI18n();
   const state = reactive({
     // 还没画图
     noChart: true,
@@ -82,7 +77,7 @@
   watch(
     config,
     async (v) => {
-      const hasQuotaList = Reflect.has(v, 'quotaList') && v.quotaList?.length > 0;
+      const hasQuotaList = Reflect.has(v, 'quotaList') && v.quotaList!.length > 0;
       const http = Reflect.has(v, 'http') && !!v.http;
       if ((!hasQuotaList && http) || !Reflect.has(v, 'http')) return;
       try {
@@ -101,7 +96,6 @@
         console.log(error);
         state.noChart = true;
         state.renderError = true;
-        createMessage.warn(t('common.renderError'));
       } finally {
         state.loading = false;
       }

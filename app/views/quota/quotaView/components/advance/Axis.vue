@@ -47,7 +47,7 @@
 
 <script lang="ts" setup>
   import { Tag, Button } from 'ant-design-vue';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { BasicHelp } from '/@/components/Basic';
   import { YAxisEditor, XAxisEditor } from '@dq-next/dchart';
   import { useI18n } from '/@/hooks/web/useI18n';

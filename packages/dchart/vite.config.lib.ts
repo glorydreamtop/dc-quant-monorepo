@@ -4,7 +4,7 @@ import autoprefixer from 'autoprefixer';
 import { resolve } from 'path';
 import { buildConfig } from '../../build/vite/buildConfig';
 import { wrapperEnv } from '../../build/utils';
-import { createVitePlugins } from '../../build/vite/plugin';
+import { createVitePluginsLib } from '../../build/vite/plugin';
 import { generateModifyVars } from '../../build/vite/theme';
 
 function pathResolve(dir: string) {
@@ -14,7 +14,7 @@ function pathResolve(dir: string) {
 export default ({ command, mode }: ConfigEnv): UserConfig => {
   const root = process.cwd();
 
-  const env = loadEnv(mode, resolve('../env'));
+  const env = loadEnv(mode, resolve('../../env'));
 
   // The boolean type read by loadEnv is a string. This function can be converted to boolean type
   const viteEnv = wrapperEnv(env);
@@ -45,7 +45,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       pure: ['console.log', 'debugger'],
     },
     build: buildConfig({
-      name: 'dchart',
+      name: mode,
       entry: './index.ts',
     }),
     css: {
@@ -61,7 +61,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
     },
 
     // The vite plugin used by the project. The quantity is large, so it is separately extracted and managed
-    plugins: createVitePlugins(viteEnv, isBuild, true),
+    plugins: createVitePluginsLib(),
 
     optimizeDeps: {
       // @iconify/iconify: The dependency is dynamically and virtually loaded by @purge-icons/generated, so it needs to be specified explicitly

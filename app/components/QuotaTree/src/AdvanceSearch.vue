@@ -97,7 +97,7 @@
   import type { Ref } from 'vue';
   import { Input, Select, Button, Tooltip, Tabs, Pagination } from 'ant-design-vue';
   import type { ModalProps } from '/@/components/Modal/src/typing';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
   import { VScroll } from '/@/components/VirtualScroll';
   import { BasicModal, useModalInner } from '/@/components/Modal';
   import { useI18n } from '/@/hooks/web/useI18n';

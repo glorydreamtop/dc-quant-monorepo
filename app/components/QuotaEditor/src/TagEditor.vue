@@ -69,7 +69,7 @@
   import { fade } from '@dq-next/utils/color';
   import { LabeledValue } from 'ant-design-vue/lib/select';
   import { QuotaItem } from '/#/quota';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
 
   interface Params {
     searchName: string;

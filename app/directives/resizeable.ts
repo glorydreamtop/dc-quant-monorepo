@@ -3,7 +3,7 @@ import { floor } from 'lodash-es';
 import { Directive, DirectiveBinding, App, CSSProperties, nextTick } from 'vue';
 import { h, render } from 'vue';
 import { on, off } from '@dq-next/utils/domUtils';
-import Icon from '/@/components/Icon';
+import { Icon } from '@dq-next/icon';
 
 const resizeDirective: Directive = {
   mounted(el: HTMLElement, binding: DirectiveBinding<string>) {

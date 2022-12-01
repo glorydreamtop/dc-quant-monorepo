@@ -15,7 +15,7 @@
   import { cloneDeep } from 'lodash-es';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { Button } from 'ant-design-vue';
-  import Icon from '/@/components/Icon';
+  import { Icon } from '@dq-next/icon';
 
   const { t } = useI18n();
   const emit = defineEmits<{

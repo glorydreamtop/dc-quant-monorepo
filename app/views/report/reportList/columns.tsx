@@ -2,7 +2,7 @@ import { BasicColumn } from '/@/components/Table';
 import { Tooltip } from 'ant-design-vue';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { isEmpty, isNull } from '@dq-next/utils/is';
-import { Icon } from '/@/components/Icon';
+import { Icon } from '@dq-next/icon';
 import { openWindow } from '@dq-next/utils';
 import { downloadByUrl } from '@dq-next/utils/file/download';
 import { useRootSetting } from '/@/hooks/setting/useRootSetting';
