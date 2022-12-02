@@ -6,14 +6,11 @@ import { useMultipleTabStore } from '/@/store/modules/multipleTab';
 
 import { uniqBy } from 'lodash-es';
 
-import { useMultipleTabSetting } from '/@/hooks/setting/useMultipleTabSetting';
-
 import { useRouter } from 'vue-router';
 
 export function useFrameKeepAlive() {
   const router = useRouter();
   const { currentRoute } = router;
-  const { getShowMultipleTab } = useMultipleTabSetting();
   const tabStore = useMultipleTabStore();
   const getFramePages = computed(() => {
     const ret = getAllFramePages(toRaw(router.getRoutes()) as unknown as AppRouteRecordRaw[]) || [];
@@ -49,9 +46,6 @@ export function useFrameKeepAlive() {
   }
 
   function hasRenderFrame(name: string) {
-    if (!unref(getShowMultipleTab)) {
-      return router.currentRoute.value.name === name;
-    }
     return unref(getOpenTabList).includes(name);
   }
 

@@ -32,7 +32,7 @@
   import CollapseHeader from './CollapseHeader.vue';
   import { triggerWindowResize } from '@dq-next/utils/event';
   // hook
-  import { useTimeoutFn } from '/@/hooks/core/useTimeout';
+  import { useTimeoutFn } from '@vueuse/core';
   import { useDesign } from '/@/hooks/web/useDesign';
 
   const props = defineProps({

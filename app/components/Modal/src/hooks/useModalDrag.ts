@@ -1,5 +1,5 @@
 import { Ref, unref, watchEffect } from 'vue';
-import { useTimeoutFn } from '/@/hooks/core/useTimeout';
+import { useTimeoutFn } from '@vueuse/core';
 
 export interface UseModalDragMoveContext {
   draggable: Ref<boolean>;
@@ -100,8 +100,6 @@ export function useModalDragMove(context: UseModalDragMoveContext) {
     if (!unref(context.visible) || !unref(context.draggable)) {
       return;
     }
-    useTimeoutFn(() => {
-      handleDrag();
-    }, 30);
+    useTimeoutFn(handleDrag, 30);
   });
 }

@@ -18,10 +18,10 @@
         </TabPane>
       </template>
 
-      <template #rightExtra v-if="getShowRedo || getShowQuick">
-        <TabRedo v-if="getShowRedo" />
-        <TabContent isExtra :tabItem="$route" v-if="getShowQuick" />
-        <FoldButton v-if="getShowFold" />
+      <template #rightExtra>
+        <TabRedo />
+        <!-- <TabContent isExtra :tabItem="$route" v-if="getShowQuick" />
+        <FoldButton v-if="getShowFold" /> -->
       </template>
     </Tabs>
   </div>
@@ -43,7 +43,6 @@
 
   import { initAffixTabs, useTabsDrag } from './useMultipleTabs';
   import { useDesign } from '/@/hooks/web/useDesign';
-  import { useMultipleTabSetting } from '/@/hooks/setting/useMultipleTabSetting';
 
   import { REDIRECT_NAME } from '/@/router/constant';
   import { listenerRouteChange } from '/@/logics/mitt/routeChange';
@@ -70,7 +69,6 @@
 
       const { prefixCls } = useDesign('multiple-tabs');
       const go = useGo();
-      const { getShowQuick, getShowRedo, getShowFold } = useMultipleTabSetting();
 
       const getTabsState = computed(() => {
         return tabStore.getTabList.filter((item) => !item.meta?.hideTab);
@@ -132,9 +130,6 @@
         handleChange,
         activeKeyRef,
         getTabsState,
-        getShowQuick,
-        getShowRedo,
-        getShowFold,
       };
     },
   });

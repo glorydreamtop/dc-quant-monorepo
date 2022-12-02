@@ -1,7 +1,7 @@
 <script lang="tsx">
   import type { MoveData, DragVerifyActionType } from './typing';
   import { defineComponent, computed, unref, reactive, watch, ref } from 'vue';
-  import { useTimeoutFn } from '/@/hooks/core/useTimeout';
+  import { useTimeoutFn } from '@vueuse/core';
   import BasicDragVerify from './DragVerify.vue';
   import { hackCss } from '@dq-next/utils/domUtils';
   import { rotateProps } from './props';

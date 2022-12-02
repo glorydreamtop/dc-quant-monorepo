@@ -8,7 +8,6 @@ import { AppDarkModeToggle } from '/@/components/Application';
 import { useRootSetting } from '/@/hooks/setting/useRootSetting';
 import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
 import { useHeaderSetting } from '/@/hooks/setting/useHeaderSetting';
-import { useMultipleTabSetting } from '/@/hooks/setting/useMultipleTabSetting';
 import { useI18n } from '/@/hooks/web/useI18n';
 
 import { HandlerEnum } from './enum';
@@ -39,8 +38,6 @@ export default defineComponent({
     const { getIsHorizontal, getShowMenu, getMenuBgColor, getIsMixSidebar } = useMenuSetting();
 
     const { getShowHeader, getHeaderBgColor } = useHeaderSetting();
-
-    const { getShowMultipleTab, getShowQuick, getShowRedo, getShowFold } = useMultipleTabSetting();
 
     function renderHeaderTheme() {
       return (
@@ -106,32 +103,6 @@ export default defineComponent({
             event={HandlerEnum.SHOW_BREADCRUMB_ICON}
             def={unref(getShowBreadCrumbIcon)}
             disabled={!unref(getShowHeader)}
-          />
-
-          <SwitchItem
-            title={t('layout.setting.tabs')}
-            event={HandlerEnum.TABS_SHOW}
-            def={unref(getShowMultipleTab)}
-          />
-
-          <SwitchItem
-            title={t('layout.setting.tabsRedoBtn')}
-            event={HandlerEnum.TABS_SHOW_REDO}
-            def={unref(getShowRedo)}
-            disabled={!unref(getShowMultipleTab)}
-          />
-
-          <SwitchItem
-            title={t('layout.setting.tabsQuickBtn')}
-            event={HandlerEnum.TABS_SHOW_QUICK}
-            def={unref(getShowQuick)}
-            disabled={!unref(getShowMultipleTab)}
-          />
-          <SwitchItem
-            title={t('layout.setting.tabsFoldBtn')}
-            event={HandlerEnum.TABS_SHOW_FOLD}
-            def={unref(getShowFold)}
-            disabled={!unref(getShowMultipleTab)}
           />
 
           <SwitchItem

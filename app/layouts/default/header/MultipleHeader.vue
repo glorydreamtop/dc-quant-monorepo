@@ -1,8 +1,8 @@
 <template>
   <div :style="getPlaceholderDomStyle" v-if="getIsShowPlaceholderDom"></div>
   <div :style="getWrapStyle" :class="getClass">
-    <LayoutHeader v-if="getShowInsetHeaderRef" />
-    <MultipleTabs v-if="getShowTabs" />
+    <LayoutHeader />
+    <MultipleTabs />
   </div>
 </template>
 <script lang="ts">
@@ -14,7 +14,6 @@
   import { useHeaderSetting } from '/@/hooks/setting/useHeaderSetting';
   import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
   import { useFullContent } from '/@/hooks/web/useFullContent';
-  import { useMultipleTabSetting } from '/@/hooks/setting/useMultipleTabSetting';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useLayoutHeight } from '../content/useContentViewHeight';
 
@@ -29,21 +28,9 @@
       const { prefixCls } = useDesign('layout-multiple-header');
 
       const { getCalcContentWidth, getSplit } = useMenuSetting();
-      const {
-        getFixed,
-        getShowInsetHeaderRef,
-        getShowFullHeaderRef,
-        getHeaderTheme,
-        getShowHeader,
-      } = useHeaderSetting();
+      const { getFixed, getShowFullHeaderRef, getHeaderTheme, getShowHeader } = useHeaderSetting();
 
       const { getFullContent } = useFullContent();
-
-      const { getShowMultipleTab } = useMultipleTabSetting();
-
-      const getShowTabs = computed(() => {
-        return unref(getShowMultipleTab) && !unref(getFullContent);
-      });
 
       const getIsShowPlaceholderDom = computed(() => {
         return unref(getFixed) || unref(getShowFullHeaderRef);
@@ -97,8 +84,6 @@
         getIsFixed,
         getWrapStyle,
         getIsShowPlaceholderDom,
-        getShowTabs,
-        getShowInsetHeaderRef,
       };
     },
   });

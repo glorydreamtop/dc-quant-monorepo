@@ -1,48 +1,44 @@
 <template>
-  <div :class="[prefixCls, getLayoutContentMode]" v-loading="getPageLoading">
-    <PageLayout />
-  </div>
+  <RouterView v-slot="{ Component, route }">
+    <transition name="fade-slide" mode="out-in" appear>
+      <keep-alive :include="getCaches">
+        <component :is="Component" :key="route.fullPath" />
+      </keep-alive>
+    </transition>
+  </RouterView>
+  <FrameLayout v-if="getCanEmbedIFramePage" />
 </template>
+
 <script lang="ts">
-  import { defineComponent } from 'vue';
-  import PageLayout from '/@/layouts/page/index.vue';
-  import { useDesign } from '/@/hooks/web/useDesign';
+  import { computed, defineComponent, unref } from 'vue';
+
+  import FrameLayout from '/@/layouts/iframe/index.vue';
+
   import { useRootSetting } from '/@/hooks/setting/useRootSetting';
+  import { useMultipleTabStore } from '/@/store/modules/multipleTab';
   import { useContentViewHeight } from './useContentViewHeight';
 
   export default defineComponent({
-    name: 'LayoutContent',
-    components: { PageLayout },
+    name: 'PageLayout',
+    components: { FrameLayout },
     setup() {
-      const { prefixCls } = useDesign('layout-content');
-      const { getLayoutContentMode, getPageLoading } = useRootSetting();
+      const tabStore = useMultipleTabStore();
+
+      const { getOpenKeepAlive, getCanEmbedIFramePage } = useRootSetting();
+
+      const getCaches = computed((): string[] => {
+        if (!unref(getOpenKeepAlive)) {
+          return [];
+        }
+        return tabStore.getCachedTabList;
+      });
 
       useContentViewHeight();
+
       return {
-        prefixCls,
-        getLayoutContentMode,
-        getPageLoading,
+        getCaches,
+        getCanEmbedIFramePage,
       };
     },
   });
 </script>
-<style lang="less">
-  @prefix-cls: ~'@{namespace}-layout-content';
-
-  .@{prefix-cls} {
-    position: relative;
-    flex: 1 1 auto;
-    min-height: 0;
-
-    &.fixed {
-      width: 1200px;
-      margin: 0 auto;
-    }
-
-    &-loading {
-      position: absolute;
-      top: 200px;
-      z-index: @page-loading-z-index;
-    }
-  }
-</style>

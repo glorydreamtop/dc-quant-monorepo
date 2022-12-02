@@ -71,8 +71,7 @@
   import { computed, nextTick, onUnmounted, watchEffect } from 'vue';
   import { Tooltip } from 'ant-design-vue';
   import { useI18n } from '/@/hooks/web/useI18n';
-  import { useMagicKeys } from '@vueuse/core';
-  import { useTimeoutFn } from '/@/hooks/core/useTimeout';
+  import { useMagicKeys, useTimeoutFn } from '@vueuse/core';
   import { chartSetting } from '../../chart';
   import Icon from '@dq-next/icon';
 

@@ -105,7 +105,7 @@
   import { findNode, findPath, forEach } from '@dq-next/utils/helper/treeHelper';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { uniq } from 'lodash-es';
-  import { useTimeoutFn } from '/@/hooks/core/useTimeout';
+  import { useTimeoutFn } from '@vueuse/core';
   import { useHighLight, useMultiSelect, useTreeCURD } from '../hooks';
   import { useCopyToClipboard } from '/@/hooks/web/useCopyToClipboard';
   import type { treeSelectParams, treePropsModel, QuotaType, searchItemType } from '../types';
