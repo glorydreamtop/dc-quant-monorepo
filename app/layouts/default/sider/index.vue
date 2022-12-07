@@ -1,5 +1,4 @@
 <template>
-  <div :class="`${prefixCls}-dom`" :style="getDomStyle"></div>
   <div
     v-click-outside="handleClickOutside"
     :style="getWrapStyle"
@@ -346,21 +345,12 @@
   @prefix-cls: ~'@{namespace}-layout-mix-sider';
   @width: 80px;
   .@{prefix-cls} {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: @layout-mix-sider-fixed-z-index;
-    height: 100%;
+    position: relative;
+    height: 100vh;
     overflow: hidden;
     background-color: @sider-dark-bg-color;
     transition: all 0.2s ease 0s;
     box-shadow: #c3c3c385 4px 0px 10px;
-
-    &-dom {
-      height: 100%;
-      overflow: hidden;
-      transition: all 0.2s ease 0s;
-    }
 
     &-logo {
       display: flex;

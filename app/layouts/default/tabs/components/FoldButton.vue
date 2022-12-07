@@ -4,11 +4,10 @@
   </span>
 </template>
 <script lang="ts">
-  import { defineComponent, unref, computed } from 'vue';
+  import { defineComponent, unref, computed, ref } from 'vue';
   import { Icon } from '@dq-next/icon';
 
   import { useDesign } from '/@/hooks/web/useDesign';
-  import { useHeaderSetting } from '/@/hooks/setting/useHeaderSetting';
   import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
   import { triggerWindowResize } from '@dq-next/utils/event';
 
@@ -17,10 +16,9 @@
     components: { Icon },
     setup() {
       const { prefixCls } = useDesign('multiple-tabs-content');
-      const { getShowMenu, setMenuSetting } = useMenuSetting();
-      const { getShowHeader, setHeaderSetting } = useHeaderSetting();
+      const { setMenuSetting } = useMenuSetting();
 
-      const getIsUnFold = computed(() => !unref(getShowMenu) && !unref(getShowHeader));
+      const getIsUnFold = ref(false);
 
       const getIcon = computed(() =>
         unref(getIsUnFold) ? 'codicon:screen-normal' : 'codicon:screen-full',
@@ -32,7 +30,6 @@
           show: isUnFold,
           hidden: !isUnFold,
         });
-        setHeaderSetting({ show: isUnFold });
         triggerWindowResize();
       }
 

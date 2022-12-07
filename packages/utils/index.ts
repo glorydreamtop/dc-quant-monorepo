@@ -1,4 +1,3 @@
-import type { RouteLocationNormalized, RouteRecordNormalized } from 'vue-router';
 import type { App, Plugin } from 'vue';
 
 import { unref } from 'vue';
@@ -66,21 +65,6 @@ export function getDynamicProps<T, U>(props: T): Partial<U> {
   });
 
   return ret as Partial<U>;
-}
-
-export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormalized {
-  if (!route) return route;
-  const { matched, ...opt } = route;
-  return {
-    ...opt,
-    matched: (matched
-      ? matched.map((item) => ({
-          meta: item.meta,
-          name: item.name,
-          path: item.path,
-        }))
-      : undefined) as RouteRecordNormalized[],
-  };
 }
 
 export const withInstall = <T>(component: T, alias?: string) => {

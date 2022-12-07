@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full" v-loading="state.loading">
+  <div class="h-full">
     <div ref="chartElRef" class="w-full h-full" @contextmenu="originContextmenu"></div>
     <NoChart
       v-bind="{ title: config.title, noChart: state.noChart, renderError: state.renderError }"
@@ -37,7 +37,7 @@
   } from '../helper';
   import { cloneDeep } from 'lodash-es';
   import { EChartsCoreOption } from 'echarts/core';
-  import vLoading from '/@/directives/loading';
+  // import vLoading from '/@/directives/loading';
 
   const props = defineProps<{
     // 图表配置对象

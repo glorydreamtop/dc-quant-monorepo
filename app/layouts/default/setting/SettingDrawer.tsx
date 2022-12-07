@@ -7,7 +7,6 @@ import { AppDarkModeToggle } from '/@/components/Application';
 
 import { useRootSetting } from '/@/hooks/setting/useRootSetting';
 import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
-import { useHeaderSetting } from '/@/hooks/setting/useHeaderSetting';
 import { useI18n } from '/@/hooks/web/useI18n';
 
 import { HandlerEnum } from './enum';
@@ -37,13 +36,10 @@ export default defineComponent({
     } = useRootSetting();
     const { getIsHorizontal, getShowMenu, getMenuBgColor, getIsMixSidebar } = useMenuSetting();
 
-    const { getShowHeader, getHeaderBgColor } = useHeaderSetting();
-
     function renderHeaderTheme() {
       return (
         <ThemeColorPicker
           colorList={HEADER_PRESET_BG_COLOR_LIST}
-          def={unref(getHeaderBgColor)}
           event={HandlerEnum.HEADER_THEME}
         />
       );
@@ -95,14 +91,12 @@ export default defineComponent({
             title={t('layout.setting.breadcrumb')}
             event={HandlerEnum.SHOW_BREADCRUMB}
             def={unref(getShowBreadCrumb)}
-            disabled={!unref(getShowHeader)}
           />
 
           <SwitchItem
             title={t('layout.setting.breadcrumbIcon')}
             event={HandlerEnum.SHOW_BREADCRUMB_ICON}
             def={unref(getShowBreadCrumbIcon)}
-            disabled={!unref(getShowHeader)}
           />
 
           <SwitchItem
@@ -112,11 +106,7 @@ export default defineComponent({
             disabled={unref(getIsHorizontal)}
           />
 
-          <SwitchItem
-            title={t('layout.setting.header')}
-            event={HandlerEnum.HEADER_SHOW}
-            def={unref(getShowHeader)}
-          />
+          <SwitchItem title={t('layout.setting.header')} event={HandlerEnum.HEADER_SHOW} />
           <SwitchItem
             title="Logo"
             event={HandlerEnum.SHOW_LOGO}

@@ -33,7 +33,6 @@
 
   import { Tabs } from 'ant-design-vue';
   import TabContent from './components/TabContent.vue';
-  import FoldButton from './components/FoldButton.vue';
   import TabRedo from './components/TabRedo.vue';
 
   import { useGo } from '/@/hooks/web/usePage';
@@ -53,7 +52,6 @@
     name: 'MultipleTabs',
     components: {
       TabRedo,
-      FoldButton,
       Tabs,
       TabPane: Tabs.TabPane,
       TabContent,

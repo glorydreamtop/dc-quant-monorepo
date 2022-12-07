@@ -1,11 +1,9 @@
 <template>
   <Dropdown placement="bottomLeft" :overlayClassName="`${prefixCls}-dropdown-overlay`">
-    <span :class="[prefixCls, `${prefixCls}--${theme}`]" class="flex">
+    <span :class="[prefixCls, `${prefixCls}--light`]" class="flex">
       <img :class="`${prefixCls}__header`" :src="getUserInfo.avatar" />
-      <span :class="`${prefixCls}__info hidden md:block`">
-        <span :class="`${prefixCls}__name  `" class="truncate">
-          {{ getUserInfo.username }}
-        </span>
+      <span :class="`${prefixCls}__name`" class="truncate">
+        {{ getUserInfo.username }}
       </span>
     </span>
 
@@ -15,11 +13,10 @@
           key="doc"
           :text="t('layout.header.dropdownItemDoc')"
           icon="ion:document-text-outline"
-          v-if="getShowDoc"
         />
-        <MenuDivider v-if="getShowDoc" />
+        <MenuDivider />
         <MenuItem
-          v-if="getUseLockPage"
+          v-if="false"
           key="lock"
           :text="t('layout.header.tooltipLock')"
           icon="ion:lock-closed-outline"
@@ -43,7 +40,6 @@
   import { DOC_URL } from '/@/settings/siteSetting';
 
   import { useUserStore } from '/@/store/modules/user';
-  import { useHeaderSetting } from '/@/hooks/setting/useHeaderSetting';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useModal } from '/@/components/Modal';
@@ -71,7 +67,6 @@
     setup() {
       const { prefixCls } = useDesign('header-user-dropdown');
       const { t } = useI18n();
-      const { getShowDoc, getUseLockPage } = useHeaderSetting();
       const userStore = useUserStore();
 
       const getUserInfo = computed(() => {
@@ -114,9 +109,7 @@
         t,
         getUserInfo,
         handleMenuClick,
-        getShowDoc,
         register,
-        getUseLockPage,
       };
     },
   });

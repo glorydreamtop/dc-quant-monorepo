@@ -4,7 +4,7 @@ import { getQuotaData, quotaDataExportTypeEnum } from '@dq-next/http-apis/quota'
 import { getQuotaDataResult } from '@dq-next/http-apis/quota/model';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { formatToDate, toTimeStamp } from '@dq-next/utils/dateUtil';
-import { SelectedQuotaItem } from '/@/views/quota/quotaView/components/hooks';
+import { SelectedQuotaItem } from '/#/chart';
 
 const { t } = useI18n();
 

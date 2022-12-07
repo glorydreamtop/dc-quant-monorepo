@@ -1,7 +1,7 @@
 /**
  * Independent time operation tool to facilitate subsequent switch to dayjs
  */
-import dayjs, { UnitType } from 'dayjs';
+import dayjs from 'dayjs';
 import WeekOfYear from 'dayjs/plugin/WeekOfYear';
 dayjs.extend(WeekOfYear);
 const DATE_TIME_FORMAT = 'YYYY-MM-DD HH:mm:ss';

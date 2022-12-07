@@ -4,7 +4,6 @@ import { resolve } from 'path';
 const primaryColor = '#2f54eb';
 
 const root = process.cwd();
-console.log(root);
 
 const configLessPath = resolve(
   root,

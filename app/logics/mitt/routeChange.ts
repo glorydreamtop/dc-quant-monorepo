@@ -4,7 +4,7 @@
 
 import mitt from '@dq-next/utils/mitt';
 import type { RouteLocationNormalized } from 'vue-router';
-import { getRawRoute } from '@dq-next/utils';
+import { getRawRoute } from '/@/router/helper/routeHelper';
 
 const emitter = mitt();
 

@@ -1,20 +1,9 @@
 <template>
-  <Header :class="getHeaderClass">
+  <Header :class="prefixCls">
     <!-- left start -->
-    <div :class="`${prefixCls}-left`">
-      <!-- logo -->
-      <AppLogo
-        v-if="getShowHeaderLogo"
-        :class="`${prefixCls}-logo`"
-        :theme="getHeaderTheme"
-        :style="getLogoWidth"
-      />
-      <LayoutTrigger
-        v-if="getShowContent && getShowHeaderTrigger && !getSplit && !getIsMixSidebar"
-        :theme="getHeaderTheme"
-        :sider="false"
-      />
-      <LayoutBreadcrumb v-if="getShowContent && getShowBread" :theme="getHeaderTheme" />
+    <div>
+      <LayoutTrigger v-if="getShowHeaderTrigger && !getSplit && !getIsMixSidebar" :sider="false" />
+      <LayoutBreadcrumb />
     </div>
     <!-- left end -->
 
@@ -24,13 +13,13 @@
         <div class="font-bold text-red-500 mr-2 select-none">{{ version }}</div>
       </Tooltip>
 
-      <AppSearch :class="`${prefixCls}-action__item `" v-if="getShowSearch" />
+      <AppSearch :class="`${prefixCls}-action__item `" />
 
       <ErrorAction v-if="getUseErrorHandle" :class="`${prefixCls}-action__item error-action`" />
 
-      <Notify v-if="getShowNotice" :class="`${prefixCls}-action__item notify-item`" />
+      <Notify :class="`${prefixCls}-action__item notify-item`" />
 
-      <FullScreen v-if="getShowFullScreen" :class="`${prefixCls}-action__item fullscreen-item`" />
+      <FullScreen :class="`${prefixCls}-action__item fullscreen-item`" />
 
       <AppLocalePicker
         v-if="getShowLocalePicker"
@@ -38,10 +27,8 @@
         :showText="false"
         :class="`${prefixCls}-action__item`"
       />
-
-      <UserDropDown :theme="getHeaderTheme" />
-
-      <SettingDrawer v-if="getShowSetting" :class="`${prefixCls}-action__item`" />
+      <UserDropDown />
+      <SettingDrawer :class="`${prefixCls}-action__item`" />
     </div>
   </Header>
 </template>
@@ -52,17 +39,13 @@
   import { propTypes } from '@dq-next/utils/propTypes';
 
   import { Layout } from 'ant-design-vue';
-  import { AppLogo } from '/@/components/Application';
   import LayoutTrigger from '../trigger/index.vue';
 
   import { AppSearch } from '/@/components/Application';
-
-  import { useHeaderSetting } from '/@/hooks/setting/useHeaderSetting';
   import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
   import { useRootSetting } from '/@/hooks/setting/useRootSetting';
 
   import { MenuModeEnum, MenuSplitTyeEnum } from '/@/enums/menuEnum';
-  import { SettingButtonPositionEnum } from '/@/enums/appEnum';
   import { AppLocalePicker } from '/@/components/Application';
 
   import { UserDropDown, LayoutBreadcrumb, FullScreen, Notify, ErrorAction } from './components';
@@ -76,7 +59,6 @@
     components: {
       Tooltip,
       Header: Layout.Header,
-      AppLogo,
       LayoutTrigger,
       LayoutBreadcrumb,
       UserDropDown,
@@ -92,62 +74,12 @@
     props: {
       fixed: propTypes.bool,
     },
-    setup(props) {
+    setup() {
       const { prefixCls } = useDesign('layout-header');
-      const {
-        getShowTopMenu,
-        getShowHeaderTrigger,
-        getSplit,
-        getIsMixMode,
-        getMenuWidth,
-        getIsMixSidebar,
-      } = useMenuSetting();
-      const { getUseErrorHandle, getShowSettingButton, getSettingButtonPosition } =
-        useRootSetting();
-
-      const {
-        getHeaderTheme,
-        getShowFullScreen,
-        getShowNotice,
-        getShowContent,
-        getShowBread,
-        getShowHeaderLogo,
-        getShowHeader,
-        getShowSearch,
-      } = useHeaderSetting();
+      const { getShowTopMenu, getShowHeaderTrigger, getSplit, getIsMixSidebar } = useMenuSetting();
+      const { getUseErrorHandle, getShowSettingButton } = useRootSetting();
 
       const { getShowLocalePicker } = useLocale();
-
-      const getHeaderClass = computed(() => {
-        const theme = unref(getHeaderTheme);
-        return [
-          prefixCls,
-          {
-            [`${prefixCls}--fixed`]: props.fixed,
-            [`${prefixCls}--${theme}`]: theme,
-          },
-        ];
-      });
-
-      const getShowSetting = computed(() => {
-        if (!unref(getShowSettingButton)) {
-          return false;
-        }
-        const settingButtonPosition = unref(getSettingButtonPosition);
-
-        if (settingButtonPosition === SettingButtonPositionEnum.AUTO) {
-          return unref(getShowHeader);
-        }
-        return settingButtonPosition === SettingButtonPositionEnum.HEADER;
-      });
-
-      const getLogoWidth = computed(() => {
-        if (!unref(getIsMixMode)) {
-          return {};
-        }
-        const width = unref(getMenuWidth) < 180 ? 180 : unref(getMenuWidth);
-        return { width: `${width}px` };
-      });
 
       const getSplitType = computed(() => {
         return unref(getSplit) ? MenuSplitTyeEnum.TOP : MenuSplitTyeEnum.NONE;
@@ -161,25 +93,15 @@
 
       return {
         prefixCls,
-        getHeaderClass,
-        getShowHeaderLogo,
-        getHeaderTheme,
         getShowHeaderTrigger,
-        getShowBread,
-        getShowContent,
         getSplitType,
         getSplit,
         getMenuMode,
         getShowTopMenu,
         getShowLocalePicker,
-        getShowFullScreen,
-        getShowNotice,
         getUseErrorHandle,
-        getLogoWidth,
         getIsMixSidebar,
         getShowSettingButton,
-        getShowSetting,
-        getShowSearch,
         version,
       };
     },

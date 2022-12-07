@@ -9,7 +9,7 @@ import { webStorage } from '@dq-next/utils/storageCache';
 
 import { PageEnum } from '/@/enums/pageEnum';
 import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from '/@/router/routes/basic';
-import { getRawRoute } from '@dq-next/utils';
+import { getRawRoute } from '/@/router/helper/routeHelper';
 import { MULTIPLE_TABS_KEY } from '/@/enums/cacheEnum';
 
 import projectSetting from '/@/settings/projectSetting';

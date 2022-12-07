@@ -1,5 +1,5 @@
 import type { AppRouteModule, AppRouteRecordRaw } from '/@/router/types';
-import type { Router, RouteRecordNormalized } from 'vue-router';
+import type { RouteLocationNormalized, Router, RouteRecordNormalized } from 'vue-router';
 
 import { camelCase, cloneDeep, last, omit } from 'lodash-es';
 import { getParentLayout, LAYOUT, EXCEPTION_COMPONENT } from '/@/router/constant';
@@ -9,7 +9,7 @@ import { MenuItem } from '@dq-next/http-apis/sys/model/menuModel';
 import { isUrl } from '@dq-next/utils/is';
 
 export type LayoutMapKey = 'LAYOUT';
-const IFRAME = () => import('/@/views/sys/iframe/FrameBlank.vue');
+const IFRAME = () => import('/@/layouts/iframe/FrameBlank.vue');
 
 const LayoutMap = new Map<string, () => Promise<typeof import('*.vue')>>();
 
@@ -204,4 +204,19 @@ export function convertRoute(menuList: MenuItem[]): AppRouteRecordRaw[] {
     return route;
   });
   return routes;
+}
+
+export function getRawRoute(route: RouteLocationNormalized): RouteLocationNormalized {
+  if (!route) return route;
+  const { matched, ...opt } = route;
+  return {
+    ...opt,
+    matched: (matched
+      ? matched.map((item) => ({
+          meta: item.meta,
+          name: item.name,
+          path: item.path,
+        }))
+      : undefined) as RouteRecordNormalized[],
+  };
 }

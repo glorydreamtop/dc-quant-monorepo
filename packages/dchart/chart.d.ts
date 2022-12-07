@@ -9,7 +9,10 @@ import {
   timeConfigEnum,
   versionEnum,
 } from '/@/enums/chartEnum';
-import { SelectedQuotaItem } from '/@/views/quota/quotaView/components/hooks';
+
+export interface SelectedQuotaItem extends QuotaItem {
+  selected: boolean;
+}
 
 export interface timeConfigType {
   startDate: string;
