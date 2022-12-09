@@ -5,29 +5,20 @@
   import { defineComponent, computed, unref } from 'vue';
 
   import { useDesign } from '/@/hooks/web/useDesign';
-  import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
 
   export default defineComponent({
     name: 'DargBar',
-    props: {
-      mobile: Boolean,
-    },
-    setup(props) {
-      const { getMiniWidthNumber, getCollapsed, getCanDrag } = useMenuSetting();
-
+    setup() {
       const { prefixCls } = useDesign('darg-bar');
       const getDragBarStyle = computed(() => {
-        if (unref(getCollapsed)) {
-          return { left: `${unref(getMiniWidthNumber)}px` };
-        }
-        return {};
+        return { left: `${unref(80)}px` };
       });
 
       const getClass = computed(() => {
         return [
           prefixCls,
           {
-            [`${prefixCls}--hide`]: !unref(getCanDrag) || props.mobile,
+            [`${prefixCls}--hide`]: true,
           },
         ];
       });

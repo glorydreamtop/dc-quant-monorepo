@@ -18,8 +18,6 @@
 </template>
 <script lang="ts">
   import { addResizeListener, removeResizeListener } from '@dq-next/utils/event';
-  import componentSetting from '/@/settings/componentSetting';
-  const { scrollbar } = componentSetting;
   import { toObject } from './util';
   import {
     defineComponent,
@@ -40,7 +38,7 @@
     props: {
       native: {
         type: Boolean,
-        default: scrollbar?.native ?? false,
+        default: false,
       },
       wrapStyle: {
         type: [String, Array],

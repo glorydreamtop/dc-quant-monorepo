@@ -1,12 +1,11 @@
 import { defineComponent, unref } from 'vue';
 import { BasicDrawer } from '/@/components/Drawer/index';
 import { Divider } from 'ant-design-vue';
-import { ThemeColorPicker, SettingFooter, SwitchItem, InputNumberItem } from './components';
+import { ThemeColorPicker, SettingFooter, InputNumberItem } from './components';
 
 import { AppDarkModeToggle } from '/@/components/Application';
 
 import { useRootSetting } from '/@/hooks/setting/useRootSetting';
-import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
 import { useI18n } from '/@/hooks/web/useI18n';
 
 import { HandlerEnum } from './enum';
@@ -22,19 +21,7 @@ const { t } = useI18n();
 export default defineComponent({
   name: 'SettingDrawer',
   setup(_, { attrs }) {
-    const {
-      getShowFooter,
-      getShowBreadCrumb,
-      getShowBreadCrumbIcon,
-      getShowLogo,
-      getFullContent,
-      getColorWeak,
-      getGrayMode,
-      getLockTime,
-      getShowDarkModeToggle,
-      getThemeColor,
-    } = useRootSetting();
-    const { getIsHorizontal, getShowMenu, getMenuBgColor, getIsMixSidebar } = useMenuSetting();
+    const { getLockTime, getShowDarkModeToggle, getThemeColor } = useRootSetting();
 
     function renderHeaderTheme() {
       return (
@@ -49,7 +36,7 @@ export default defineComponent({
       return (
         <ThemeColorPicker
           colorList={SIDE_BAR_BG_COLOR_LIST}
-          def={unref(getMenuBgColor)}
+          def="#ffffff"
           event={HandlerEnum.MENU_THEME}
         />
       );
@@ -84,61 +71,6 @@ export default defineComponent({
       );
     }
 
-    function renderContent() {
-      return (
-        <>
-          <SwitchItem
-            title={t('layout.setting.breadcrumb')}
-            event={HandlerEnum.SHOW_BREADCRUMB}
-            def={unref(getShowBreadCrumb)}
-          />
-
-          <SwitchItem
-            title={t('layout.setting.breadcrumbIcon')}
-            event={HandlerEnum.SHOW_BREADCRUMB_ICON}
-            def={unref(getShowBreadCrumbIcon)}
-          />
-
-          <SwitchItem
-            title={t('layout.setting.sidebar')}
-            event={HandlerEnum.MENU_SHOW_SIDEBAR}
-            def={unref(getShowMenu)}
-            disabled={unref(getIsHorizontal)}
-          />
-
-          <SwitchItem title={t('layout.setting.header')} event={HandlerEnum.HEADER_SHOW} />
-          <SwitchItem
-            title="Logo"
-            event={HandlerEnum.SHOW_LOGO}
-            def={unref(getShowLogo)}
-            disabled={unref(getIsMixSidebar)}
-          />
-          <SwitchItem
-            title={t('layout.setting.footer')}
-            event={HandlerEnum.SHOW_FOOTER}
-            def={unref(getShowFooter)}
-          />
-          <SwitchItem
-            title={t('layout.setting.fullContent')}
-            event={HandlerEnum.FULL_CONTENT}
-            def={unref(getFullContent)}
-          />
-
-          <SwitchItem
-            title={t('layout.setting.grayMode')}
-            event={HandlerEnum.GRAY_MODE}
-            def={unref(getGrayMode)}
-          />
-
-          <SwitchItem
-            title={t('layout.setting.colorWeak')}
-            event={HandlerEnum.COLOR_WEAK}
-            def={unref(getColorWeak)}
-          />
-        </>
-      );
-    }
-
     return () => (
       <BasicDrawer
         {...attrs}
@@ -156,8 +88,6 @@ export default defineComponent({
         {renderSiderTheme()}
         <Divider>{() => t('layout.setting.interfaceFunction')}</Divider>
         {renderFeatures()}
-        <Divider>{() => t('layout.setting.interfaceDisplay')}</Divider>
-        {renderContent()}
         <Divider />
         <SettingFooter />
       </BasicDrawer>

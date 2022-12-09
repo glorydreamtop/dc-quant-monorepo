@@ -22,12 +22,11 @@
   import { computed, defineComponent, unref, reactive, watch, toRefs, ref } from 'vue';
   import { Menu } from 'ant-design-vue';
   import BasicSubMenuItem from './components/BasicSubMenuItem.vue';
-  import { MenuModeEnum, MenuTypeEnum } from '/@/enums/menuEnum';
+  import { MenuModeEnum } from '/@/enums/menuEnum';
   import { useOpenKeys } from './useOpenKeys';
   import { RouteLocationNormalizedLoaded, useRouter } from 'vue-router';
   import { isFunction } from '@dq-next/utils/is';
   import { basicProps } from './props';
-  import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
   import { REDIRECT_NAME } from '/@/router/constant';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { getCurrentParentPath } from '/@/router/menus';
@@ -56,8 +55,6 @@
       const { prefixCls } = useDesign('basic-menu');
       const { items, mode, accordion } = toRefs(props);
 
-      const { getCollapsed, getTopMenuAlign, getSplit } = useMenuSetting();
-
       const { currentRoute } = useRouter();
 
       const { handleOpenChange, setOpenKeys, getOpenKeys } = useOpenKeys(
@@ -67,23 +64,12 @@
         accordion,
       );
 
-      const getIsTopMenu = computed(() => {
-        const { type, mode } = props;
-
-        return (
-          (type === MenuTypeEnum.TOP_MENU && mode === MenuModeEnum.HORIZONTAL) ||
-          (props.isHorizontal && unref(getSplit))
-        );
-      });
-
       const getMenuClass = computed(() => {
-        const align = props.isHorizontal && unref(getSplit) ? 'start' : unref(getTopMenuAlign);
         return [
           prefixCls,
-          `justify-${align}`,
+          `justify-start`,
           {
-            [`${prefixCls}__second`]: !props.isHorizontal && unref(getSplit),
-            [`${prefixCls}__sidebar-hor`]: unref(getIsTopMenu),
+            [`${prefixCls}__second`]: !props.isHorizontal,
           },
         ];
       });
@@ -93,7 +79,7 @@
 
         const inlineCollapseOptions: { inlineCollapsed?: boolean } = {};
         if (isInline) {
-          inlineCollapseOptions.inlineCollapsed = props.mixSider ? false : unref(getCollapsed);
+          inlineCollapseOptions.inlineCollapsed = props.mixSider ? false : true;
         }
         return inlineCollapseOptions;
       });
@@ -139,7 +125,7 @@
           (route || unref(currentRoute)).path;
         setOpenKeys(path);
         if (unref(currentActiveMenu)) return;
-        if (props.isHorizontal && unref(getSplit)) {
+        if (props.isHorizontal) {
           const parentPath = await getCurrentParentPath(path);
           menuState.selectedKeys = [parentPath];
         } else {

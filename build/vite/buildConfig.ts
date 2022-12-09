@@ -22,6 +22,16 @@ export function buildConfig({ name, entry }: BUildParams): BuildOptions {
         'echarts/renderers',
         'echarts/components',
         'echarts/charts',
+        '@dq-next/utils',
+        '@dq-next/http-apis',
+        '@dq-next/icon',
+        'crypto-js/aes',
+        'crypto-js/enc-utf8',
+        'crypto-js/pad-pkcs7',
+        'crypto-js/mode-ecb',
+        'crypto-js/md5',
+        'crypto-js/enc-utf8',
+        'crypto-js/enc-base64',
       ],
       plugins: [
         autoExternal({

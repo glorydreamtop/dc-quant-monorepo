@@ -1,34 +1,46 @@
-import componentSetting from '/@/settings/componentSetting';
-
-const { table } = componentSetting;
-
-const {
-  pageSizeOptions,
-  defaultPageSize,
-  fetchSetting,
-  defaultSize,
-  defaultSortFn,
-  defaultFilterFn,
-} = table;
+import { SorterResult } from './types/table';
 
 export const ROW_KEY = 'key';
 
 // Optional display number per page;
-export const PAGE_SIZE_OPTIONS = pageSizeOptions;
+export const PAGE_SIZE_OPTIONS = ['10', '50', '80', '100'];
 
 // Number of items displayed per page
-export const PAGE_SIZE = defaultPageSize;
+export const PAGE_SIZE = 10;
 
 // Common interface field settings
-export const FETCH_SETTING = fetchSetting;
+export const FETCH_SETTING = {
+  // The field name of the current page passed to the background
+  pageField: 'currPage',
+  // The number field name of each page displayed in the background
+  sizeField: 'pageSize',
+  // Field name of the form data returned by the interface
+  listField: 'list',
+  // Total number of tables returned by the interface field name
+  totalField: 'totalCount',
+};
 
 // Default Size
-export const DEFAULT_SIZE = defaultSize;
+export const DEFAULT_SIZE = 'middle';
 
 // Configure general sort function
-export const DEFAULT_SORT_FN = defaultSortFn;
+export const DEFAULT_SORT_FN = (sortInfo: SorterResult) => {
+  const { field, order } = sortInfo;
+  if (field && order) {
+    return {
+      // The sort field passed to the backend you
+      field,
+      // Sorting method passed to the background asc/desc
+      order,
+    };
+  } else {
+    return {};
+  }
+};
 
-export const DEFAULT_FILTER_FN = defaultFilterFn;
+export const DEFAULT_FILTER_FN = (data: Partial<Recordable<string[]>>) => {
+  return data;
+};
 
 //  Default layout of table cells
 export const DEFAULT_ALIGN = 'center';

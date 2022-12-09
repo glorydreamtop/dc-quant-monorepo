@@ -1,22 +1,21 @@
 <template>
-  <SiderTrigger v-if="sider" />
-  <HeaderTrigger v-else :theme="theme" />
+  <div @click.stop="toggleCollapsed">
+    <DoubleRightOutlined v-if="getCollapsed" />
+    <DoubleLeftOutlined v-else />
+  </div>
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { createAsyncComponent } from '@dq-next/utils/factory/createAsyncComponent';
-  import { propTypes } from '@dq-next/utils/propTypes';
-  import HeaderTrigger from './HeaderTrigger.vue';
+  import { DoubleRightOutlined, DoubleLeftOutlined } from '@ant-design/icons-vue';
+  import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
 
   export default defineComponent({
-    name: 'LayoutTrigger',
-    components: {
-      SiderTrigger: createAsyncComponent(() => import('./SiderTrigger.vue')),
-      HeaderTrigger: HeaderTrigger,
-    },
-    props: {
-      sider: propTypes.bool.def(true),
-      theme: propTypes.oneOf(['light', 'dark']),
+    name: 'SiderTrigger',
+    components: { DoubleRightOutlined, DoubleLeftOutlined },
+    setup() {
+      const { getCollapsed, toggleCollapsed } = useMenuSetting();
+
+      return { getCollapsed, toggleCollapsed };
     },
   });
 </script>

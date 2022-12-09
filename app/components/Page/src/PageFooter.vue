@@ -1,5 +1,5 @@
 <template>
-  <div :class="prefixCls" :style="{ width: getCalcContentWidth }">
+  <div :class="prefixCls">
     <div :class="`${prefixCls}__left`">
       <slot name="left"></slot>
     </div>
@@ -11,7 +11,6 @@
 </template>
 <script lang="ts">
   import { defineComponent } from 'vue';
-  import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
   import { useDesign } from '/@/hooks/web/useDesign';
 
   export default defineComponent({
@@ -19,8 +18,7 @@
     inheritAttrs: false,
     setup() {
       const { prefixCls } = useDesign('page-footer');
-      const { getCalcContentWidth } = useMenuSetting();
-      return { prefixCls, getCalcContentWidth };
+      return { prefixCls };
     },
   });
 </script>

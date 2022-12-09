@@ -6,7 +6,6 @@ import { computed, Ref, toRaw } from 'vue';
 
 import { unref } from 'vue';
 import { uniq } from 'lodash-es';
-import { useMenuSetting } from '/@/hooks/setting/useMenuSetting';
 import { getAllParentPath } from '/@/router/helper/menuHelper';
 import { useTimeoutFn } from '/@/hooks/core/useTimeout';
 
@@ -16,13 +15,10 @@ export function useOpenKeys(
   mode: Ref<MenuModeEnum>,
   accordion: Ref<boolean>,
 ) {
-  const { getCollapsed, getIsMixSidebar } = useMenuSetting();
-
   async function setOpenKeys(path: string) {
     if (mode.value === MenuModeEnum.HORIZONTAL) {
       return;
     }
-    const native = unref(getIsMixSidebar);
     useTimeoutFn(
       () => {
         const menuList = toRaw(menus.value);
@@ -37,15 +33,11 @@ export function useOpenKeys(
         }
       },
       16,
-      !native,
+      false,
     );
   }
 
-  const getOpenKeys = computed(() => {
-    const collapse = unref(getIsMixSidebar) ? false : unref(getCollapsed);
-
-    return collapse ? menuState.collapsedOpenKeys : menuState.openKeys;
-  });
+  const getOpenKeys = computed(() => menuState.openKeys);
 
   /**
    * @description:  重置值
@@ -56,7 +48,7 @@ export function useOpenKeys(
   }
 
   function handleOpenChange(openKeys: string[]) {
-    if (unref(mode) === MenuModeEnum.HORIZONTAL || !unref(accordion) || unref(getIsMixSidebar)) {
+    if (unref(mode) === MenuModeEnum.HORIZONTAL || !unref(accordion)) {
       menuState.openKeys = openKeys;
     } else {
       // const menuList = toRaw(menus.value);
@@ -67,15 +59,11 @@ export function useOpenKeys(
           rootSubMenuKeys.push(path);
         }
       }
-      if (!unref(getCollapsed)) {
-        const latestOpenKey = openKeys.find((key) => menuState.openKeys.indexOf(key) === -1);
-        if (rootSubMenuKeys.indexOf(latestOpenKey as string) === -1) {
-          menuState.openKeys = openKeys;
-        } else {
-          menuState.openKeys = latestOpenKey ? [latestOpenKey] : [];
-        }
+      const latestOpenKey = openKeys.find((key) => menuState.openKeys.indexOf(key) === -1);
+      if (rootSubMenuKeys.indexOf(latestOpenKey as string) === -1) {
+        menuState.openKeys = openKeys;
       } else {
-        menuState.collapsedOpenKeys = openKeys;
+        menuState.openKeys = latestOpenKey ? [latestOpenKey] : [];
       }
     }
   }
