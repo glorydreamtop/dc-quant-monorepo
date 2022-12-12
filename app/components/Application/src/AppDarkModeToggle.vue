@@ -10,7 +10,7 @@
   import { SvgIcon } from '@dq-next/icon';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useRootSetting } from '/@/hooks/setting/useRootSetting';
-  import { updateHeaderBgColor, updateSidebarBgColor, updateDarkTheme } from '/@/logics/theme';
+  import { updateDarkTheme } from '/@/logics/theme';
   import { ThemeEnum } from '/@/enums/appEnum';
 
   const { prefixCls } = useDesign('dark-switch');
@@ -29,8 +29,6 @@
     const darkMode = getDarkMode.value === ThemeEnum.DARK ? ThemeEnum.LIGHT : ThemeEnum.DARK;
     setDarkMode(darkMode);
     updateDarkTheme(darkMode);
-    updateHeaderBgColor();
-    updateSidebarBgColor();
   }
 </script>
 <style lang="less" scoped>

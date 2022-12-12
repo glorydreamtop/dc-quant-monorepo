@@ -11,8 +11,6 @@ import { PageEnum } from '/@/enums/pageEnum';
 import { PAGE_NOT_FOUND_ROUTE, REDIRECT_ROUTE } from '/@/router/routes/basic';
 import { getRawRoute } from '/@/router/helper/routeHelper';
 import { MULTIPLE_TABS_KEY } from '/@/enums/cacheEnum';
-
-import projectSetting from '/@/settings/projectSetting';
 import { useUserStore } from '/@/store/modules/user';
 
 export interface MultipleTabState {
@@ -35,15 +33,13 @@ const getToTarget = (tabItem: RouteLocationNormalized) => {
   };
 };
 
-const cacheTab = projectSetting.multiTabsSetting.cache;
-
 export const useMultipleTabStore = defineStore({
   id: 'app-multiple-tab',
   state: (): MultipleTabState => ({
     // Tabs that need to be cached
     cacheTabList: new Set(),
     // multiple tab list
-    tabList: cacheTab ? webStorage.ls.get(MULTIPLE_TABS_KEY) || [] : [],
+    tabList: webStorage.ls.get(MULTIPLE_TABS_KEY) || [],
     // Index of the last moved tab
     lastDragEndIndex: 0,
   }),
@@ -168,7 +164,7 @@ export const useMultipleTabStore = defineStore({
         this.tabList.push(route);
       }
       this.updateCacheTab();
-      cacheTab && webStorage.ls.set(MULTIPLE_TABS_KEY, this.tabList);
+      webStorage.ls.set(MULTIPLE_TABS_KEY, this.tabList);
     },
 
     async closeTab(tab: RouteLocationNormalized, router: Router) {

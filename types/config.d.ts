@@ -11,52 +11,6 @@ import { CacheTypeEnum } from '/@/enums/cacheEnum';
 
 export type LocaleType = 'zh_CN' | 'en' | 'ru' | 'ja' | 'ko';
 
-export interface MenuSetting {
-  bgColor: string;
-  fixed: boolean;
-  collapsed: boolean;
-  canDrag: boolean;
-  show: boolean;
-  hidden: boolean;
-  split: boolean;
-  menuWidth: number;
-  mode: MenuModeEnum;
-  type: MenuTypeEnum;
-  theme: ThemeEnum;
-  topMenuAlign: 'start' | 'center' | 'end';
-  trigger: TriggerEnum;
-  accordion: boolean;
-  closeMixSidebarOnChange: boolean;
-  collapsedShowTitle: boolean;
-  mixSideTrigger: MixSidebarTriggerEnum;
-  mixSideFixed: boolean;
-}
-
-export interface MultiTabsSetting {
-  cache: boolean;
-  show: boolean;
-  showQuick: boolean;
-  canDrag: boolean;
-  showRedo: boolean;
-  showFold: boolean;
-}
-
-export interface HeaderSetting {
-  bgColor: string;
-  fixed: boolean;
-  show: boolean;
-  theme: ThemeEnum;
-  // Turn on full screen
-  showFullScreen: boolean;
-  // Whether to show the lock screen
-  useLockPage: boolean;
-  // Show document button
-  showDoc: boolean;
-  // Show message center button
-  showNotice: boolean;
-  showSearch: boolean;
-}
-
 export interface LocaleSetting {
   showPicker: boolean;
   // Current language
@@ -72,12 +26,6 @@ export interface ProjectConfig {
   permissionCacheType: CacheTypeEnum;
   // Whether to show the configuration button
   showSettingButton: boolean;
-  // Whether to show the theme switch button
-  showDarkModeToggle: boolean;
-  // Configure where the button is displayed
-  settingButtonPosition: SettingButtonPositionEnum;
-  // Permission mode
-  permissionMode: PermissionModeEnum;
   // Session timeout processing
   sessionTimeoutProcessing: SessionTimeoutProcessingEnum;
   // Website gray mode, open for possible mourning dates
@@ -93,24 +41,10 @@ export interface ProjectConfig {
   fullContent: boolean;
   // content width
   contentMode: ContentEnum;
-  // Whether to display the logo
-  showLogo: boolean;
-  // Whether to show the global footer
-  showFooter: boolean;
-  // menuType: MenuTypeEnum;
-  headerSetting: HeaderSetting;
-  // menuSetting
-  menuSetting: MenuSetting;
-  // Multi-tab settings
-  multiTabsSetting: MultiTabsSetting;
   // pageLayout whether to enable keep-alive
   openKeepAlive: boolean;
   // Lock screen time
   lockTime: number;
-  // Show breadcrumbs
-  showBreadCrumb: boolean;
-  // Show breadcrumb icon
-  showBreadCrumbIcon: boolean;
   // Use error-handler-plugin
   useErrorHandle: boolean;
   // Whether to open back to top

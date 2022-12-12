@@ -23,14 +23,14 @@ export const useLockStore = defineStore({
   actions: {
     setLockInfo(info: LockInfo) {
       this.lockInfo = Object.assign({}, this.lockInfo, info);
-      webStorage.ls.set(LOCK_INFO_KEY, this.lockInfo, true);
+      webStorage.ls.set(LOCK_INFO_KEY, this.lockInfo);
     },
     resetLockInfo() {
-      webStorage.ls.remove(LOCK_INFO_KEY, true);
+      webStorage.ls.remove(LOCK_INFO_KEY);
       this.lockInfo = null;
     },
     // Unlock
-    async unLock(password?: string) {
+    async unLock({ password, uuid, captcha }: { password: string; uuid: string; captcha: string }) {
       const userStore = useUserStore();
       if (this.lockInfo?.pwd === password) {
         this.resetLockInfo();
@@ -41,9 +41,9 @@ export const useLockStore = defineStore({
           const username = userStore.getUserInfo?.username;
           const res = await userStore.login({
             username,
-            password: password!,
-            goHome: false,
-            mode: 'none',
+            password,
+            uuid,
+            captcha,
           });
           if (res) {
             this.resetLockInfo();

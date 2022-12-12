@@ -1,4 +1,4 @@
-import type { ProjectConfig, HeaderSetting, MenuSetting, MultiTabsSetting } from '/#/config';
+import type { ProjectConfig } from '/#/config';
 import type { BeforeMiniState } from '/#/store';
 
 import { defineStore } from 'pinia';
@@ -7,7 +7,6 @@ import { store } from '/@/store';
 import { ThemeEnum } from '/@/enums/appEnum';
 import { APP_DARK_MODE_KEY_, PROJ_CFG_KEY } from '/@/enums/cacheEnum';
 import { webStorage } from '@dq-next/utils/storageCache';
-import { darkMode } from '/@/settings/designSetting';
 import { resetRouter } from '/@/router';
 import { deepMerge } from '@dq-next/utils';
 
@@ -34,7 +33,7 @@ export const useAppStore = defineStore({
       return this.pageLoading;
     },
     getDarkMode(): 'light' | 'dark' | string {
-      return this.darkMode || localStorage.getItem(APP_DARK_MODE_KEY_) || darkMode;
+      return this.darkMode || localStorage.getItem(APP_DARK_MODE_KEY_) || 'light';
     },
 
     getBeforeMiniInfo(): BeforeMiniState {
@@ -43,16 +42,6 @@ export const useAppStore = defineStore({
 
     getProjectConfig(): ProjectConfig {
       return this.projectConfig || ({} as ProjectConfig);
-    },
-
-    getHeaderSetting(): HeaderSetting {
-      return this.getProjectConfig.headerSetting;
-    },
-    getMenuSetting(): MenuSetting {
-      return this.getProjectConfig.menuSetting;
-    },
-    getMultiTabsSetting(): MultiTabsSetting {
-      return this.getProjectConfig.multiTabsSetting;
     },
   },
   actions: {
