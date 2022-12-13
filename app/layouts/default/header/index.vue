@@ -25,7 +25,6 @@
         :class="`${prefixCls}-action__item`"
       />
       <UserDropDown />
-      <SettingDrawer :class="`${prefixCls}-action__item`" />
     </div>
   </Header>
 </template>
@@ -45,7 +44,6 @@
   import { UserDropDown, LayoutBreadcrumb, FullScreen, Notify, ErrorAction } from './components';
   import { useDesign } from '/@/hooks/web/useDesign';
 
-  import { createAsyncComponent } from '@dq-next/utils/factory/createAsyncComponent';
   import { useLocale } from '/@/locales/useLocale';
 
   export default defineComponent({
@@ -60,9 +58,6 @@
       Notify,
       AppSearch,
       ErrorAction,
-      SettingDrawer: createAsyncComponent(() => import('/@/layouts/default/setting/index.vue'), {
-        loading: true,
-      }),
     },
     props: {
       fixed: propTypes.bool,

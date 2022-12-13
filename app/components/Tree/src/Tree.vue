@@ -15,9 +15,8 @@
   import { Tree, Empty } from 'ant-design-vue';
 
   import { omit } from 'lodash-es';
-  import { Icon } from '@dq-next/icon';
   import { isFunction } from '@dq-next/utils/is';
-  import { extendSlots, getSlot } from '@dq-next/utils/helper/tsxHelper';
+  import { getSlot } from '@dq-next/utils/helper/tsxHelper';
 
   import { useTree } from './useTree';
   import { useContextMenu } from '/@/hooks/web/useContextMenu';
@@ -25,8 +24,6 @@
 
   import { basicProps } from './props';
   import { CreateContextOptions } from '/@/components/ContextMenu';
-
-  import { CheckEvent } from './typing';
 
   interface State {
     expandedKeys: Keys;
@@ -80,7 +77,7 @@
             state.selectedKeys = v;
             emit('update:selectedKeys', v);
           },
-          onCheck: (v: CheckKeys, e: CheckEvent) => {
+          onCheck: (v: CheckKeys, e) => {
             state.checkedKeys = v;
             const rawVal = toRaw(v);
             emit('update:value', rawVal);

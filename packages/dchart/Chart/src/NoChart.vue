@@ -16,7 +16,7 @@
     noChart: boolean;
     // 渲染出错
     renderError: boolean;
-    title: string;
+    title?: string;
   }>();
 
   const { t } = useI18n();

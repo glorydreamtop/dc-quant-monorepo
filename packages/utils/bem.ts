@@ -1,4 +1,4 @@
-import { prefixCls } from '/@/settings/designSetting';
+import { useDesign } from '/@/hooks/web/useDesign';
 
 type Mod = string | { [key: string]: any };
 type Mods = Mod | Mod[];
@@ -43,10 +43,11 @@ export function buildBEM(name: string) {
 }
 
 export function createBEM(name: string) {
-  return [buildBEM(`${prefixCls}-${name}`)];
+  const { prefixCls } = useDesign(name);
+  return [buildBEM(prefixCls)];
 }
 
 export function createNamespace(name: string) {
-  const prefixedName = `${prefixCls}-${name}`;
-  return [prefixedName, buildBEM(prefixedName)] as const;
+  const { prefixCls } = useDesign(name);
+  return [prefixCls, buildBEM(prefixCls)] as const;
 }

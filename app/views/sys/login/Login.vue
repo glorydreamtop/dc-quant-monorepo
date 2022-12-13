@@ -58,7 +58,7 @@
   </div>
 </template>
 <script lang="ts" setup>
-  import { computed } from 'vue';
+  import { computed, onMounted } from 'vue';
   import { AppLogo } from '/@/components/Application';
   import { AppLocalePicker, AppDarkModeToggle } from '/@/components/Application';
   import LoginForm from './LoginForm.vue';
@@ -70,6 +70,11 @@
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useLocaleStore } from '/@/store/modules/locale';
+  import { useMultipleTabStore } from '/@/store/modules/multipleTab';
+  import { useUserStore } from '/@/store/modules/user';
+  import { useAppStore } from '/@/store/modules/app';
+  import { usePermissionStore } from '/@/store/modules/permission';
+  import { removeTabChangeListener } from '/@/logics/mitt/routeChange';
 
   defineProps({
     sessionTimeout: {
@@ -83,6 +88,18 @@
   const localeStore = useLocaleStore();
   const showLocale = localeStore.getShowPicker;
   const title = computed(() => globSetting?.title ?? '');
+
+  onMounted(() => {
+    const tabStore = useMultipleTabStore();
+    const userStore = useUserStore();
+    const appStore = useAppStore();
+    const permissionStore = usePermissionStore();
+    appStore.resetAllState();
+    permissionStore.resetState();
+    tabStore.resetState();
+    userStore.resetState();
+    removeTabChangeListener();
+  });
 </script>
 <style lang="less">
   @prefix-cls: ~'@{namespace}-login';

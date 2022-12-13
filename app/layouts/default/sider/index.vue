@@ -1,6 +1,6 @@
 <template>
   <div :class="[prefixCls]">
-    <AppLogo :showTitle="false" :class="`${prefixCls}-logo`" />
+    <AppLogo :class="`${prefixCls}-logo`" />
     <AMenu
       v-model:selected-keys="activePath"
       v-model:open-keys="openKeys"

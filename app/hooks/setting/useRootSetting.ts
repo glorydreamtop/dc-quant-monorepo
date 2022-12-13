@@ -17,13 +17,7 @@ export function useRootSetting() {
 
   const getOpenKeepAlive = computed(() => appStore.getProjectConfig.openKeepAlive);
 
-  const getSettingButtonPosition = computed(() => appStore.getProjectConfig.settingButtonPosition);
-
   const getCanEmbedIFramePage = computed(() => appStore.getProjectConfig.canEmbedIFramePage);
-
-  const getPermissionMode = computed(() => appStore.getProjectConfig.permissionMode);
-
-  const getShowLogo = computed(() => appStore.getProjectConfig.showLogo);
 
   const getContentMode = computed(() => appStore.getProjectConfig.contentMode);
 
@@ -33,15 +27,9 @@ export function useRootSetting() {
 
   const getUseErrorHandle = computed(() => appStore.getProjectConfig.useErrorHandle);
 
-  const getShowFooter = computed(() => appStore.getProjectConfig.showFooter);
-
-  const getShowBreadCrumb = computed(() => appStore.getProjectConfig.showBreadCrumb);
-
   const getThemeColor = computed(() => appStore.getProjectConfig.themeColor);
 
   const getColorScheme = computed(() => appStore.getProjectConfig.colorScheme);
-
-  const getShowBreadCrumbIcon = computed(() => appStore.getProjectConfig.showBreadCrumbIcon);
 
   const getFullContent = computed(() => appStore.getProjectConfig.fullContent);
 
@@ -50,8 +38,6 @@ export function useRootSetting() {
   const getGrayMode = computed(() => appStore.getProjectConfig.grayMode);
 
   const getLockTime = computed(() => appStore.getProjectConfig.lockTime);
-
-  const getShowDarkModeToggle = computed(() => appStore.getProjectConfig.showDarkModeToggle);
 
   const getDarkMode = computed(() => appStore.getDarkMode);
 
@@ -70,8 +56,6 @@ export function useRootSetting() {
   }
   return {
     setRootSetting,
-
-    getSettingButtonPosition,
     getFullContent,
     getColorWeak,
     getGrayMode,
@@ -79,20 +63,14 @@ export function useRootSetting() {
     getPageLoading,
     getOpenKeepAlive,
     getCanEmbedIFramePage,
-    getPermissionMode,
-    getShowLogo,
     getUseErrorHandle,
-    getShowBreadCrumb,
-    getShowBreadCrumbIcon,
     getUseOpenBackTop,
     getShowSettingButton,
-    getShowFooter,
     getContentMode,
     getLockTime,
     getThemeColor,
     getColorScheme,
     getDarkMode,
     setDarkMode,
-    getShowDarkModeToggle,
   };
 }

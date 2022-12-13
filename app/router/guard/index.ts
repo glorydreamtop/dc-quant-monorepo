@@ -1,12 +1,10 @@
 import type { Router, RouteLocationNormalized } from 'vue-router';
 import { useAppStoreWithOut } from '/@/store/modules/app';
-import { useUserStoreWithOut } from '/@/store/modules/user';
 import { AxiosCanceler } from '@dq-next/http-apis/http/axiosCancel';
 import { Modal, notification } from 'ant-design-vue';
 import { warn } from '@dq-next/utils/log';
 import { setRouteChange } from '/@/logics/mitt/routeChange';
 import { createPermissionGuard } from './permissionGuard';
-import { createStateGuard } from './stateGuard';
 import nProgress from 'nprogress';
 import projectSetting from '/@/settings/projectSetting';
 import { createParamMenuGuard } from './paramMenuGuard';
@@ -21,7 +19,6 @@ export function setupRouterGuard(router: Router) {
   createProgressGuard(router);
   createPermissionGuard(router);
   createParamMenuGuard(router); // must after createPermissionGuard (menu has been built.)
-  createStateGuard(router);
 }
 
 /**
@@ -35,7 +32,6 @@ function createPageGuard(router: Router) {
     to.meta.loaded = !!loadedPageMap.get(to.path);
     // Notify routing changes
     setRouteChange(to);
-
     return true;
   });
 
@@ -46,12 +42,11 @@ function createPageGuard(router: Router) {
 
 // Used to handle page loading status
 function createPageLoadingGuard(router: Router) {
-  const userStore = useUserStoreWithOut();
   const appStore = useAppStoreWithOut();
   router.beforeEach(async (to) => {
-    if (!userStore.getToken) {
-      return true;
-    }
+    // if (!userStore.getToken) {
+    //   return true;
+    // }
     if (to.meta.loaded) {
       return true;
     }

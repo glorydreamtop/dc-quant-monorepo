@@ -3,9 +3,13 @@
  * @Description: logo component
 -->
 <template>
-  <div class="anticon" :class="[prefixCls, 'collapsed-show-title']" @click="goHome">
+  <div
+    class="anticon"
+    :class="[prefixCls, 'collapsed-show-title flex flex-col items-center']"
+    @click="goHome"
+  >
     <img :src="logoSrc" />
-    <div class="ml-2 truncate md:opacity-100" :class="`${prefixCls}__title`" v-show="showTitle">
+    <div class="ml-2 truncate md:opacity-100" :class="`${prefixCls}__title`">
       {{ title }}
     </div>
   </div>
