@@ -1,10 +1,10 @@
 {
   "name": "@dq-next/dchart",
   "version": "1.0.0",
-  "description": "> TODO: description",
-  "author": "glorydream.top <hanwenhui520@gmail.com>",
-  "homepage": "https://github.com/glorydreamtop/quota-admin-monorepo/tree/main/packages/dchart#readme",
-  "license": "ISC",
+  "description": "> 笃诚投研数据可视化图表",
+  "author": "hanwh@shducheng.com.cn",
+  "homepage": "",
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },
@@ -12,10 +12,10 @@
     "dist"
   ],
   "main": "./dist/dchart.es.ts",
-  "module": "./index.ts",
+  "module": "./dist/dchart.es.ts",
   "exports": {
     ".": {
-      "import": "./index.ts"
+      "import": "./dist/dchart.es.ts"
     },
     "./dist/style.css": {
       "import": "./dist/style.css",

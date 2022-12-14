@@ -3,13 +3,9 @@
  * @Description: logo component
 -->
 <template>
-  <div
-    class="anticon"
-    :class="[prefixCls, 'collapsed-show-title flex flex-col items-center']"
-    @click="goHome"
-  >
-    <img :src="logoSrc" />
-    <div class="ml-2 truncate md:opacity-100" :class="`${prefixCls}__title`">
+  <div class="anticon" :class="[prefixCls, 'flex flex-col items-center gap-1']" @click="goHome">
+    <img :class="`${prefixCls}-logo`" :src="logoSrc" />
+    <div class="truncate md:opacity-100" :class="`${prefixCls}__title`">
       {{ title }}
     </div>
   </div>
@@ -20,7 +16,7 @@
   import { useDesign } from '/@/hooks/web/useDesign';
   import { PageEnum } from '/@/enums/pageEnum';
   import { useUserStore } from '/@/store/modules/user';
-  import logoSrc from '/@/assets/images/logo.png';
+  import logoSrc from '/@/assets/svg/logo.svg';
 
   const { prefixCls } = useDesign('app-logo');
   const userStore = useUserStore();
@@ -40,6 +36,11 @@
     cursor: pointer;
     transition: all 0.2s ease;
 
+    &-logo {
+      width: 60px;
+      height: auto;
+    }
+
     &.light &__title {
       color: @primary-color;
     }
@@ -49,10 +50,12 @@
     }
 
     &__title {
-      font-size: 16px;
+      font-size: 38px;
+      color: @text-color;
       font-weight: 700;
       transition: all 0.5s;
       line-height: normal;
+      font-family: AlimamaShuHeiTi-Bold;
     }
   }
 </style>

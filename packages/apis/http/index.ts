@@ -13,10 +13,10 @@ import { RequestEnum, ResultEnum, ContentTypeEnum } from '/@/enums/httpEnum';
 import { isString } from '@dq-next/utils/is';
 import { getToken } from '@dq-next/utils/auth';
 import { setObjToUrlParams, deepMerge } from '@dq-next/utils';
-import { useErrorLogStoreWithOut } from '/@/store/modules/errorLog';
+// import { useErrorLogStoreWithOut } from '/@/store/modules/errorLog';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { joinTimestamp } from './helper';
-import { useUserStoreWithOut } from '/@/store/modules/user';
+// import { useUserStoreWithOut } from '/@/store/modules/user';
 import { AxiosRetry } from './axiosRetry';
 import { isProdMode } from '@dq-next/utils/env';
 
@@ -117,9 +117,9 @@ const transform: AxiosTransform = {
     switch (code) {
       case ResultEnum.TIMEOUT:
         timeoutMsg = t('sys.api.timeoutMessage');
-        const userStore = useUserStoreWithOut();
-        userStore.setToken(undefined);
-        userStore.logout(true);
+        // const userStore = useUserStoreWithOut();
+        // userStore.setToken(undefined);
+        // userStore.logout(true);
         break;
       case ResultEnum.ERROR:
         if (msg) {
@@ -147,8 +147,8 @@ const transform: AxiosTransform = {
   responseCatchHook(error: AxiosError<Result, any>, options: RequestOptions) {
     const { t } = useI18n();
     const { code, config } = error || {};
-    const errorLogStore = useErrorLogStoreWithOut();
-    errorLogStore.addAjaxErrorInfo(error);
+    // const errorLogStore = useErrorLogStoreWithOut();
+    // errorLogStore.addAjaxErrorInfo(error);
     // const { response, code, message, config } = error || {};
     const errorMessageMode = options.errorMessageMode || 'none';
     const err: string = error?.toString?.() ?? '';

@@ -77,7 +77,7 @@ export default {
     signUpFormTitle: '注册',
     forgetFormTitle: '重置密码',
 
-    signInTitle: '投研平台Pro Plus Max Ultra',
+    signInTitle: '笃数投研 Plus Max Ultra',
     signInDesc: '助力投研工作，更漂亮，更流畅，更棒',
     policy: '我同意xxx隐私政策',
     scanSign: `扫码后点击"确认"，即可完成登录`,

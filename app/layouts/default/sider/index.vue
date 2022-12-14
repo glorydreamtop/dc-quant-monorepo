@@ -22,6 +22,7 @@
   import { AppLogo } from '/@/components/Application';
   import { useRouter } from 'vue-router';
   import { useGo } from '/@/hooks/web/usePage';
+  import { MenuInfo } from 'ant-design-vue/lib/menu/src/interface';
 
   const { prefixCls } = useDesign('layout-mix-sider');
   const router = useRouter();
@@ -33,10 +34,10 @@
     console.log(menuList.value);
   });
   const activePath = computed(() => [router.currentRoute.value.path]);
-  const openKeys = computed(() => [getCurrentParentPath(router.currentRoute.value.path)]);
-
-  function menuClick({ key }: { key: string }) {
-    go(key);
+  const openKeys = ref(['']);
+  function menuClick({ key }: MenuInfo) {
+    openKeys.value = [getCurrentParentPath(router.currentRoute.value.path)];
+    go(key as string);
   }
 </script>
 
@@ -53,13 +54,7 @@
 
     &-logo {
       display: flex;
-      padding: 24px 0;
-      justify-content: center;
-
-      img {
-        width: @logo-width;
-        height: @logo-width;
-      }
+      padding: 20px 0;
     }
 
     .ant-menu.ant-menu-vertical {
