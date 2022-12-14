@@ -42,5 +42,5 @@ export const basicRoutes = [
   RootRoute,
   ...mainOutRoutes,
   REDIRECT_ROUTE,
-  PAGE_NOT_FOUND_ROUTE,
+  ...asyncRoutes,
 ];

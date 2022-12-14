@@ -42,7 +42,7 @@ export default ({ command, mode }: ConfigEnv): UserConfig => {
       ],
     },
     esbuild: {
-      pure: ['console.log', 'debugger'],
+      pure: ['debugger'],
     },
     build: buildConfig({
       name: mode,

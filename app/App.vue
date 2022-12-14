@@ -19,10 +19,4 @@
 
 <style>
   @import url(https://at.alicdn.com/t/font_2948274_h4eh236pakh.css);
-  @font-face {
-    font-family: AlimamaShuHeiTi-Bold;
-    font-weight: 400;
-    src: url('/alimamashuhei.woff') format('woff');
-    font-display: swap;
-  }
 </style>

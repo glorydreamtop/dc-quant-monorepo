@@ -1,8 +1,7 @@
 import type { AppRouteModule } from '/@/router/types';
 
 import { LAYOUT } from '/@/router/constant';
-import { useI18n } from '/@/hooks/web/useI18n';
-const { t } = useI18n();
+import { t } from '/@/hooks/web/useI18n';
 
 const report: AppRouteModule = {
   path: '/report',

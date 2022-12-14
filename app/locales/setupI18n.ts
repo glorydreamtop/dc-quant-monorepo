@@ -4,6 +4,13 @@ import { createI18n } from 'vue-i18n';
 import { setHtmlPageLang, setLoadLocalePool } from './helper';
 import { localeSetting } from '/@/settings/localeSetting';
 import { useLocaleStoreWithOut } from '/@/store/modules/locale';
+import zh_CN from './lang/zh_CN';
+import en from './lang/en';
+
+const langFileMap = {
+  zh_CN,
+  en,
+};
 
 const { fallback, availableLocales } = localeSetting;
 
@@ -41,16 +48,12 @@ export async function setupI18n() {
 }
 
 export async function setupLibI18n() {
-  console.log('Component Lib I18n ready!');
-
   const locale = 'zh_CN';
-  const defaultLocal = await import(`./lang/${locale}.ts`);
-  const message = defaultLocal.default?.message ?? {};
-  // 设置html的lang属性
-  setHtmlPageLang(locale);
-  setLoadLocalePool((loadLocalePool) => {
-    loadLocalePool.push(locale);
-  });
+  const defaultLocal = 'zh_CN';
+  const message = langFileMap[defaultLocal].message ?? {};
+  // setLoadLocalePool((loadLocalePool) => {
+  //   loadLocalePool.push(locale);
+  // });
 
   i18n = createI18n({
     legacy: false,

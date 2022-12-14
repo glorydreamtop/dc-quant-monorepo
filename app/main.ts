@@ -21,12 +21,12 @@ import { setupAutoAnimate } from '@dq-next/utils/lib/animate';
 
 async function bootstrap() {
   const app = createApp(App);
+  setupStore(app);
   // Multilingual configuration
   // Asynchronous case: language files may be obtained from the server side
   await setupI18n();
 
   // Configure store
-  setupStore(app);
 
   // Initialize internal system configuration
   initAppConfigStore();

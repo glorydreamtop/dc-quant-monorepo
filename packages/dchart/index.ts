@@ -1,9 +1,9 @@
 import { setAuthCache } from '@dq-next/utils/auth';
 import { TOKEN_KEY } from '/@/enums/cacheEnum';
-// import { setupLibI18n } from '/@/locales/setupI18n';
+import { setupLibI18n } from '/@/locales/setupI18n';
 
 function setToken(token: string) {
-  // setupLibI18n();
+  setupLibI18n();
   setAuthCache(TOKEN_KEY, token);
 }
 

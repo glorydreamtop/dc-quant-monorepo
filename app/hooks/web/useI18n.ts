@@ -25,11 +25,13 @@ export function useI18n(namespace?: string): {
   t: I18nGlobalTranslation;
 } {
   const normalFn = {
-    t: (key: string) => {
-      return getKey(namespace, key);
+    t: (key: string, ...arg: any[]) => {
+      if (!key) return '';
+      if (!key.includes('.') && !namespace) return key;
+      return i18n.global.t(getKey(namespace, key), ...(arg as I18nTranslationRestParameters));
     },
   };
-
+  // 使用了i18n的外部函数初始化时，很有可能在i18n实例化之前，所以要调用时再读取i18n
   if (!i18n) {
     return normalFn;
   }
