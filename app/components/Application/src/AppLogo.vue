@@ -1,9 +1,5 @@
-<!--
- * @Author: Vben
- * @Description: logo component
--->
 <template>
-  <div class="anticon" :class="[prefixCls, 'flex flex-col items-center gap-1']" @click="goHome">
+  <div :class="[prefixCls]" @click="goHome">
     <img :class="`${prefixCls}-logo`" :src="logoSrc" />
     <div class="truncate md:opacity-100" :class="`${prefixCls}__title`">
       {{ title }}
@@ -29,33 +25,52 @@
 </script>
 <style lang="less" scoped>
   @prefix-cls: ~'@{namespace}-app-logo';
+  @sider-prefix-cls: ~'@{namespace}-layout-mix-sider';
 
-  .@{prefix-cls} {
+  .@{prefix-cls}{
     display: flex;
     align-items: center;
     cursor: pointer;
     transition: all 0.2s ease;
 
     &-logo {
-      width: 60px;
-      height: auto;
-    }
+        width: 60px;
+      }
 
-    &.light &__title {
-      color: @primary-color;
-    }
-
-    &.dark &__title {
-      color: @white;
-    }
-
-    &__title {
-      font-size: 38px;
+      &__title {
       color: @text-color;
-      font-weight: 700;
+      // font-weight: 700;
       transition: all 0.5s;
-      line-height: normal;
+      line-height: 1em;
       font-family: AlimamaShuHeiTi-Bold;
+    }
+  }
+
+  .login-page.@{prefix-cls}{
+    gap: 20px;
+
+    .@{prefix-cls}{
+      &-logo {
+        width: 70px;
+      }
+
+      &__title {
+        font-size: 70px;
+      }
+    }
+  }
+
+  .@{sider-prefix-cls} .@{prefix-cls}{
+    flex-direction: column;
+
+    .@{prefix-cls}{
+      &-logo {
+        width: 40px;
+      }
+
+      &__title {
+        font-size: 36px;
+      }
     }
   }
 </style>
