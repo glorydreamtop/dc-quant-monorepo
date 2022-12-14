@@ -1,10 +1,10 @@
 {
   "name": "@dq-next/http-apis",
   "version": "1.0.0",
-  "description": "> TODO: description",
-  "author": "glorydream.top <hanwenhui520@gmail.com>",
-  "homepage": "https://github.com/glorydreamtop/quota-admin-monorepo/tree/main/packages/http-apis#readme",
-  "license": "ISC",
+  "description": "> 笃诚投研平台用到的api请求包",
+  "author": "hanwh@shducheng.com.cn",
+  "homepage": "",
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },

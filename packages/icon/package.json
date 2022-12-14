@@ -1,10 +1,10 @@
 {
   "name": "@dq-next/icon",
   "version": "1.0.0",
-  "description": "> TODO: description",
-  "author": "glorydream.top <hanwenhui520@gmail.com>",
-  "homepage": "https://github.com/glorydreamtop/quota-admin-monorepo/tree/main/packages/icon#readme",
-  "license": "ISC",
+  "description": "> 基于iconify的icon组件",
+  "author": "hanwh@shducheng.com.cn",
+  "homepage": "",
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   },

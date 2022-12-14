@@ -1,10 +1,10 @@
 {
   "name": "@dq-next/utils",
   "version": "1.0.0",
-  "description": "> TODO: description",
-  "author": "glorydream.top <hanwenhui520@gmail.com>",
-  "homepage": "https://github.com/glorydreamtop/quota-admin-monorepo/tree/main/packages/utils#readme",
-  "license": "ISC",
+  "description": "> 笃诚前端开发通用工具包",
+  "author": "hanwh@shducheng.com.cn",
+  "homepage": "",
+  "license": "MIT",
   "publishConfig": {
     "access": "public"
   }
