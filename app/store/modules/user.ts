@@ -17,7 +17,7 @@ import { PAGE_NOT_FOUND_ROUTE } from '/@/router/routes/basic';
 import { h } from 'vue';
 import { useAppStoreWithOut } from './app';
 import { useQuotaTreeStore } from './quotaTree';
-import { initAegisSDK } from '@dq-next/utils/lib/aegis';
+import { initAegisSDK } from '@dq-next/utils/lib';
 
 interface UserState {
   userInfo: Nullable<UserInfo>;

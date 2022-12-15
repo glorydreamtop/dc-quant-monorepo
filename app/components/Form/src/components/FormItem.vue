@@ -7,10 +7,9 @@
   import { Col, Divider, Form } from 'ant-design-vue';
   import { componentMap } from '../componentMap';
   import { BasicHelp } from '/@/components/Basic';
-  import { isBoolean, isFunction, isNull } from '@dq-next/utils/is';
   import { getSlot } from '@dq-next/utils/helper/tsxHelper';
   import { createPlaceholderMessage, setComponentRuleType } from '../helper';
-  import { cloneDeep, upperFirst } from 'lodash-es';
+  import { cloneDeep, upperFirst, isBoolean, isFunction, isNull } from 'lodash-es';
   import { useItemLabelWidth } from '../hooks/useLabelWidth';
   import { useI18n } from '/@/hooks/web/useI18n';
 

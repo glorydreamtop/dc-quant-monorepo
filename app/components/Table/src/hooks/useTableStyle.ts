@@ -1,7 +1,7 @@
 import type { ComputedRef } from 'vue';
 import type { BasicTableProps, TableCustomRecord } from '../types/table';
 import { unref } from 'vue';
-import { isFunction } from '@dq-next/utils/is';
+import { isFunction } from 'lodash-es';
 
 export function useTableStyle(propsRef: ComputedRef<BasicTableProps>, prefixCls: string) {
   function getRowClassName(record: TableCustomRecord, index: number) {

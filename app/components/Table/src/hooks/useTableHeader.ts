@@ -2,7 +2,7 @@ import type { ComputedRef, Slots } from 'vue';
 import type { BasicTableProps, InnerHandlers } from '../types/table';
 import { unref, computed, h } from 'vue';
 import TableHeader from '../components/TableHeader.vue';
-import { isString } from '@dq-next/utils/is';
+import { isString } from 'lodash-es';
 import { getSlot } from '@dq-next/utils/helper/tsxHelper';
 
 export function useTableHeader(

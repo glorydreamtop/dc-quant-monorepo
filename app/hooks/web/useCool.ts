@@ -1,7 +1,7 @@
 import { onUnmounted, Ref, ref } from 'vue';
 import { oneSentence } from '@dq-next/http-apis/cool';
 import lottie from 'lottie-web';
-import { isBoolean, isNumber } from '@dq-next/utils/is';
+import { isBoolean, isNumber } from 'lodash-es';
 import { warn } from '@dq-next/utils/log';
 
 export async function getSentence() {

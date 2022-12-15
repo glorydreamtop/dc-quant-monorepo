@@ -6,7 +6,7 @@
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useIntervalFn } from '@vueuse/core';
   import { formatToDateTime, formatToDate, dateUtil } from '@dq-next/utils/dateUtil';
-  import { isNumber, isObject, isString } from '@dq-next/utils/is';
+  import { isNumber, isObject, isString } from 'lodash-es';
   import { propTypes } from '@dq-next/utils/propTypes';
 
   const ONE_SECONDS = 1000;

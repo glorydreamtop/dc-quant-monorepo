@@ -13,7 +13,7 @@
 <script lang="ts">
   import { defineComponent } from 'vue';
   import { Layout } from 'ant-design-vue';
-  import { createAsyncComponent } from '@dq-next/utils/factory/createAsyncComponent';
+  import { createAsyncComponent } from '@dq-next/utils/createAsyncComponent';
 
   import LayoutContent from './content/index.vue';
   import LayoutSideBar from './sider/index.vue';

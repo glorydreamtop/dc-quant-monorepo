@@ -1,4 +1,4 @@
-import { isFunction, isUnDef } from '@dq-next/utils/is';
+import { isFunction, isUndefined } from 'lodash-es';
 import { ref, unref } from 'vue';
 
 export interface ScrollToParams {
@@ -29,7 +29,7 @@ export function useScrollTo({ el, to, duration = 500, callback }: ScrollToParams
   const change = to - start;
   const increment = 20;
   let currentTime = 0;
-  duration = isUnDef(duration) ? 500 : duration;
+  duration = isUndefined(duration) ? 500 : duration;
 
   const animateScroll = function () {
     if (!unref(isActiveRef)) {

@@ -8,7 +8,7 @@ import {
   inject,
   Ref,
 } from 'vue';
-import { on, off } from '@dq-next/utils/domUtils';
+import { domEvent } from '@dq-next/utils/domUtils';
 
 import { renderThumbStyle, BAR_MAP } from './util';
 
@@ -56,8 +56,8 @@ export default defineComponent({
     const startDrag = (e: any) => {
       e.stopImmediatePropagation();
       cursorDown.value = true;
-      on(document, 'mousemove', mouseMoveDocumentHandler);
-      on(document, 'mouseup', mouseUpDocumentHandler);
+      domEvent.on(document, 'mousemove', mouseMoveDocumentHandler);
+      domEvent.on(document, 'mouseup', mouseUpDocumentHandler);
       document.onselectstart = () => false;
     };
 
@@ -80,12 +80,12 @@ export default defineComponent({
     function mouseUpDocumentHandler() {
       cursorDown.value = false;
       barStore.value[bar.value.axis] = 0;
-      off(document, 'mousemove', mouseMoveDocumentHandler);
+      domEvent.off(document, 'mousemove', mouseMoveDocumentHandler);
       document.onselectstart = null;
     }
 
     onUnmounted(() => {
-      off(document, 'mouseup', mouseUpDocumentHandler);
+      domEvent.off(document, 'mouseup', mouseUpDocumentHandler);
     });
 
     return () =>

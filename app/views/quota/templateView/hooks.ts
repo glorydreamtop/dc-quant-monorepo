@@ -4,7 +4,7 @@ import type { pageSettingType, TemplateDOM } from '/#/template';
 import { remove } from 'lodash-es';
 import { useActiveElement, useMagicKeys, useResizeObserver } from '@vueuse/core';
 
-import { on, once } from '@dq-next/utils/domUtils';
+import { domEvent } from '@dq-next/utils/domUtils';
 import mitt from '@dq-next/utils/mitt';
 
 const templateKey: InjectionKey<Ref<TemplateDOM[]>> = Symbol();
@@ -200,7 +200,7 @@ export function useResizeListener({ templateList, GRIDSIZE }: useResizeListenerP
     const target = e.target as HTMLElement;
     const temp = templateList.value.find((el) => el.uniqId === target.getAttribute('data-uniqid'))!;
     let resizeStatus = false;
-    on(target, 'mouseup', () => {
+    domEvent.on(target, 'mouseup', () => {
       if (resizeStatus) {
         temp.pageConfig.width = `${Math.round(target.offsetWidth / GRIDSIZE) * GRIDSIZE}px`;
         temp.pageConfig.height = `${Math.round(target.offsetHeight / GRIDSIZE) * GRIDSIZE}px`;
@@ -213,7 +213,7 @@ export function useResizeListener({ templateList, GRIDSIZE }: useResizeListenerP
       temp.pageConfig.height = `${height + 2}px`;
       resizeStatus = true;
     });
-    once(target, 'mouseleave', () => {
+    domEvent.once(target, 'mouseleave', () => {
       stop();
     });
   }

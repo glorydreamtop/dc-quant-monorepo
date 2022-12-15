@@ -41,9 +41,8 @@
   import { Tooltip, Space } from 'ant-design-vue';
   import { useModal } from '/@/components/Modal';
   import { uploadContainerProps } from './props';
-  import { omit } from 'lodash-es';
+  import { omit,isArray } from 'lodash-es';
   import { useI18n } from '/@/hooks/web/useI18n';
-  import { isArray } from '@dq-next/utils/is';
   import UploadModal from './UploadModal.vue';
   import UploadPreviewModal from './UploadPreviewModal.vue';
 

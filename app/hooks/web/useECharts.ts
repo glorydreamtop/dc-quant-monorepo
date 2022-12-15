@@ -4,7 +4,7 @@ import { tryOnUnmounted, useTimeoutFn } from '@vueuse/core';
 import { unref, nextTick, computed, ref } from 'vue';
 // import { useDebounceFn } from '@vueuse/core';
 // import { useBreakpoint } from '/@/hooks/event/useBreakpoint';
-import echarts from '@dq-next/utils/lib/echarts';
+import { echarts } from '@dq-next/utils/lib';
 
 export function useECharts(elRef: Ref<HTMLDivElement | HTMLCanvasElement>) {
   let chartInstance: echarts.EChartsType | null = null;

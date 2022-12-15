@@ -1,6 +1,6 @@
+import { isUndefined } from 'lodash-es';
 import { ref, watch } from 'vue';
 
-import { isDef } from '@dq-next/utils/is';
 interface Options {
   target?: HTMLElement;
 }
@@ -12,7 +12,7 @@ export function useCopyToClipboard(initial?: string) {
   watch(
     clipboardRef,
     (str?: string) => {
-      if (isDef(str)) {
+      if (!isUndefined(str)) {
         copiedRef.value = true;
         isSuccessRef.value = copyTextToClipboard(str);
       }

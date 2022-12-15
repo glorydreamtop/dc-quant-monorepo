@@ -57,7 +57,7 @@
   // utils
   import { checkImgType, getBase64WithFile } from './helper';
   import { buildUUID } from '@dq-next/utils/uuid';
-  import { isFunction } from '@dq-next/utils/is';
+  import { isFunction } from 'lodash-es';
   import { warn } from '@dq-next/utils/log';
   import FileList from './FileList.vue';
   import { useI18n } from '/@/hooks/web/useI18n';

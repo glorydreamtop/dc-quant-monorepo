@@ -8,6 +8,7 @@
   import { ConfigProvider } from 'ant-design-vue';
   import { useTitle } from '/@/hooks/web/useTitle';
   import { useLocale } from '/@/locales/useLocale';
+  import '@dq-next/dchart/dist/style.css';
 
   import 'dayjs/locale/zh-cn';
   // support Multi-language

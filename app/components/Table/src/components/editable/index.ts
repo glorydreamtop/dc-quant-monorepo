@@ -3,7 +3,7 @@ import type { BasicColumn } from '/@/components/Table/src/types/table';
 import { h, Ref } from 'vue';
 
 import EditableCell from './EditableCell.vue';
-import { isArray } from '@dq-next/utils/is';
+import { isArray } from 'lodash-es';
 
 interface Params {
   text: string;

@@ -16,9 +16,8 @@ import {
   computed,
 } from 'vue';
 import { isProdMode } from '@dq-next/utils/env';
-import { isFunction } from '@dq-next/utils/is';
 import { tryOnUnmounted } from '@vueuse/core';
-import { isEqual } from 'lodash-es';
+import { isEqual, isFunction } from 'lodash-es';
 import { error } from '@dq-next/utils/log';
 
 const dataTransferRef = reactive<any>({});

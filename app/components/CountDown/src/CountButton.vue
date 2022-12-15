@@ -7,7 +7,7 @@
   import { defineComponent, ref, watchEffect, computed, unref } from 'vue';
   import { Button } from 'ant-design-vue';
   import { useCountdown } from './useCountdown';
-  import { isFunction } from '@dq-next/utils/is';
+  import { isFunction } from 'lodash-es';
   import { useI18n } from '/@/hooks/web/useI18n';
 
   const props = {

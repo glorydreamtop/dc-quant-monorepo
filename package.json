@@ -9,7 +9,7 @@
   "scripts": {
     "bootstrap": "pnpm install",
     "serverbootstrap": "pnpm config set registry https://registry.npm.taobao.org && pnpm install",
-    "serve": "npm run dev",
+    "serve": "cd app && npm run dev",
     "dev": "vite --https",
     "deploy": "npm run build && esno ./deploy.js",
     "build": "esno ./build/script/version.ts && cross-env NODE_ENV=production vite build && esno ./build/script/postBuild.ts",

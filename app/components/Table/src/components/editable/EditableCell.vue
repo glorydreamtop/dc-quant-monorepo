@@ -22,9 +22,8 @@
   import clickOutside from '/@/directives/clickOutside';
 
   import { propTypes } from '@dq-next/utils/propTypes';
-  import { isArray, isBoolean, isFunction, isNumber, isString } from '@dq-next/utils/is';
   import { createPlaceholderMessage } from './helper';
-  import { omit, pick, set } from 'lodash-es';
+  import { omit, pick, set, isArray, isBoolean, isFunction, isNumber, isString } from 'lodash-es';
   import { treeToList } from '@dq-next/utils/helper/treeHelper';
   import { Spin } from 'ant-design-vue';
 

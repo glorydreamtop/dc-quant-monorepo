@@ -1,6 +1,6 @@
 import { FunctionArgs, useDebounceFn } from '@vueuse/core';
 import { upperFirst } from 'lodash-es';
-import { dataURLtoBlob, dataURLtoFile } from './file/base64Conver';
+import { dataURLtoBlob, dataURLtoFile } from './file';
 import html2canvas from 'html2canvas';
 
 export interface ViewportOffsetResult {
@@ -10,13 +10,6 @@ export interface ViewportOffsetResult {
   bottom: number;
   rightIncludeBody: number;
   bottomIncludeBody: number;
-}
-
-export function getBoundingClientRect(element: Element): DOMRect | number {
-  if (!element || !element.getBoundingClientRect) {
-    return 0;
-  }
-  return element.getBoundingClientRect();
 }
 
 function trim(string: string) {
@@ -97,9 +90,12 @@ export function getViewportOffset(element: Element): ViewportOffsetResult {
   const pageXOffset = window.pageXOffset;
   const pageYOffset = window.pageYOffset;
 
-  const box = getBoundingClientRect(element);
-
-  const { left: retLeft, top: rectTop, width: rectWidth, height: rectHeight } = box as DOMRect;
+  const {
+    left: retLeft,
+    top: rectTop,
+    width: rectWidth,
+    height: rectHeight,
+  } = element?.getBoundingClientRect();
 
   const scrollLeft = (pageXOffset || docScrollLeft) - (docClientLeft || 0);
   const scrollTop = (pageYOffset || docScrollTop) - (docClientTop || 0);
@@ -134,6 +130,12 @@ export function hackCss(attr: string, value: string) {
   };
 }
 
+export const domEvent = {
+  on,
+  off,
+  once,
+};
+
 /* istanbul ignore next */
 export function on(
   element: Element | HTMLElement | Document | Window,
@@ -146,18 +148,14 @@ export function on(
 }
 
 /* istanbul ignore next */
-export function off(
-  element: Element | HTMLElement | Document | Window,
-  event: string,
-  handler: Fn,
-): void {
+function off(element: Element | HTMLElement | Document | Window, event: string, handler: Fn): void {
   if (element && event && handler) {
     element.removeEventListener(event, handler, false);
   }
 }
 
 /* istanbul ignore next */
-export function once(el: HTMLElement, event: string, fn: EventListener): void {
+function once(el: HTMLElement, event: string, fn: EventListener): void {
   const listener = function (this: any, ...args: unknown[]) {
     if (fn) {
       fn.apply(this, args);
@@ -165,20 +163,6 @@ export function once(el: HTMLElement, event: string, fn: EventListener): void {
     off(el, event, listener);
   };
   on(el, event, listener);
-}
-
-export function useRafThrottle<T extends FunctionArgs>(fn: T): T {
-  let locked = false;
-  // @ts-ignore
-  return function (...args: any[]) {
-    if (locked) return;
-    locked = true;
-    window.requestAnimationFrame(() => {
-      // @ts-ignore
-      fn.apply(this, args);
-      locked = false;
-    });
-  };
 }
 
 export enum fileType {

@@ -5,8 +5,7 @@ import { computed, Ref, ref, toRaw, unref, watch } from 'vue';
 import { renderEditCell } from '../components/editable';
 import { usePermission } from '/@/hooks/web/usePermission';
 import { useI18n } from '/@/hooks/web/useI18n';
-import { isArray, isBoolean, isFunction, isMap, isString } from '@dq-next/utils/is';
-import { cloneDeep, isEqual } from 'lodash-es';
+import { cloneDeep, isEqual,isArray, isBoolean, isFunction, isMap, isString } from 'lodash-es';
 import { formatToDate } from '@dq-next/utils/dateUtil';
 import { ACTION_COLUMN_FLAG, DEFAULT_ALIGN, INDEX_COLUMN_FLAG, PAGE_SIZE } from '../const';
 

@@ -4,7 +4,7 @@
   import { Tooltip } from 'ant-design-vue';
   import { InfoCircleOutlined } from '@ant-design/icons-vue';
   import { getPopupContainer } from '@dq-next/utils';
-  import { isString, isArray } from '@dq-next/utils/is';
+  import { isString, isArray } from 'lodash-es';
   import { getSlot } from '@dq-next/utils/helper/tsxHelper';
   import { useDesign } from '/@/hooks/web/useDesign';
 

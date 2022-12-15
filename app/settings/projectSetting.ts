@@ -4,6 +4,7 @@ import { ContentEnum, SessionTimeoutProcessingEnum } from '/@/enums/appEnum';
 
 // ! You need to clear the browser cache after the change
 const setting: ProjectConfig = {
+  prefixCls: 'hubert',
   // Whether to show the configuration button
   showSettingButton: true,
 

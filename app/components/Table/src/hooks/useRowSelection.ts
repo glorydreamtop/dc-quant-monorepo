@@ -1,8 +1,7 @@
-import { isFunction } from '@dq-next/utils/is';
 import type { BasicTableProps, TableRowSelection } from '../types/table';
 import { computed, ComputedRef, nextTick, Ref, ref, toRaw, unref, watch } from 'vue';
 import { ROW_KEY } from '../const';
-import { omit } from 'lodash-es';
+import { omit, isFunction } from 'lodash-es';
 import { findNodeAll } from '@dq-next/utils/helper/treeHelper';
 
 export function useRowSelection(

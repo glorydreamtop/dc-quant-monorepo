@@ -22,6 +22,7 @@ export interface LocaleSetting {
 }
 
 export interface ProjectConfig {
+  prefixCls: string;
   // Storage location of permission related information
   permissionCacheType: CacheTypeEnum;
   // Whether to show the configuration button

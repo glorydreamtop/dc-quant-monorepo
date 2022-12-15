@@ -40,8 +40,7 @@
   import type { DropMenu } from './typing';
   import { Dropdown, Menu, Popconfirm } from 'ant-design-vue';
   import { Icon } from '@dq-next/icon';
-  import { omit } from 'lodash-es';
-  import { isFunction } from '@dq-next/utils/is';
+  import { omit, isFunction } from 'lodash-es';
 
   const ADropdown = Dropdown;
   const AMenu = Menu;

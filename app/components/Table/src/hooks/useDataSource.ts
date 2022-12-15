@@ -13,8 +13,7 @@ import {
 } from 'vue';
 import { useTimeoutFn } from '@vueuse/core';
 import { buildUUID } from '@dq-next/utils/uuid';
-import { isFunction, isBoolean } from '@dq-next/utils/is';
-import { get, cloneDeep, merge } from 'lodash-es';
+import { get, cloneDeep, merge, isFunction, isBoolean } from 'lodash-es';
 import { FETCH_SETTING, ROW_KEY, PAGE_SIZE } from '../const';
 
 interface ActionType {

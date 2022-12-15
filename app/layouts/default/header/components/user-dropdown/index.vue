@@ -48,7 +48,7 @@
   import { propTypes } from '@dq-next/utils/propTypes';
   import { openWindow } from '@dq-next/utils';
 
-  import { createAsyncComponent } from '@dq-next/utils/factory/createAsyncComponent';
+  import { createAsyncComponent } from '@dq-next/utils/createAsyncComponent';
 
   type MenuEvent = 'logout' | 'doc' | 'lock';
 

@@ -16,7 +16,7 @@ import {
   toRaw,
 } from 'vue';
 import { isProdMode } from '@dq-next/utils/env';
-import { isFunction } from '@dq-next/utils/is';
+import { isFunction } from 'lodash-es';
 import { isEqual } from 'lodash-es';
 import { tryOnUnmounted } from '@vueuse/core';
 import { error } from '@dq-next/utils/log';

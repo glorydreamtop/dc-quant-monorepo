@@ -77,3 +77,16 @@ export const withInstall = <T>(component: T, alias?: string) => {
   };
   return component as T & Plugin;
 };
+
+export * from './auth';
+export * from './cipher';
+export * from './color';
+export * from './dateUtil';
+export * from './domUtils';
+// export * from './env';
+// export * from './is';
+// export * from './mitt';
+// export * from './log';
+// export * from './propTypes';
+// export * from './mitt';
+// export * from './mitt';

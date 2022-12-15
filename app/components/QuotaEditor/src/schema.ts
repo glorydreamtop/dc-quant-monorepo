@@ -5,7 +5,7 @@ import { SourceTypeEnum, SourceTypeNameEnum } from '/@/enums/quotaEnum';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { useQuotaTreeStore } from '/@/store/modules/quotaTree';
 import { treeMap } from '@dq-next/utils/helper/treeHelper';
-import { isNull } from '@dq-next/utils/is';
+import { isNull } from 'lodash-es';
 const { t } = useI18n();
 const quotaTreeStore = useQuotaTreeStore();
 

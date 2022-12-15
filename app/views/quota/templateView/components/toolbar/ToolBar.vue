@@ -66,7 +66,7 @@
   } from '../../hooks';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { dom2imgFile, fileType } from '@dq-next/utils/domUtils';
-  import { downloadByData } from '@dq-next/utils/file/download';
+  import { downloadByData } from '@dq-next/utils/file';
   import { BasicUpload } from '/@/components/Upload';
   import PageConfig from './ToolBarPageConfig.vue';
   import ToolBarEdit from './ToolBarEdit.vue';

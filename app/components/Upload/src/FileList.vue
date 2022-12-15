@@ -1,7 +1,7 @@
 <script lang="tsx">
   import { defineComponent, CSSProperties, watch, nextTick } from 'vue';
   import { fileListProps } from './props';
-  import { isFunction } from '@dq-next/utils/is';
+  import { isFunction } from 'lodash-es';
   import { useModalContext } from '/@/components/Modal/src/hooks/useModalContext';
 
   export default defineComponent({

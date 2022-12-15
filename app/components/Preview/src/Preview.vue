@@ -21,7 +21,7 @@
   import { Image } from 'ant-design-vue';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { propTypes } from '@dq-next/utils/propTypes';
-  import { isString } from '@dq-next/utils/is';
+  import { isString } from 'lodash-es';
 
   interface ImageProps {
     alt?: string;

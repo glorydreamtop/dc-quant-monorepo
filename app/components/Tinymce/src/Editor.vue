@@ -62,7 +62,7 @@
   import { bindHandlers } from './helper';
   import { onMountedOrActivated } from '/@/hooks/core/onMountedOrActivated';
   import { useDesign } from '/@/hooks/web/useDesign';
-  import { isNumber } from '@dq-next/utils/is';
+  import { isNumber } from 'lodash-es';
   import { useLocale } from '/@/locales/useLocale';
   import { useAppStore } from '/@/store/modules/app';
 

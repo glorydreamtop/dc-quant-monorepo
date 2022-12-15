@@ -118,8 +118,8 @@
   import { Space, Upload, Avatar, Tooltip } from 'ant-design-vue';
   import { useDesign } from '/@/hooks/web/useDesign';
   import { BasicModal, useModalInner } from '/@/components/Modal';
-  import { dataURLtoBlob } from '@dq-next/utils/file/base64Conver';
-  import { isFunction } from '@dq-next/utils/is';
+  import { dataURLtoBlob } from '@dq-next/utils/file';
+  import { isFunction } from 'lodash-es';
   import { useI18n } from '/@/hooks/web/useI18n';
 
   type apiFunParams = { file: Blob; name: string; filename: string };

@@ -1,6 +1,4 @@
 import type { RouteRecordRaw } from 'vue-router';
-
-import { useAppStore } from '/@/store/modules/app';
 import { usePermissionStore } from '/@/store/modules/permission';
 import { useUserStore } from '/@/store/modules/user';
 
@@ -14,28 +12,14 @@ import { PermissionModeEnum } from '/@/enums/appEnum';
 import { RoleEnum } from '/@/enums/roleEnum';
 
 import { intersection } from 'lodash-es';
-import { isArray } from '@dq-next/utils/is';
+import { isArray } from 'lodash-es';
 import { useMultipleTabStore } from '/@/store/modules/multipleTab';
 
 // User permissions related operations
 export function usePermission() {
   const userStore = useUserStore();
-  const appStore = useAppStore();
   const permissionStore = usePermissionStore();
   const { closeAll } = useTabs(router);
-
-  /**
-   * Change permission mode
-   */
-  async function togglePermissionMode() {
-    appStore.setProjectConfig({
-      permissionMode:
-        projectSetting.permissionMode === PermissionModeEnum.BACK
-          ? PermissionModeEnum.ROUTE_MAPPING
-          : PermissionModeEnum.BACK,
-    });
-    location.reload();
-  }
 
   /**
    * Reset and regain authority resource information

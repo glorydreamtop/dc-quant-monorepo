@@ -1,7 +1,8 @@
 import type { Ref } from 'vue';
 
 import { ref, onMounted, watch, onUnmounted } from 'vue';
-import { isWindow, isObject } from '@dq-next/utils/is';
+import { isWindow } from '@dq-next/utils/is';
+import { isObject } from 'lodash-es';
 import { useThrottleFn } from '@vueuse/core';
 
 export function useScroll(

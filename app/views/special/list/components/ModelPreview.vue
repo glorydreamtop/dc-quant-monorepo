@@ -79,7 +79,7 @@
   import { useVersionTransfer } from '@dq-next/utils/helper/versionTransfer';
   import { cloneDeep } from 'lodash-es';
   import { dom2imgFile, fileType } from '@dq-next/utils/domUtils';
-  import { downloadByData } from '@dq-next/utils/file/download';
+  import { downloadByData } from '@dq-next/utils/file';
   import { formatToDate, yearsAgo } from '@dq-next/utils/dateUtil';
   import { selectedTemplateModel, optionsModel, configModel } from '../model';
   import {

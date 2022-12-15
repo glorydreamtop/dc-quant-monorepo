@@ -14,8 +14,7 @@
   } from 'vue';
   import { Tree, Empty } from 'ant-design-vue';
 
-  import { omit } from 'lodash-es';
-  import { isFunction } from '@dq-next/utils/is';
+  import { omit, isFunction } from 'lodash-es';
   import { getSlot } from '@dq-next/utils/helper/tsxHelper';
 
   import { useTree } from './useTree';

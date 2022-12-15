@@ -4,7 +4,7 @@ import { useI18n } from '/@/hooks/web/useI18n';
 import { isEmpty, isNull } from '@dq-next/utils/is';
 import { Icon } from '@dq-next/icon';
 import { openWindow } from '@dq-next/utils';
-import { downloadByUrl } from '@dq-next/utils/file/download';
+import { downloadByUrl } from '@dq-next/utils/file';
 import { useRootSetting } from '/@/hooks/setting/useRootSetting';
 import { generatePDF } from '@dq-next/http-apis/report';
 import { ref } from 'vue';

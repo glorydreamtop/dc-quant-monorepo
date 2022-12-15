@@ -7,5 +7,74 @@
   "license": "MIT",
   "publishConfig": {
     "access": "public"
+  },
+  "exports": {
+    ".": {
+      "import": "./index.ts"
+    },
+    "./event": {
+      "import": "./event/index.ts"
+    },
+    "./file": {
+      "import": "./file.ts"
+    },
+    "./lib": {
+      "import": "./lib/index.ts"
+    },
+    "./helper/commonHelper": {
+      "import": "./helper/commonHelper.ts"
+    },
+    "./helper/treeHelper": {
+      "import": "./helper/treeHelper.ts"
+    },
+    "./helper/tsxHelper": {
+      "import": "./helper/tsxHelper.tsx"
+    },
+    "./helper/versionTransfer": {
+      "import": "./helper/versionTransfer.ts"
+    },
+    
+    "./auth": {
+      "import": "./auth.ts"
+    },
+    "./cipher": {
+      "import": "./cipher.ts"
+    },
+    "./color": {
+      "import": "./color.ts"
+    },
+    "./createAsyncComponent": {
+      "import": "./createAsyncComponent.tsx"
+    },
+    "./dateUtil": {
+      "import": "./dateUtil.ts"
+    },
+    "./domUtils": {
+      "import": "./domUtils.ts"
+    },
+    "./env": {
+      "import": "./env.ts"
+    },
+    "./is": {
+      "import": "./is.ts"
+    },
+    "./log": {
+      "import": "./log.ts"
+    },
+    "./mitt": {
+      "import": "./mitt.ts"
+    },
+    "./props": {
+      "import": "./props.ts"
+    },
+    "./propTypes": {
+      "import": "./propTypes.ts"
+    },
+    "./storageCache": {
+      "import": "./storageCache.ts"
+    },
+    "./uuid": {
+      "import": "./uuid.ts"
+    }
   }
 }

@@ -67,11 +67,10 @@
   import ModalClose from './components/ModalClose.vue';
   import ModalFooter from './components/ModalFooter.vue';
   import ModalHeader from './components/ModalHeader.vue';
-  import { isFunction } from '@dq-next/utils/is';
   import { deepMerge } from '@dq-next/utils';
   import { basicProps } from './props';
   import { useFullScreen } from './hooks/useModalFullScreen';
-  import { omit } from 'lodash-es';
+  import { omit, isFunction } from 'lodash-es';
   import { useDesign } from '/@/hooks/web/useDesign';
 
   export default defineComponent({

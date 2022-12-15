@@ -87,7 +87,7 @@
   import { Dropdown } from '/@/components/Dropdown';
   import { BasicForm, useForm } from '/@/components/Form';
   import { Button } from '/@/components/Button';
-  import { isFunction } from '@dq-next/utils/is';
+  import { isFunction } from 'lodash-es';
   import { useSlider, grid } from './data';
   const ListItem = List.Item;
   const CardMeta = Card.Meta;

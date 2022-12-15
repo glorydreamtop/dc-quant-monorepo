@@ -2,7 +2,7 @@ import type { ValidationRule } from 'ant-design-vue/lib/form/Form';
 import type { ComponentType } from './types/index';
 import { useI18n } from '/@/hooks/web/useI18n';
 import { dateUtil } from '@dq-next/utils/dateUtil';
-import { isNumber, isObject } from '@dq-next/utils/is';
+import { isNumber, isObject } from 'lodash-es';
 
 const { t } = useI18n();
 

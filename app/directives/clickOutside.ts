@@ -1,4 +1,4 @@
-import { on } from '@dq-next/utils/domUtils';
+import { domEvent } from '@dq-next/utils/domUtils';
 import { isServer } from '@dq-next/utils/is';
 import type { ComponentPublicInstance, DirectiveBinding, ObjectDirective } from 'vue';
 
@@ -17,8 +17,8 @@ const nodeList: FlushList = new Map();
 let startClick: MouseEvent;
 
 if (!isServer) {
-  on(document, 'mousedown', (e: MouseEvent) => (startClick = e));
-  on(document, 'mouseup', (e: MouseEvent) => {
+  domEvent.on(document, 'mousedown', (e: MouseEvent) => (startClick = e));
+  domEvent.on(document, 'mouseup', (e: MouseEvent) => {
     for (const { documentHandler } of nodeList.values()) {
       documentHandler(e, startClick);
     }

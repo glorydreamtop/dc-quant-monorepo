@@ -1,9 +1,8 @@
-import { isArray, isFunction, isObject, isString, isNullOrUnDef } from '@dq-next/utils/is';
 import { dateUtil } from '@dq-next/utils/dateUtil';
 import { unref } from 'vue';
 import type { Ref, ComputedRef } from 'vue';
 import type { FormProps, FormSchema } from '../types/form';
-import { set } from 'lodash-es';
+import { set, isArray, isFunction, isObject, isString, isNil } from 'lodash-es';
 
 interface UseFormValuesContext {
   defaultValueRef: Ref<any>;
@@ -116,7 +115,7 @@ export function useFormValues({
     const obj: Recordable = {};
     schemas.forEach((item) => {
       const { defaultValue } = item;
-      if (!isNullOrUnDef(defaultValue)) {
+      if (!isNil(defaultValue)) {
         obj[item.field] = defaultValue;
 
         if (formModel[item.field] === undefined) {

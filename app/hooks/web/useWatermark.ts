@@ -1,9 +1,22 @@
 import { getCurrentInstance, onBeforeUnmount, ref, Ref, shallowRef, unref } from 'vue';
-import { useRafThrottle } from '@dq-next/utils/domUtils';
 import { addResizeListener, removeResizeListener } from '@dq-next/utils/event';
-import { isDef } from '@dq-next/utils/is';
+import { isUndefined } from 'lodash-es';
 
 const domSymbol = Symbol('watermark-dom');
+
+export function useRafThrottle<T>(fn: T): T {
+  let locked = false;
+  // @ts-ignore
+  return function (...args: any[]) {
+    if (locked) return;
+    locked = true;
+    window.requestAnimationFrame(() => {
+      // @ts-ignore
+      fn.apply(this, args);
+      locked = false;
+    });
+  };
+}
 
 export function useWatermark(
   appendEl: Ref<HTMLElement | undefined> = ref(document.body) as Ref<HTMLElement>,
@@ -53,13 +66,13 @@ export function useWatermark(
   ) {
     const el = unref(watermarkEl);
     if (!el) return;
-    if (isDef(options.width)) {
+    if (!isUndefined(options.width)) {
       el.style.width = `${options.width}px`;
     }
-    if (isDef(options.height)) {
+    if (!isUndefined(options.height)) {
       el.style.height = `${options.height}px`;
     }
-    if (isDef(options.str)) {
+    if (!isUndefined(options.str)) {
       el.style.background = `url(${createBase64(options.str)}) left top repeat`;
     }
   }

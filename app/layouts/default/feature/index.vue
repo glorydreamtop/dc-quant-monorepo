@@ -6,7 +6,7 @@
   import { useDesign } from '/@/hooks/web/useDesign';
   import { useUserStoreWithOut } from '/@/store/modules/user';
 
-  import { createAsyncComponent } from '@dq-next/utils/factory/createAsyncComponent';
+  import { createAsyncComponent } from '@dq-next/utils/createAsyncComponent';
 
   import SessionTimeoutLogin from '/@/views/sys/login/SessionTimeoutLogin.vue';
   export default defineComponent({

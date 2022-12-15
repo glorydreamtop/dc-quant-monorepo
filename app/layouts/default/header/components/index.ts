@@ -1,4 +1,4 @@
-import { createAsyncComponent } from '@dq-next/utils/factory/createAsyncComponent';
+import { createAsyncComponent } from '@dq-next/utils/createAsyncComponent';
 import FullScreen from './FullScreen.vue';
 
 export const UserDropDown = createAsyncComponent(() => import('./user-dropdown/index.vue'), {

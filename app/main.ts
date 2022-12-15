@@ -14,10 +14,8 @@ import { setupRouterGuard } from '/@/router/guard';
 import { setupStore } from '/@/store';
 import { setupGlobDirectives } from '/@/directives';
 import { setupI18n } from '/@/locales/setupI18n';
-import { setupAegisSDK } from '@dq-next/utils/lib/aegis';
+import { setupAegisSDK, setupVxeTable, setupAutoAnimate } from '@dq-next/utils/lib';
 import { registerGlobComp } from '/@/components/registerGlobComp';
-import { setupVxeTable } from '@dq-next/utils/lib/vxetable';
-import { setupAutoAnimate } from '@dq-next/utils/lib/animate';
 
 async function bootstrap() {
   const app = createApp(App);

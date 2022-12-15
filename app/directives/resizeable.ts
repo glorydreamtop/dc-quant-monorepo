@@ -2,7 +2,7 @@ import { useResizeObserver } from '@vueuse/core';
 import { floor } from 'lodash-es';
 import { Directive, DirectiveBinding, App, CSSProperties, nextTick } from 'vue';
 import { h, render } from 'vue';
-import { on, off } from '@dq-next/utils/domUtils';
+import { domEvent } from '@dq-next/utils/domUtils';
 import { Icon } from '@dq-next/icon';
 
 const resizeDirective: Directive = {
@@ -38,12 +38,12 @@ const resizeDirective: Directive = {
     render(iconComp, el);
     const scaleHandle = el.getElementsByClassName('scale-handle')![0] as HTMLElement;
     function resizeFn() {
-      on(scaleHandle, 'mousedown', mousedownListener);
+      domEvent.on(scaleHandle, 'mousedown', mousedownListener);
       if (hidden) {
-        on(scaleHandle, 'mouseover', () => {
+        domEvent.on(scaleHandle, 'mouseover', () => {
           scaleHandle.style.opacity = '1';
         });
-        on(scaleHandle, 'mouseleave', () => {
+        domEvent.on(scaleHandle, 'mouseleave', () => {
           scaleHandle.style.opacity = '0';
         });
       }
@@ -61,8 +61,8 @@ const resizeDirective: Directive = {
       posStart.y = event.clientY;
       posStart.w = el.offsetWidth;
       posStart.h = el.offsetHeight;
-      on(document.body, 'mousemove', mousemoveListener);
-      on(document.body, 'mouseup', mouseupListener);
+      domEvent.on(document.body, 'mousemove', mousemoveListener);
+      domEvent.on(document.body, 'mouseup', mouseupListener);
     }
     function mousemoveListener(event: MouseEvent) {
       event.preventDefault();
@@ -77,8 +77,8 @@ const resizeDirective: Directive = {
     }
     function mouseupListener(event: MouseEvent) {
       event.preventDefault();
-      off(document.body, 'mousemove', mousemoveListener);
-      off(document.body, 'mouseup', mouseupListener);
+      domEvent.off(document.body, 'mousemove', mousemoveListener);
+      domEvent.off(document.body, 'mouseup', mouseupListener);
     }
     resizeFn();
   },

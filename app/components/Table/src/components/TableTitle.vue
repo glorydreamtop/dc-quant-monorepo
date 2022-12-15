@@ -7,7 +7,7 @@
   import { computed, defineComponent, PropType } from 'vue';
   import { BasicTitle } from '/@/components/Basic/index';
   import { useDesign } from '/@/hooks/web/useDesign';
-  import { isFunction } from '@dq-next/utils/is';
+  import { isFunction } from 'lodash-es';
 
   export default defineComponent({
     name: 'BasicTableTitle',

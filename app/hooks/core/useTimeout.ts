@@ -1,6 +1,6 @@
 import { ref, watch } from 'vue';
 import { tryOnUnmounted } from '@vueuse/core';
-import { isFunction } from '@dq-next/utils/is';
+import { isFunction } from 'lodash-es';
 
 export function useTimeoutFn(handle: Fn<any>, wait: number, native = false) {
   if (!isFunction(handle)) {

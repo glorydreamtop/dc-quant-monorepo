@@ -73,9 +73,8 @@
   import { useTableForm } from './hooks/useTableForm';
   import { useDesign } from '/@/hooks/web/useDesign';
 
-  import { omit } from 'lodash-es';
+  import { omit, isFunction } from 'lodash-es';
   import { basicProps } from './props';
-  import { isFunction } from '@dq-next/utils/is';
   import { warn } from '@dq-next/utils/log';
 
   export default defineComponent({

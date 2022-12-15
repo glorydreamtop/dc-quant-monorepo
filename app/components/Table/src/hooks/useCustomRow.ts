@@ -2,7 +2,7 @@ import type { ComputedRef } from 'vue';
 import type { BasicTableProps } from '../types/table';
 import { unref } from 'vue';
 import { ROW_KEY } from '../const';
-import { isString, isFunction } from '@dq-next/utils/is';
+import { isString, isFunction } from 'lodash-es';
 
 interface Options {
   setSelectedRowKeys: (keys: string[]) => void;

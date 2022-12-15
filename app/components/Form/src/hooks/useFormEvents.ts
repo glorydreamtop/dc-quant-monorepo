@@ -2,11 +2,19 @@ import type { ComputedRef, Ref } from 'vue';
 import type { FormProps, FormSchema, FormActionType } from '../types/form';
 import type { NamePath } from 'ant-design-vue/lib/form/interface';
 import { unref, toRaw, nextTick } from 'vue';
-import { isArray, isFunction, isObject, isString, isDef, isNullOrUnDef } from '@dq-next/utils/is';
 import { deepMerge } from '@dq-next/utils';
 import { dateItemType, handleInputNumberValue, defaultValueComponents } from '../helper';
 import { dateUtil } from '@dq-next/utils/dateUtil';
-import { cloneDeep, uniqBy } from 'lodash-es';
+import {
+  cloneDeep,
+  uniqBy,
+  isUndefined,
+  isNil,
+  isArray,
+  isFunction,
+  isObject,
+  isString,
+} from 'lodash-es';
 import { error } from '@dq-next/utils/log';
 
 interface UseFormActionContext {
@@ -93,13 +101,13 @@ export function useFormEvents({
         nestKeyArray.forEach((nestKey: string) => {
           try {
             const value = eval('values' + delimiter + nestKey);
-            if (isDef(value)) {
+            if (!isUndefined(value)) {
               formModel[nestKey] = value;
               validKeys.push(nestKey);
             }
           } catch (e) {
             // key not exist
-            if (isDef(defaultValueRef.value[nestKey])) {
+            if (!isUndefined(defaultValueRef.value[nestKey])) {
               formModel[nestKey] = defaultValueRef.value[nestKey];
             }
           }
@@ -236,7 +244,7 @@ export function useFormEvents({
         item.component != 'Divider' &&
         Reflect.has(item, 'field') &&
         item.field &&
-        !isNullOrUnDef(item.defaultValue)
+        !isNil(item.defaultValue)
       ) {
         obj[item.field] = item.defaultValue;
       }

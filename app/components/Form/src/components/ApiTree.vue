@@ -12,8 +12,7 @@
 <script lang="ts">
   import { computed, defineComponent, watch, ref, onMounted, unref } from 'vue';
   import { Tree } from 'ant-design-vue';
-  import { isArray, isFunction } from '@dq-next/utils/is';
-  import { get } from 'lodash-es';
+  import { get, isArray, isFunction } from 'lodash-es';
   import { propTypes } from '@dq-next/utils/propTypes';
   import { LoadingOutlined } from '@ant-design/icons-vue';
   export default defineComponent({

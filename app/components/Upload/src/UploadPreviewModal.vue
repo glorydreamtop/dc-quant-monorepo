@@ -17,10 +17,10 @@
   import { BasicModal, useModalInner } from '/@/components/Modal';
   import { previewProps } from './props';
   import { PreviewFileItem } from './typing';
-  import { downloadByUrl } from '@dq-next/utils/file/download';
+  import { downloadByUrl } from '@dq-next/utils/file';
   import { createPreviewColumns, createPreviewActionColumn } from './data';
   import { useI18n } from '/@/hooks/web/useI18n';
-  import { isArray } from '@dq-next/utils/is';
+  import { isArray } from 'lodash-es';
 
   export default defineComponent({
     components: { BasicModal, FileList },

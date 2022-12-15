@@ -8,7 +8,7 @@
   import { Descriptions } from 'ant-design-vue';
   import { CollapseContainer } from '/@/components/Container/index';
   import { useDesign } from '/@/hooks/web/useDesign';
-  import { isFunction } from '@dq-next/utils/is';
+  import { isFunction } from 'lodash-es';
   import { getSlot } from '@dq-next/utils/helper/tsxHelper';
   import { useAttrs } from '/@/hooks/core/useAttrs';
 

@@ -48,7 +48,7 @@
   import { QuotaDataTable } from '/@/components/QuotaTable';
   import { chartConfigType, chartSetting } from '../../chart';
   import { EChartsCoreOption, EChartsType } from 'echarts/core';
-  import { downloadByBase64 } from '@dq-next/utils/file/download';
+  import { downloadByBase64 } from '@dq-next/utils/file';
 
   const props = defineProps<{
     config: chartConfigType;

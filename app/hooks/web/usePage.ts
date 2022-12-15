@@ -1,7 +1,7 @@
 import type { RouteLocationRaw, Router } from 'vue-router';
 
 import { PageEnum } from '/@/enums/pageEnum';
-import { isString } from '@dq-next/utils/is';
+import { isString } from 'lodash-es';
 import { unref } from 'vue';
 
 import { useRouter } from 'vue-router';

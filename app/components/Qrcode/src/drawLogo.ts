@@ -1,4 +1,4 @@
-import { isString } from '@dq-next/utils/is';
+import { isString } from 'lodash-es';
 import { RenderQrCodeParams, LogoType } from './typing';
 export const drawLogo = ({ canvas, logo }: RenderQrCodeParams) => {
   if (!logo) {

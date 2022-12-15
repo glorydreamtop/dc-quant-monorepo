@@ -69,7 +69,7 @@
   import { cloneDeep } from 'lodash-es';
   import { SettingOutlined } from '@ant-design/icons-vue';
   import { dom2imgFile, fileType } from '@dq-next/utils/domUtils';
-  import { downloadByData } from '@dq-next/utils/file/download';
+  import { downloadByData } from '@dq-next/utils/file';
   import { EChartsOption } from 'echarts';
   const RadioButton = Radio.Button;
   const loadingRef = ref<boolean>(false);

@@ -118,9 +118,8 @@
   import { useTableContext } from '../../hooks/useTableContext';
   import { useDesign } from '/@/hooks/web/useDesign';
   // import { useSortable } from '/@/hooks/web/useSortable';
-  import { isFunction, isNullAndUnDef } from '@dq-next/utils/is';
   import { getPopupContainer as getParentContainer } from '@dq-next/utils';
-  import { cloneDeep, omit } from 'lodash-es';
+  import { cloneDeep, omit, isFunction, isNil } from 'lodash-es';
   import Sortablejs from 'sortablejs';
   import type Sortable from 'sortablejs';
 
@@ -298,7 +297,7 @@
             handle: '.table-column-drag-icon ',
             onEnd: (evt) => {
               const { oldIndex, newIndex } = evt;
-              if (isNullAndUnDef(oldIndex) || isNullAndUnDef(newIndex) || oldIndex === newIndex) {
+              if (isNil(oldIndex) || isNil(newIndex) || oldIndex === newIndex) {
                 return;
               }
               // Sort column
