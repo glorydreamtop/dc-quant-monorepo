@@ -7,6 +7,7 @@
         :config="config"
         @update-config="updateConfig"
         @render-success="renderSuccess"
+        v-loading="loading"
       />
       <!-- <TempChart
         class="w-full h-full"
@@ -53,6 +54,7 @@
   import { useI18n } from '/@/hooks/web/useI18n';
   import { BarDrawer, useDrawer } from '/@/components/Drawer';
   import { TempSave } from '/@/components/TempSave';
+  import vLoading from '/@/directives/loading';
 
   const { t } = useI18n();
   const chartConfig = useChartConfigContext();
@@ -71,6 +73,7 @@
   const config = reactive({}) as chartConfigType;
   function paint() {
     mergeAndRemove(config, chartConfig);
+    loading.value = true;
     nextTick(() => {
       allowSave.value = true;
     });
@@ -83,8 +86,11 @@
     });
     paint();
   }
+
+  const loading = ref(false);
   // 绘图完成
   function renderSuccess(options: EChartsCoreOption) {
+    loading.value = false;
     echartMitter.emit('echartOptions', options);
   }
   function saveTemplate() {

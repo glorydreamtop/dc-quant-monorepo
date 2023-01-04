@@ -21,7 +21,7 @@
   import { getColumns } from './columns';
   import { BasicTable, useTable, TableAction, ActionItem } from '/@/components/Table';
   import { getRem } from '@dq-next/utils/domUtils';
-  import { isEmpty, isNull } from '@dq-next/utils/is';
+  import { isEmpty, isNull } from 'lodash-es';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { UserInfo } from '/#/store';
 

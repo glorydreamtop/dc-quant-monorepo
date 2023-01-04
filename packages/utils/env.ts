@@ -2,8 +2,8 @@ import type { GlobEnvConfig } from '/#/config';
 
 import { warn } from './log';
 
-export function getAppEnvConfig() {
-  const ENV = import.meta.env as unknown as GlobEnvConfig;
+export function getAppEnvConfig<T extends Recordable = GlobEnvConfig>() {
+  const ENV = import.meta.env as unknown as T;
 
   const { VITE_GLOB_APP_SHORT_NAME } = ENV;
 

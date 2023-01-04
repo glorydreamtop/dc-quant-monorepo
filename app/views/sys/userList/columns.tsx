@@ -1,6 +1,6 @@
 import { BasicColumn } from '/@/components/Table';
 import { useI18n } from '/@/hooks/web/useI18n';
-import { isEmpty, isNull } from '@dq-next/utils/is';
+import { isEmpty, isNull } from 'lodash-es';
 import { Switch, Tag } from 'ant-design-vue';
 import { updateUserInfo } from '@dq-next/http-apis/sys/user';
 import type { UserInfo } from '/#/store';

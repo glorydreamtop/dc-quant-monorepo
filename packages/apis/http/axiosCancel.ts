@@ -1,6 +1,6 @@
 import type { AxiosRequestConfig, Canceler } from 'axios';
 import axios from 'axios';
-import { isFunction } from '@dq-next/utils/is';
+import { isFunction } from 'lodash-es';
 
 // Used to store the identification and cancellation function of each request
 let pendingMap = new Map<string, Canceler>();

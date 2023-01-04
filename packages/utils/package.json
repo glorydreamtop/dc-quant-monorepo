@@ -33,7 +33,6 @@
     "./helper/versionTransfer": {
       "import": "./helper/versionTransfer.ts"
     },
-    
     "./auth": {
       "import": "./auth.ts"
     },
@@ -76,5 +75,12 @@
     "./uuid": {
       "import": "./uuid.ts"
     }
+  },
+  "dependencies": {
+    "@vueuse/core": "^8.3.0",
+    "html2canvas": "^1.4.1",
+    "crypto-js": "^4.1.1",
+    "dayjs": "^1.11.1",
+    "lodash-es": "^4.17.21"
   }
 }

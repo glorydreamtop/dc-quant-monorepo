@@ -2,7 +2,7 @@
 // The axios configuration can be changed according to the project, just change the file, other files can be left unchanged
 
 import type { AxiosError, AxiosResponse } from 'axios';
-import { clone } from 'lodash-es';
+import { clone, isString } from 'lodash-es';
 import type { RequestOptions, Result } from '/#/axios';
 import type { AxiosTransform, CreateAxiosOptions } from './axiosTransform';
 import { VAxios } from './Axios';
@@ -10,7 +10,6 @@ import { VAxios } from './Axios';
 import { useGlobSetting } from '/@/hooks/setting';
 import { useMessage } from '/@/hooks/web/useMessage';
 import { RequestEnum, ResultEnum, ContentTypeEnum } from '/@/enums/httpEnum';
-import { isString } from '@dq-next/utils/is';
 import { getToken } from '@dq-next/utils/auth';
 import { setObjToUrlParams, deepMerge } from '@dq-next/utils';
 // import { useErrorLogStoreWithOut } from '/@/store/modules/errorLog';

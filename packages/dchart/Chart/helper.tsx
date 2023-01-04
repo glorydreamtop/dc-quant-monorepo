@@ -13,7 +13,7 @@ import {
   EChartsType,
 } from 'echarts';
 import { encodeSvgForCss } from '@dq-next/icon';
-import { last, maxBy, nth, remove, round, cloneDeep, has, isObject } from 'lodash-es';
+import { last, maxBy, nth, remove, round, cloneDeep, has, isObject,isNumber, isArray } from 'lodash-es';
 import { chartTypeEnum, echartLineTypeEnum, echartSeriesTypeEnum } from '/@/enums/chartEnum';
 import { dateUtil, daysAgo, formatToDate, getMonth, toTimeStamp } from '@dq-next/utils/dateUtil';
 import { useI18n } from '/@/hooks/web/useI18n';
@@ -21,7 +21,6 @@ import YAxisEdit from './src/YAxisEditor.vue';
 import XAxisEdit from './src/XAxisEditor.vue';
 import SeriesEdit from './src/SeriesEditor.vue';
 import { getColorScheme } from '@dq-next/http-apis/color';
-import { isNumber, isArray } from '@dq-next/utils/is';
 import { fade, rgbToHex } from '@dq-next/utils/color';
 
 const { t } = useI18n();

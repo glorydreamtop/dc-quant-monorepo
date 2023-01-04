@@ -60,14 +60,13 @@
   import { useMessage } from '/@/hooks/web/useMessage';
   import { useScaleable } from '@dq-next/utils/helper/commonHelper';
   import { useSortable } from '/@/hooks/web/useSortable';
-  import { isNullAndUnDef } from '@dq-next/utils/is';
   import {
     getStatDataQuery,
     postSaveOrUpdate,
     getSpecialInfoById,
   } from '@dq-next/http-apis/special/index';
   import { schemas } from './formData';
-  import { cloneDeep, remove } from 'lodash-es';
+  import { cloneDeep, remove, isNil } from 'lodash-es';
   import { useModal } from '/@/components/Modal';
   import ModalSave from './components/ModalSave.vue';
   import { defaultChartCfg } from '../specialCommon';
@@ -294,7 +293,7 @@
           handle: '.drag',
           onEnd: (evt) => {
             const { oldIndex, newIndex } = evt;
-            if (isNullAndUnDef(oldIndex) || isNullAndUnDef(newIndex) || oldIndex === newIndex) {
+            if (isNil(oldIndex) || isNil(newIndex) || oldIndex === newIndex) {
               return;
             }
             // Sort column

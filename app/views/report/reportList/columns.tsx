@@ -1,7 +1,7 @@
 import { BasicColumn } from '/@/components/Table';
 import { Tooltip } from 'ant-design-vue';
 import { useI18n } from '/@/hooks/web/useI18n';
-import { isEmpty, isNull } from '@dq-next/utils/is';
+import { isEmpty, isNull } from 'lodash-es';
 import { Icon } from '@dq-next/icon';
 import { openWindow } from '@dq-next/utils';
 import { downloadByUrl } from '@dq-next/utils/file';

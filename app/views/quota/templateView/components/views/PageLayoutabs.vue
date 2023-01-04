@@ -44,7 +44,7 @@
 
 <script lang="ts" setup>
   import { useResizeObserver } from '@vueuse/core';
-  import { last } from 'lodash-es';
+  import { last, isNil } from 'lodash-es';
   import {
     CSSProperties,
     onMounted,
@@ -65,7 +65,6 @@
   } from '../../hooks';
   import { TemplateDOM } from '/#/template';
   import { useSortable } from '/@/hooks/web/useSortable';
-  import { isNullAndUnDef } from '@dq-next/utils/is';
   import { DoubleSideChart } from '@dq-next/dchart';
   import BasicText from '../Text.vue';
   import BasicImg from '../Image.vue';
@@ -151,7 +150,7 @@
       dragoverBubble: true,
       onEnd: (evt) => {
         const { oldIndex, newIndex } = evt;
-        if (isNullAndUnDef(oldIndex) || isNullAndUnDef(newIndex) || oldIndex === newIndex) {
+        if (isNil(oldIndex) || isNil(newIndex) || oldIndex === newIndex) {
           return;
         }
         // Sort column
