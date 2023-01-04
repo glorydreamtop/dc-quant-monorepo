@@ -1,32 +1,9 @@
 <template>
-  <div class="relative flex h-40 p-4 bg-white min-h-40">
-    <div class="flex flex-col flex-wrap w-auto gap-3 pr-2 border-r border-gray-300 pt-2px">
-      <Tooltip placement="left">
-        <template #title>{{ t('quotaView.quotaList.formula') }}</template>
-        <Icon icon="carbon:function-math" size="20" @click="addFormula" />
-      </Tooltip>
-      <Tooltip placement="left">
-        <template #title>{{ t('quotaView.quotaList.delChecked') }}</template>
-        <Icon
-          icon="ant-design:delete-outlined"
-          size="20"
-          @click="clear"
-          data-type="delete"
-          class="delete-shake"
-        />
-      </Tooltip>
-      <Tooltip placement="left">
-        <template #title>{{ t('quotaView.quotaList.checkAll') }}</template>
-        <Icon icon="ant-design:check-outlined" size="20" @click="checkAll" />
-      </Tooltip>
-      <Tooltip placement="left">
-        <template #title>{{ t('quotaView.quotaList.updateQuota') }}</template>
-        <Icon icon="ant-design:sync-outlined" size="20" @click="updateQuota" />
-      </Tooltip>
-    </div>
+  <div class="relative h-47 p-4 bg-white min-h-47 flex-col flex gap-1">
+    <QuotaListToolBar @add-formula="addFormula" @update-quota="updateQuota" />
     <!-- 列表start -->
     <div
-      class="flex gap-4 flex-wrap content-start rounded-md overflow-y-scroll select-none flex-grow relative pl-2"
+      class="flex gap-4 flex-wrap content-start rounded-md overflow-y-scroll h-full select-none relative"
       ref="quotaBox"
     >
       <!-- 一个卡片 -->
@@ -59,25 +36,23 @@
 <script lang="ts" setup>
   import { nextTick, ref, unref } from 'vue';
   import type { QuotaItem } from '/#/quota';
-  import { Tooltip } from 'ant-design-vue';
   import { useModal } from '/@/components/Modal';
   import { QuotaCard } from '/@/components/QuotaCard';
   import { useWatchArray } from '@dq-next/utils/helper/commonHelper';
-  import { cloneDeep, remove } from 'lodash-es';
+  import { cloneDeep, remove, isNil } from 'lodash-es';
   import { Icon } from '@dq-next/icon';
   // import QuotaModal from '/@/views/dataManagement/quotaTree/components/QuotaModal.vue';
   // import Edit from './SeriesEdit.vue';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { useSortable } from '/@/hooks/web/useSortable';
-  import { isNullAndUnDef } from '@dq-next/utils/is';
   import { useCopyToClipboard } from '/@/hooks/web/useCopyToClipboard';
   import { useContextMenu } from '/@/hooks/web/useContextMenu';
   import { onMountedOrActivated } from '/@/hooks/core/onMountedOrActivated';
-  import { useQuotaListContext, useSelectedQuotaListContext, useChartConfigContext } from './hooks';
+  import { useQuotaListContext, useSelectedQuotaListContext } from './hooks';
   import type { SelectedQuotaItem } from './hooks';
   import QuotaSetting from './QuotaSetting.vue';
+  import QuotaListToolBar from './QuotaListToolBar.vue';
   import { useI18n } from '/@/hooks/web/useI18n';
-  import { requestUpdateQuotaData } from '@dq-next/http-apis/quota';
   import { SourceTypeEnum } from '/@/enums/quotaEnum';
 
   // let animationFlag = false;
@@ -91,42 +66,12 @@
   function handleSelected(item: SelectedQuotaItem) {
     item.selected = !item.selected;
   }
-  // 全选/取消全选
-  function checkAll() {
-    const b = selectedQuota.value.every((q) => q.selected);
-    selectedQuota.value.forEach((q) => {
-      q.selected = !b;
-    });
+
+  function updateQuota(bool: boolean) {
+    loading.value = bool;
   }
+
   const loading = ref(false);
-  // 更新选中指标
-  async function updateQuota() {
-    const obj = {};
-    // 按目录分组
-    selectedQuota.value.forEach((quota) => {
-      if (quota.selected && !!quota.id) {
-        if (Reflect.has(obj, quota.categoryId!)) {
-          obj[quota.categoryId!].push(quota.id);
-        } else {
-          obj[quota.categoryId!] = [quota.id];
-        }
-      }
-    });
-    const arr: Promise<any>[] = [];
-    for (let key in obj) {
-      arr.push(requestUpdateQuotaData({ categoryId: parseInt(key), indexIdList: obj[key] }));
-    }
-    try {
-      loading.value = true;
-      // 并发分组更新请求
-      const res = await Promise.allSettled(arr);
-      createMessage.success(res[0].value.msg);
-    } catch (error) {
-      createMessage.error(error);
-    } finally {
-      loading.value = false;
-    }
-  }
   // 监听数组，新加入的指标默认被选中
   useWatchArray(selectedQuota, (cur, pre) => {
     if (cur.length > pre.length) {
@@ -154,10 +99,6 @@
       minHeight: 300,
       width: '400px',
     });
-  }
-  function clear() {
-    remove(selectedQuota.value, (quota) => quota.selected === true);
-    createMessage.success(t('quotaView.quotaCard.alldel'));
   }
   function handleIcon(item: QuotaItem, type: string) {
     const handler = {
@@ -277,7 +218,7 @@
       dragoverBubble: true,
       onEnd: (evt) => {
         const { oldIndex, newIndex } = evt;
-        if (isNullAndUnDef(oldIndex) || isNullAndUnDef(newIndex) || oldIndex === newIndex) {
+        if (isNil(oldIndex) || isNil(newIndex) || oldIndex === newIndex) {
           return;
         }
         // Sort column

@@ -5,6 +5,7 @@ export default {
     updateQuota: '更新选中指标',
     checkAll: '全选/取消全选',
     delChecked: '移除选中',
+    readClipBoard:'从剪贴板读取公式指标',
     cardUI: '切换到卡片视角',
     listUI: '切换到列表视角',
     getXLSX: '数据导出为表格',

@@ -1,7 +1,7 @@
 <template>
   <div class="flex justify-start items-center h-layout-full p-4 gap-4 w-full overflow-hidden">
     <div class="h-full min-w-75 w-75 relative border" v-resizeable:show="`x`">
-      <QuotaTree :show-search="true" class="h-full w-full enter-y" @selectNode="selectNode" />
+      <QuotaTree :show-search="true" class="h-full w-full enter-y" @selectNode="selectQuota" />
     </div>
     <div class="flex flex-col h-full max-h-full flex-grow gap-4">
       <QuotaList class="border enter-y w-full quota-list" v-resizeable:show="`y`" />
@@ -47,7 +47,7 @@
   const originData = ref<getQuotaDataResult[]>([]);
   createChartOriginDataContext(originData);
 
-  function selectNode(q: QuotaItem) {
+  function selectQuota(q: QuotaItem) {
     const sq = cloneDeep(q) as SelectedQuotaItem;
     if (selectedQuotaList.value.find((q) => q.id === sq.id)) {
       createMessage.warn((q.shortName || q.name) + t('quotaView.uniqSelectedQuotaMessage'));

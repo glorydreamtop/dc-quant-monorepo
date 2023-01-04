@@ -19,7 +19,7 @@ export interface CategoryTreeModel {
 }
 
 export interface QuotaItem {
-  id: number;
+  id: number | string;
   dateLast?: string;
   name: string;
   sourceCode: string;

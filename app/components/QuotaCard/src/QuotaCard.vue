@@ -23,10 +23,10 @@
       >
     </Tooltip>
     <!-- sourceCode -->
-    <span class="quota-sourceCode"
-      ><span class="w-fit" @click.stop @dblclick="copy(quotaInfo.sourceCode, 'sourceCode')">{{
+    <div class="quota-sourceCode"
+      ><div @click.stop @dblclick="copy(quotaInfo.sourceCode, 'sourceCode')">{{
         quotaInfo.sourceCode
-      }}</span></span
+      }}</div></div
     >
     <span class="quota-unit" @click.stop>{{ quotaInfo.unit }}</span>
     <Tooltip :mouseEnterDelay="0.5">
@@ -206,10 +206,24 @@
     }
 
     .quota-sourceCode {
-      @apply mt-1 w-fit text-primary-400;
+      @apply mt-1 text-primary-400;
 
       grid-row: 2/3;
       grid-column: 1/4;
+      // height: 1.5em;
+
+      > div {
+        width: fit-content;
+        max-width: 90%;
+        line-height: 1.5em;
+        height: 3em;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        word-break: break-all;
+      }
     }
 
     .quota-unit {
@@ -218,6 +232,7 @@
       grid-row: 3/4;
       grid-column: 1/3;
       align-self: end;
+      height: 1.25em;
     }
 
     .quota-date {
