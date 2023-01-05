@@ -126,27 +126,27 @@
 </script>
 
 <style lang="less" scoped>
-  .app-iconify {
-    transform: scale(1);
-    transition: all 0.2s;
-    transform-origin: 50% 100%;
-
-    &:hover {
-      transform: scale(1.4);
-      color: @primary-color;
-    }
-  }
-
   .bar {
     position: relative;
-    padding-left: 6px;
+    padding-left: 12px;
 
     &::before {
       content: '';
       position: absolute;
-      left: -6px;
+      left: 0px;
       height: 100%;
       border-right: 4px solid lighten(@primary-color, 15);
+    }
+
+    .app-iconify {
+      transform: scale(1);
+      transition: all 0.2s;
+      transform-origin: 50% 100%;
+
+      &:hover {
+        transform: scale(1.4);
+        color: @primary-color;
+      }
     }
   }
 </style>
