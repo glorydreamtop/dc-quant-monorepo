@@ -1,5 +1,4 @@
 import { sourceTypeEnum } from '/@/enums/quotaEnum';
-import { DateUtil } from '@dq-next/utils/dateUtil';
 
 export interface CategoryTreeModel {
   folder: boolean;
@@ -36,3 +35,5 @@ export interface QuotaItem {
 export interface SelectedQuotaItem extends QuotaItem {
   selected: boolean;
 }
+
+export type CardSizeType = 'mini' | 'default';

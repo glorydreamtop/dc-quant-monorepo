@@ -1,6 +1,10 @@
 <template>
   <div class="relative h-47 p-4 bg-white min-h-47 flex-col flex gap-1">
-    <QuotaListToolBar @add-formula="addFormula" @update-quota="updateQuota" />
+    <QuotaListToolBar
+      @add-formula="addFormula"
+      @update-quota="updateQuota"
+      v-model:cardSize="cardSize"
+    />
     <!-- 列表start -->
     <div
       class="flex gap-4 flex-wrap content-start rounded-md overflow-y-scroll h-full select-none relative"
@@ -18,6 +22,7 @@
         v-for="item in selectedQuota"
         :key="item.id"
         :quota-info="item"
+        :size="cardSize"
       >
         <template #actions>
           <Icon
@@ -35,7 +40,7 @@
 
 <script lang="ts" setup>
   import { nextTick, ref, unref } from 'vue';
-  import type { QuotaItem } from '/#/quota';
+  import type { CardSizeType, QuotaItem } from '/#/quota';
   import { useModal } from '/@/components/Modal';
   import { QuotaCard } from '/@/components/QuotaCard';
   import { useWatchArray } from '@dq-next/utils/helper/commonHelper';
@@ -141,6 +146,7 @@
     const { isSuccessRef } = useCopyToClipboard(text);
     unref(isSuccessRef) && createMessage.success(`${textType[type]}已复制到剪贴板`);
   }
+  const cardSize = ref<CardSizeType>('default');
   const [createContextMenu] = useContextMenu();
   function handleContext(e: MouseEvent, item: SelectedQuotaItem) {
     const menuList = [

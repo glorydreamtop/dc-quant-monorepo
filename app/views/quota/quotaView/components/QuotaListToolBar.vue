@@ -26,6 +26,10 @@
       <template #title>{{ t('quotaView.quotaList.updateQuota') }}</template>
       <Icon icon="ant-design:sync-outlined" size="20" @click="updateQuota" />
     </Tooltip>
+    <Tooltip placement="top">
+      <template #title>{{ cardSizeText }}</template>
+      <Icon icon="mdi:image-size-select-large" size="20" @click="updateCardSize" />
+    </Tooltip>
   </div>
 </template>
 
@@ -34,17 +38,21 @@
   import { Icon } from '@dq-next/icon';
   import { remove } from 'lodash-es';
   import { Tooltip } from 'ant-design-vue';
-  import { ref } from 'vue';
+  import { computed, ref } from 'vue';
   import { useSelectedQuotaListContext } from './hooks';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useMessage } from '/@/hooks/web/useMessage';
-  import { SelectedQuotaItem } from '/#/quota';
+  import { SelectedQuotaItem, CardSizeType } from '/#/quota';
   import { buildShortUUID } from '@dq-next/utils';
   import { SourceTypeEnum } from '/@/enums/quotaEnum';
 
   const emit = defineEmits<{
     (event: 'addFormula'): void;
     (event: 'updateQuota', state: boolean): void;
+    (event: 'update:cardSize', size: CardSizeType): void;
+  }>();
+  const props = defineProps<{
+    cardSize: CardSizeType;
   }>();
   const { t } = useI18n();
   const { createMessage } = useMessage();
@@ -122,6 +130,15 @@
       };
       selectedQuota.value.push(quota);
     }
+  }
+  const cardSizeTypes: CardSizeType[] = ['mini', 'default'];
+  const cardSizeText = computed(() => {
+    return [t('quotaView.quotaList.miniQuotaCard'), t('quotaView.quotaList.defaultQuotaCard')][
+      cardSizeTypes.indexOf(props.cardSize)
+    ];
+  });
+  function updateCardSize() {
+    emit('update:cardSize', cardSizeTypes[1 - cardSizeTypes.indexOf(props.cardSize)]);
   }
 </script>
 
