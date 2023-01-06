@@ -9,7 +9,7 @@ import { RouteLocationNormalized, useRouter } from 'vue-router';
 import { useTabs } from '/@/hooks/web/useTabs';
 import { useI18n } from '/@/hooks/web/useI18n';
 
-export function useTabDropdown(tabContentProps: TabContentProps, getIsTabs: ComputedRef<boolean>) {
+export function useTabDropdown(tabContentProps: TabContentProps) {
   const state = reactive({
     current: null as Nullable<RouteLocationNormalized>,
     currentIndex: 0,
@@ -21,7 +21,7 @@ export function useTabDropdown(tabContentProps: TabContentProps, getIsTabs: Comp
   const { refreshPage, closeAll, close, closeLeft, closeOther, closeRight } = useTabs();
 
   const getTargetTab = computed((): RouteLocationNormalized => {
-    return unref(getIsTabs) ? tabContentProps.tabItem : unref(currentRoute);
+    return tabContentProps.tabItem;
   });
 
   /**

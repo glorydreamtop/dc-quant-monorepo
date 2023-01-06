@@ -71,4 +71,8 @@ export default {
       status: '指标状态',
     },
   },
+  toolbar:{
+    update:'刷新指标树',
+    upload:'上传数据'
+  }
 };

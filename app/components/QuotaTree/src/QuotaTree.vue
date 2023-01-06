@@ -8,7 +8,7 @@
     <Tabs v-model:activeKey="treeType" class="tabs" centered>
       <TabPane :key="CategoryTreeType.sysQuota" :tab="t('quota.sysQuota')">
         <BasicTree
-          v-loading="loading[CategoryTreeType.sysQuota]"
+          v-loading="loading[CategoryTreeType.sysQuota] === 1"
           v-bind="treeProps[CategoryTreeType.sysQuota]"
           ref="sysTree"
           draggable
@@ -162,12 +162,13 @@
       showLine: false,
     },
   });
+  // 0更新失败1更新中2更新成功
   const loading = reactive({
-    [CategoryTreeType.sysQuota]: false,
-    [CategoryTreeType.userQuota]: false,
+    [CategoryTreeType.sysQuota]: 0,
+    [CategoryTreeType.userQuota]: 0,
   });
   async function getData(type: QuotaType = unref(treeType), update = true) {
-    loading[treeType.value] = true;
+    loading[treeType.value] = 1;
     const expandedKeys = getTreeInstance(treeType.value)?.getExpandedKeys() || null;
     try {
       let res;
@@ -195,13 +196,11 @@
         }
       });
       treeProps[type].treeData = res;
-      createMessage.success(t('sys.api.getOK'));
+      loading[treeType.value] = 2;
+      // createMessage.success(t('sys.api.getOK'));
     } catch (error) {
-      createMessage.error(t('sys.api.getFailed'));
-    } finally {
-      useTimeoutFn(() => {
-        loading[treeType.value] = false;
-      }, 960);
+      loading[treeType.value] = 0;
+      // createMessage.error(t('sys.api.getFailed'));
     }
   }
 

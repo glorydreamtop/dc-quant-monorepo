@@ -67,7 +67,9 @@ html[data-theme='light'] {
 
           &:hover {
             .ant-tabs-tab-remove {
-              opacity: 1;
+              svg {
+                fill: @primary-color;
+              }
             }
           }
 
@@ -75,24 +77,13 @@ html[data-theme='light'] {
             width: 8px;
             height: 28px;
             font-size: 12px;
-            color: inherit;
-            opacity: 0;
-            transition: none;
             margin-left: 2px;
-            margin-right: -4px;
+            padding: 0;
 
-            &:hover {
-              svg {
-                width: 0.8em;
-              }
+            svg {
+              width: 0.6em;
             }
           }
-
-          // > div {
-          //   display: flex;
-          //   justify-content: center;
-          //   align-items: center;
-          // }
 
           svg {
             fill: @text-color-base;
@@ -107,47 +98,16 @@ html[data-theme='light'] {
 
         .ant-tabs-tab.ant-tabs-tab-active {
           position: relative;
-          color: @white;
           background: @primary-color;
-          border: 0;
-          // transition: none;
 
           span {
             color: @white !important;
           }
 
-          .ant-tabs-tab-remove {
-            opacity: 1;
-          }
-
           svg {
-            width: 0.7em;
+            width: 0.6em;
             fill: @white;
           }
-        }
-
-        .ant-tabs-tab-remove {
-          padding: 0;
-          margin-left: 4px;
-        }
-        // }
-      }
-
-      .ant-tabs-nav > div:nth-child(1) {
-        padding: 0 0 0 6px;
-
-        .ant-tabs-tab {
-          margin-right: 3px !important;
-        }
-      }
-    }
-
-    .ant-tabs-tab:not(.ant-tabs-tab-active) {
-      .anticon-close {
-        font-size: 12px;
-
-        svg {
-          width: 0.6em;
         }
       }
     }
@@ -156,21 +116,13 @@ html[data-theme='light'] {
       display: inline-flex;
     }
 
-    &--hide-close {
-      .ant-tabs-tab-remove {
-        opacity: 0 !important;
-      }
-    }
-
     .ant-tabs-extra-content {
-      padding: 0 6px 0 10px;
+      padding: 0 6px;
     }
   }
 
   &-content {
-    &__extra-quick,
-    &__extra-redo,
-    &__extra-fold {
+    &__extra-redo {
       display: inline-block;
       height: @multiple-height - 10;
       line-height: @multiple-height - 10;
