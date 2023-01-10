@@ -142,10 +142,6 @@
     padding-top: 30px;
   }
 
-  .chart-view {
-    background: @white;
-  }
-
   .chart-view,
   .table-view {
     position: absolute;

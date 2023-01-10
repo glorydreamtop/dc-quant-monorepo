@@ -53,9 +53,9 @@
   import { useCopyToClipboard } from '/@/hooks/web/useCopyToClipboard';
   import { useContextMenu } from '/@/hooks/web/useContextMenu';
   import { onMountedOrActivated } from '/@/hooks/core/onMountedOrActivated';
-  import { useQuotaListContext, useSelectedQuotaListContext } from './hooks';
-  import type { SelectedQuotaItem } from './hooks';
-  import QuotaSetting from './QuotaSetting.vue';
+  import { useQuotaListContext, useSelectedQuotaListContext } from '../hooks';
+  import type { SelectedQuotaItem } from '../hooks';
+  import QuotaSetting from '../QuotaSetting.vue';
   import QuotaListToolBar from './QuotaListToolBar.vue';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { SourceTypeEnum } from '/@/enums/quotaEnum';

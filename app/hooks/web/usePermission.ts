@@ -46,23 +46,11 @@ export function usePermission() {
       return def;
     }
 
-    const permMode = projectSetting.permissionMode;
-
-    if ([PermissionModeEnum.ROUTE_MAPPING, PermissionModeEnum.ROLE].includes(permMode)) {
-      if (!isArray(value)) {
-        return userStore.getRoleList?.includes(value as RoleEnum);
-      }
-      return (intersection(value, userStore.getRoleList) as RoleEnum[]).length > 0;
+    const allCodeList = permissionStore.getPermCodeList as string[];
+    if (!isArray(value)) {
+      return allCodeList.includes(value);
     }
-
-    if (PermissionModeEnum.BACK === permMode) {
-      const allCodeList = permissionStore.getPermCodeList as string[];
-      if (!isArray(value)) {
-        return allCodeList.includes(value);
-      }
-      return (intersection(value, allCodeList) as string[]).length > 0;
-    }
-    return true;
+    return (intersection(value, allCodeList) as string[]).length > 0;
   }
 
   /**
@@ -70,12 +58,6 @@ export function usePermission() {
    * @param roles
    */
   async function changeRole(roles: RoleEnum | RoleEnum[]): Promise<void> {
-    if (projectSetting.permissionMode !== PermissionModeEnum.ROUTE_MAPPING) {
-      throw new Error(
-        'Please switch PermissionModeEnum to ROUTE_MAPPING mode in the configuration to operate!',
-      );
-    }
-
     if (!isArray(roles)) {
       roles = [roles];
     }
@@ -90,5 +72,5 @@ export function usePermission() {
     resume();
   }
 
-  return { changeRole, hasPermission, togglePermissionMode, refreshMenu };
+  return { changeRole, hasPermission, refreshMenu };
 }

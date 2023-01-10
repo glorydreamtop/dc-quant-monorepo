@@ -1,0 +1,6 @@
+{
+  "readClipBoard":{
+    "title":"从剪贴板导入指标",
+    "content":"<span>一位不知名的大师说过，善用现有的工具，而非事事从零开始。</span><br/><span>你可以借助Excel快速创建一批公式指标，并在其中支持变量引用，前两列务必保持是name和formula，后边可以支持任意数量的变量，列名即变量名，name和formula中使用前后井号来包裹变量，这些变量将被替换为后面的具体值。选中后复制，然后点击本功能按钮，指标池中就会出现一批指标。<br /><span>不要出现额外的空行等多余的东西，可能会解析不成功。第一次使用时浏览器会请求读取剪贴板权限，当然要同意了。</span></span><img style='width:100%;max-height:400px;' src='https://imgs.zixinco.com/20230109/9af80aa5be5cb.png' />"
+  }
+}

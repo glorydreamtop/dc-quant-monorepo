@@ -26,7 +26,6 @@
             v-model:value="column.title"
             @blur="titleChange(columnIndex, $event)"
           />
-
           <div class="flex items-center w-auto gap-1 pl-1 border border-gray-300 header-icons-box">
             <Popover trigger="click">
               <template #content>

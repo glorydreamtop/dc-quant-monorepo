@@ -12,7 +12,7 @@
 
 <script lang="ts" setup name="quotaView">
   import { QuotaTree } from '/@/components/QuotaTree';
-  import QuotaList from './components/QuotaList.vue';
+  import QuotaList from './components/quotaList/QuotaList.vue';
   import ChartGenerator from './components/ChartGenerator.vue';
   import { reactive, ref } from 'vue';
   import {

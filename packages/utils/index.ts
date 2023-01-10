@@ -87,5 +87,5 @@ export * from './env';
 export * from './is';
 export * from './mitt';
 export * from './uuid';
-// export * from './log';
+export * from './file';
 // export * from './propTypes';

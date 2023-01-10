@@ -30,7 +30,7 @@
   import { getCommStructure } from '@dq-next/http-apis/future';
   import { formatToDate } from '@dq-next/utils/dateUtil';
   import { dom2imgFile, fileType } from '@dq-next/utils/domUtils';
-  import { downloadByData } from '@dq-next/utils/file.js';
+  import { downloadByData } from '@dq-next/utils';
   export default defineComponent({
     components: { BasicModal },
     setup() {

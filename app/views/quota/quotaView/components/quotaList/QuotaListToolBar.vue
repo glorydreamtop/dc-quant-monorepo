@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-3 w-fit bar">
+  <div :class="['flex gap-3 w-fit bar', $attrs.class]">
     <Tooltip placement="top">
       <template #title>{{ t('quotaView.quotaList.formula') }}</template>
       <Icon icon="carbon:function-math" size="20" @click="addFormula" />
@@ -19,7 +19,15 @@
       <Icon icon="ant-design:check-outlined" size="20" @click="checkAll" />
     </Tooltip>
     <Tooltip placement="top">
-      <template #title>{{ t('quotaView.quotaList.readClipBoard') }}</template>
+      <template #title>
+        {{ t('quotaView.quotaList.readClipBoard') }}
+        <Icon
+          icon="fluent:question-circle-20-filled"
+          size="18"
+          class="cursor-pointer"
+          @click="showReadClipBoardHelp"
+        />
+      </template>
       <Icon icon="fluent:clipboard-paste-16-regular" size="20" @click="readClipBoard" />
     </Tooltip>
     <Tooltip placement="top">
@@ -31,6 +39,7 @@
       <Icon icon="mdi:image-size-select-large" size="20" @click="updateCardSize" />
     </Tooltip>
   </div>
+  <Help @register="registerClipBoardHelp" />
 </template>
 
 <script lang="ts" setup>
@@ -38,12 +47,15 @@
   import { Icon } from '@dq-next/icon';
   import { remove } from 'lodash-es';
   import { Tooltip } from 'ant-design-vue';
-  import { useSelectedQuotaListContext } from './hooks';
+  import { useSelectedQuotaListContext } from '../hooks';
   import { useI18n } from '/@/hooks/web/useI18n';
   import { useMessage } from '/@/hooks/web/useMessage';
   import { SelectedQuotaItem, CardSizeType } from '/#/quota';
   import { buildShortUUID } from '@dq-next/utils';
   import { SourceTypeEnum } from '/@/enums/quotaEnum';
+  import Help from './Help.vue';
+  import helpJSON from './help.json';
+  import { useModal } from '/@/components/Modal';
 
   const emit = defineEmits<{
     (event: 'addFormula'): void;
@@ -133,6 +145,19 @@
   const cardSizeTypes: CardSizeType[] = ['mini', 'default'];
   function updateCardSize() {
     emit('update:cardSize', cardSizeTypes[1 - cardSizeTypes.indexOf(props.cardSize)]);
+  }
+
+  const [
+    registerClipBoardHelp,
+    { openModal: openClipBoardHelp, setModalProps: setClipBoardHelpModalProps },
+  ] = useModal();
+  function showReadClipBoardHelp() {
+    setClipBoardHelpModalProps({
+      width: 700,
+      height: 500,
+      canFullscreen: false,
+    });
+    openClipBoardHelp(true, helpJSON.readClipBoard);
   }
 </script>
 
