@@ -14,20 +14,6 @@
     <Button size="small" @click="addSpaceRow(tableConfig.data.length)">{{
       t('table.addRow')
     }}</Button>
-    <DatePicker
-      size="small"
-      class="!w-auto"
-      v-model:value="tableConfig.timeConfig.endDate"
-      valueFormat="YYYY-MM-DD"
-    >
-      <Button class="flex items-center gap-1" size="small">
-        <span>{{ t('table.endDate') }}：</span>
-        <span class="flex items-center gap-1 cursor-pointer">
-          <span>{{ tableConfig.timeConfig.endDate }}</span>
-          <Icon class="!text-primary" icon="ant-design:field-time-outlined" />
-        </span>
-      </Button>
-    </DatePicker>
     <Button size="small" type="primary" @click="saveTable">{{ t('common.saveText') }}</Button>
     <Popover trigger="click">
       <template #content>
@@ -58,7 +44,7 @@
 
 <script lang="ts" setup>
   import { reactive, ref, toRaw } from 'vue';
-  import { Button, Popover, Input, DatePicker } from 'ant-design-vue';
+  import { Button, Popover, Input } from 'ant-design-vue';
   import { useI18n } from '/@/hooks/web/useI18n';
   import type { TableConfigType } from '/#/table';
   import {
@@ -104,9 +90,8 @@
           name: 'input',
         },
         slots: {
-          header: 'normal-title-text',
-          default: 'normal-cell-text',
-          edit: 'normal-cell-text-editor',
+          default: 'cell-text',
+          edit: 'cell-text-editor',
         },
       };
       gridOptions.columns?.push(column);
@@ -115,7 +100,7 @@
       const data = {};
       const origin = table.data[i];
       Object.keys(origin).forEach((key) => {
-        data[key] = origin[key].val;
+        data[key] = origin[key];
       });
       gridOptions.data?.push(data);
     }

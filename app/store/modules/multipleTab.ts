@@ -60,18 +60,18 @@ export const useMultipleTabStore = defineStore({
      */
     async updateCacheTab() {
       const cacheMap: Set<string> = new Set();
+      console.log('refresh tab cache');
 
       for (const tab of this.tabList) {
         const item = getRawRoute(tab);
-        // Ignore the cache
-        const needCache = !item.meta?.ignoreKeepAlive;
-        if (!needCache) {
+        if (item.meta?.ignoreKeepAlive) {
           continue;
         }
         const name = item.name as string;
         cacheMap.add(name);
       }
       this.cacheTabList = cacheMap;
+      webStorage.ls.set(MULTIPLE_TABS_KEY, this.tabList);
     },
 
     /**
@@ -164,7 +164,6 @@ export const useMultipleTabStore = defineStore({
         this.tabList.push(route);
       }
       this.updateCacheTab();
-      webStorage.ls.set(MULTIPLE_TABS_KEY, this.tabList);
     },
 
     async closeTab(tab: RouteLocationNormalized, router: Router) {
@@ -175,6 +174,7 @@ export const useMultipleTabStore = defineStore({
         }
         const index = this.tabList.findIndex((item) => item.fullPath === fullPath);
         index !== -1 && this.tabList.splice(index, 1);
+        this.updateCacheTab();
       };
 
       const { currentRoute, replace } = router;

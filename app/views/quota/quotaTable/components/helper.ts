@@ -8,6 +8,7 @@ import type { InjectionKey, Ref } from 'vue';
 import { createContext, useContext } from '/@/hooks/core/useContext';
 import { daysAgo } from '@dq-next/utils/dateUtil';
 import { useI18n } from '/@/hooks/web/useI18n';
+import { useDebounceFn } from '@vueuse/shared';
 
 const { t } = useI18n();
 const tableConfigKey: InjectionKey<TableConfigType> = Symbol();
@@ -55,9 +56,8 @@ const hookState: HookState = reactive({
       name: 'input',
     },
     slots: {
-      header: 'normal-title-text',
-      default: 'normal-cell-text',
-      edit: 'normal-cell-text-editor',
+      default: 'cell-text',
+      edit: 'cell-text-editor',
     },
   },
 });
@@ -208,9 +208,19 @@ export function useAreaSelect(
     Object.assign(areaSelectorDOM.style, {
       position: 'absolute',
       zIndex: 999,
-      backgroundColor: 'rgba(64,158,255,0.4)',
       pointerEvents: 'none',
     } as CSSProperties);
+    const areaSelectBorderDOM = document.createElement('div');
+    Object.assign(areaSelectBorderDOM.style, {
+      position: 'absolute',
+      zIndex: 996,
+      border: '2px solid #2f54eb',
+      backgroundColor: 'rgb(64 158 255 / 30%)',
+      pointerEvents: 'none',
+      transition: 'all 64ms ease',
+    } as CSSProperties);
+    areaSelectBorderDOM.setAttribute('class', 'area-select-border');
+    document.body.appendChild(areaSelectBorderDOM);
     const showAreaSelector = ref(false);
     const rectInfo = {
       startX: 0,
@@ -220,9 +230,9 @@ export function useAreaSelect(
       toRight: true,
       toBottom: true,
     };
+    const AllTdRectInfo: Array<cellPosition & DOMRect> = [];
     // 判断元素重叠
-    function isOverlap(node: HTMLElement) {
-      const rect1 = node.getBoundingClientRect();
+    function isOverlap(rect1: DOMRect) {
       const rect2 = areaSelectorDOM.getBoundingClientRect();
       return !(
         rect1.right < rect2.left ||
@@ -231,6 +241,7 @@ export function useAreaSelect(
         rect1.top > rect2.bottom
       );
     }
+    const debounceListener = useDebounceFn(mousemoveListener, 16);
     // 鼠标按下开始绘制选区
     function mousedownListener(e: MouseEvent) {
       if (
@@ -256,8 +267,26 @@ export function useAreaSelect(
         width: `0px`,
         height: `0px`,
       });
+
       document.body.appendChild(areaSelectorDOM);
-      tbody.addEventListener('mousemove', mousemoveListener);
+      const d = document.elementFromPoint(e.pageX, e.pageY)!.closest('td');
+      if (d) {
+        const { left, right, top, bottom } = d.getBoundingClientRect();
+        Object.assign(areaSelectBorderDOM.style, {
+          left: `${left}px`,
+          top: `${top}px`,
+          width: `${right - left}px`,
+          height: `${bottom - top}px`,
+        });
+      }
+      remove(AllTdRectInfo, (_) => _);
+      tbody.querySelectorAll('td').forEach((td) => {
+        const col = xGrid.value.getColumnNode(td)!.index;
+        const row = xGrid.value.getRowNode(td.parentElement!)!.index;
+        AllTdRectInfo.push({ col, row, ...td.getBoundingClientRect().toJSON() });
+      });
+      console.log(AllTdRectInfo);
+      tbody.addEventListener('mousemove', debounceListener);
       tbody.addEventListener('mouseup', mouseupListener);
     }
     // 鼠标移动开始缩放选区
@@ -271,21 +300,42 @@ export function useAreaSelect(
         width: `${Math.abs(rectInfo.endX - rectInfo.startX)}px`,
         height: `${Math.abs(rectInfo.endY - rectInfo.startY)}px`,
       });
+      areaCells.value = [];
+      const areaCellsInfo = {
+        minRow: Infinity,
+        maxRow: 0,
+        minCol: Infinity,
+        maxCol: 0,
+      };
+      AllTdRectInfo.forEach((td) => {
+        if (isOverlap(td)) {
+          areaCells.value.push({ col: td.col, row: td.row });
+          areaCellsInfo.minRow = Math.min(areaCellsInfo.minRow, td.row);
+          areaCellsInfo.minCol = Math.min(areaCellsInfo.minCol, td.col);
+          areaCellsInfo.maxRow = Math.max(areaCellsInfo.maxRow, td.row);
+          areaCellsInfo.maxCol = Math.max(areaCellsInfo.maxCol, td.col);
+        }
+      });
+      const { left, top } = AllTdRectInfo.find(
+        (td) => td.row === areaCellsInfo.minRow && td.col === areaCellsInfo.minCol,
+      )!;
+      const { right, bottom } = AllTdRectInfo.find(
+        (td) => td.row === areaCellsInfo.maxRow && td.col === areaCellsInfo.maxCol,
+      )!;
+      Object.assign(areaSelectBorderDOM.style, {
+        left: `${left}px`,
+        top: `${top}px`,
+        width: `${right - left}px`,
+        height: `${bottom - top}px`,
+      });
+      onAreaSelect(areaCells.value);
     }
     // 鼠标弹起结束选取
     function mouseupListener() {
-      tbody.removeEventListener('mousemove', mousemoveListener);
+      tbody.removeEventListener('mousemove', debounceListener);
       tbody.removeEventListener('mouseup', mouseupListener);
       showAreaSelector.value = false;
-      tbody.querySelectorAll('td').forEach((td) => {
-        if (isOverlap(td)) {
-          const col = xGrid.value.getColumnNode(td)!.index;
-          const row = xGrid.value.getRowNode(td.parentNode!)!.index;
-          areaCells.value.push({ col, row });
-        }
-      });
       document.body.removeChild(areaSelectorDOM);
-      onAreaSelect(areaCells.value);
     }
     tbody.addEventListener('mousedown', mousedownListener);
   });
